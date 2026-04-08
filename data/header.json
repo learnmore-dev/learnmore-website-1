@@ -1,0 +1,89 @@
+{
+    "header": {
+        "logo": {
+            "image": "/logo.png",
+            "alt": "LearnMore Logo",
+            "name": "LearnMore",
+            "tagline": "Technologies"
+        },
+        "contactBar": {
+            "phoneNumbers": [{
+                    "location": "Marathahalli",
+                    "number": "+91 90365 24555",
+                    "fullNumber": "919036524555"
+                },
+                {
+                    "location": "BTM",
+                    "number": "+91 90365 42555",
+                    "fullNumber": "919036542555"
+                },
+                {
+                    "location": "Kalyan Nagar",
+                    "number": "+91 90363 54551",
+                    "fullNumber": "919036354551"
+                },
+                {
+                    "location": "Hebbal",
+                    "number": "+91 95142 03013",
+                    "fullNumber": "919514203013"
+                }
+            ],
+            "whatsappNumber": "919514203013",
+            "whatsappMessage": "Hi Learnmore Technologies, I'm interested in your courses. Please share more details."
+        },
+        "navLinks": [{
+                "name": "Home",
+                "link": "/",
+                "type": "link"
+            },
+            {
+                "name": "Course",
+                "type": "dropdown",
+                "items": [
+                    { "name": "Python Fullstack Master Program", "link": "/course/python-fullstack" },
+                    { "name": "Data Analytics Master Program", "link": "/course/data-analytics" },
+                    { "name": "Cloud Master Program", "link": "/course/cloud-devops" },
+                    { "name": "Software Testing Master Program", "link": "/course/software-testing" },
+                    { "name": "Data Engineering Master Program", "link": "/course/data-engineering" },
+                    { "name": "Data Science with AI Master Program", "link": "/course/data-science-ai" }
+                ]
+            },
+            {
+                "name": "IT Services",
+                "type": "dropdown",
+                "items": [
+                    { "name": "AWS Training in BTM", "link": "https://learnmoretechnologies.in/aws-training-in-btm/", "icon": "fab fa-aws", "external": true },
+                    { "name": "Python Training in BTM", "link": "https://learnmoretechnologies.in/python-training-in-btm/", "icon": "fab fa-python", "external": true },
+                    { "name": "DevOps Training in BTM", "link": "https://learnmoretechnologies.in/devops-training-in-btm/", "icon": "fas fa-cogs", "external": true },
+                    { "name": "Software Testing Training in BTM", "link": "https://learnmoretechnologies.in/software-testing-training-in-btm/", "icon": "fas fa-bug", "external": true },
+                    { "name": "Java Full Stack Training in BTM", "link": "https://learnmoretechnologies.in/the-best-java-full-stack-training-in-btm/", "icon": "fab fa-java", "external": true },
+                    { "name": "Python Full Stack Training in BTM", "link": "https://learnmoretechnologies.in/best-python-full-stack-training-in-btm/", "icon": "fab fa-python", "external": true },
+                    { "name": "Data Analytics Training in BTM", "link": "https://learnmoretechnologies.in/data-analytics-training-in-btm/", "icon": "fas fa-chart-line", "external": true },
+                    { "name": "Microsoft Azure Training in BTM", "link": "https://learnmoretechnologies.in/microsoft-azure-training-in-btm/", "icon": "fab fa-microsoft", "external": true }
+                ]
+            },
+            {
+                "name": "Placement",
+                "link": "/placement",
+                "type": "link"
+            },
+            {
+                "name": "Services",
+                "link": "/services",
+                "type": "link"
+            },
+            {
+                "name": "Internships",
+                "link": "/internships",
+                "type": "link"
+            }
+        ],
+        "socialMedia": [
+            { "name": "YouTube", "icon": "fab fa-youtube", "url": "https://www.youtube.com/@learnnmore" },
+            { "name": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/learnmore_technologies/" },
+            { "name": "LinkedIn", "icon": "fab fa-linkedin-in", "url": "https://www.linkedin.com/company/learnmoretechnologiesbangalore/" },
+            { "name": "WhatsApp", "icon": "fab fa-whatsapp", "url": "https://wa.me/919514203013" },
+            { "name": "Facebook", "icon": "fab fa-facebook-f", "url": "https://www.facebook.com/share/1CyNbbCSho/" }
+        ]
+    }
+}

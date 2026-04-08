@@ -1,0 +1,83 @@
+{
+    "services": [{
+            "id": 1,
+            "title": "Online Training",
+            "icon": "fas fa-laptop",
+            "description": "Learn anytime, anywhere with our Live Online Training Programs led by industry experts.",
+            "features": [
+                "Live instructor-led sessions",
+                "Real-time projects & hands-on labs",
+                "Recorded sessions for revision",
+                "Flexible schedules for students & working professionals",
+                "Same placement support as classroom training"
+            ],
+            "bestFor": "Working professionals, remote learners, and students outside Bangalore.",
+            "buttonText": "Enroll Online",
+            "buttonLink": "/enroll"
+        },
+        {
+            "id": 2,
+            "title": "Offline (Classroom) Training",
+            "icon": "fas fa-chalkboard-teacher",
+            "description": "Experience immersive learning with classroom-based training at our training centers.",
+            "features": [
+                "Face-to-face interaction with trainers",
+                "Lab-based practical sessions",
+                "Small batch sizes for personal attention",
+                "Peer learning & doubt-clearing sessions",
+                "Placement-oriented curriculum"
+            ],
+            "bestFor": "Freshers, graduates, and learners who prefer in-person training.",
+            "buttonText": "Visit Our Center",
+            "buttonLink": "/location"
+        },
+        {
+            "id": 3,
+            "title": "Corporate Training",
+            "icon": "fas fa-building",
+            "description": "We deliver customized corporate training solutions to help organizations upskill their workforce.",
+            "features": [
+                "Customized training modules",
+                "Onsite & online corporate sessions",
+                "Skill gap analysis",
+                "Practical use-case driven learning",
+                "Post-training assessment & reporting"
+            ],
+            "technologies": ["Cloud", "DevOps", "Data Analytics", "Python", "Java", "Automation Testing"],
+            "buttonText": "Request Corporate Training Proposal",
+            "buttonLink": "/contact"
+        },
+        {
+            "id": 4,
+            "title": "Internship Programs",
+            "icon": "fas fa-briefcase",
+            "description": "Gain real-world exposure through our internship programs designed to bridge the gap between learning and employment.",
+            "features": [
+                "Real-time project experience",
+                "Industry-level problem solving",
+                "Internship certification",
+                "Mentor guidance",
+                "Interview-ready project portfolio"
+            ],
+            "bestFor": "Students, fresh graduates, and career switchers.",
+            "buttonText": "Apply for Internship",
+            "buttonLink": "/internships"
+        },
+        {
+            "id": 5,
+            "title": "Placement Support",
+            "icon": "fas fa-handshake",
+            "description": "Placements are a core part of our services. We focus on making students job-ready and confident.",
+            "features": [
+                "Resume & LinkedIn profile building",
+                "Mock technical & HR interviews",
+                "Interview referrals & job alerts",
+                "Career mentoring",
+                "Continuous placement assistance"
+            ],
+            "roles": ["Software Developer", "Cloud Engineer", "DevOps Engineer", "Data Analyst", "QA Tester", "Full Stack Developer"],
+            "buttonText": "View Placement Records",
+            "buttonLink": "/placement"
+        }
+    ]
+}

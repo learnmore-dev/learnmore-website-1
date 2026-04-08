@@ -1,0 +1,39 @@
+{
+    "blogs": [{
+            "id": 1,
+            "slug": "why-choose-python-for-web-development",
+            "title": "Why Choose Python for Web Development in 2024?",
+            "excerpt": "Python continues to dominate web development. Learn why it's the preferred choice for developers worldwide.",
+            "content": "Python has become one of the most popular programming languages for web development. Its simplicity, readability, and vast ecosystem make it an excellent choice for both beginners and experienced developers. In this article, we'll explore the reasons why Python is a top choice for web development projects.",
+            "author": "Rahul Sharma",
+            "date": "March 15, 2024",
+            "category": "Python",
+            "readTime": "5 min read",
+            "image": "/images/blog/python-web.jpg"
+        },
+        {
+            "id": 2,
+            "slug": "future-of-data-science-with-ai",
+            "title": "The Future of Data Science with Artificial Intelligence",
+            "excerpt": "How AI is transforming data science and creating new opportunities for professionals.",
+            "content": "Artificial Intelligence is revolutionizing the field of data science. From automated machine learning to generative AI, the landscape is changing rapidly. This article discusses the latest trends and how aspiring data scientists can prepare for the future.",
+            "author": "Priya Patel",
+            "date": "March 10, 2024",
+            "category": "Data Science",
+            "readTime": "7 min read",
+            "image": "/images/blog/ai-future.jpg"
+        },
+        {
+            "id": 3,
+            "slug": "cloud-devops-career-guide",
+            "title": "Complete Career Guide for Cloud DevOps Engineers",
+            "excerpt": "Everything you need to know to start and grow your career in Cloud DevOps.",
+            "content": "Cloud DevOps is one of the most sought-after career paths in IT. This comprehensive guide covers the skills you need, certification paths, job roles, and salary expectations for DevOps engineers.",
+            "author": "Amit Kumar",
+            "date": "March 5, 2024",
+            "category": "DevOps",
+            "readTime": "8 min read",
+            "image": "/images/blog/devops-career.jpg"
+        }
+    ]
+}

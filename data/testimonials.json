@@ -1,0 +1,35 @@
+{
+    "testimonials": [{
+            "id": 1,
+            "name": "Rajiv Utsav",
+            "role": "Python Developer",
+            "company": "Tech Mahindra",
+            "content": "I took Python course from Learn more technologies and I had a very good learning experience. Rahul sir is very knowledgeable, he makes sure that the students understand each topic nicely with practical examples.",
+            "rating": 5
+        },
+        {
+            "id": 2,
+            "name": "Sanjana Nagraj",
+            "role": "Data Analyst",
+            "company": "Accenture",
+            "content": "I completed my Data Analytics internship at LearnMore Technologies and it was one of the best learning experiences I've had. The program included hands-on training in key tools like Excel, SQL, Python, and Power BI.",
+            "rating": 5
+        },
+        {
+            "id": 3,
+            "name": "Rohit Kumar",
+            "role": "Full Stack Developer",
+            "company": "IBM",
+            "content": "I recently completed my training in Python and the Django web framework. The session was really good. My trainer covered each topic using real-time scenarios.",
+            "rating": 5
+        },
+        {
+            "id": 4,
+            "name": "Chiranjeevi Chiru",
+            "role": "Software Developer",
+            "company": "TCS",
+            "content": "Just completed my Python training and it was a great experience! The course covered everything from basics to advanced in a very simple and clear way.",
+            "rating": 5
+        }
+    ]
+}

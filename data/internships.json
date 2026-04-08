@@ -1,0 +1,88 @@
+{
+    "internships": [{
+            "id": 1,
+            "title": "Data Analytics Internship",
+            "category": "Data & Analytics",
+            "icon": "fas fa-chart-line",
+            "description": "Master data visualization, business intelligence tools, and analytical reporting with real datasets.",
+            "features": [
+                "Real-time dashboards & reports",
+                "Business case studies",
+                "Internship certificate",
+                "Placement assistance"
+            ],
+            "duration": "4-8 Weeks",
+            "mode": "Online/Offline",
+            "skills": ["Excel", "SQL", "Power BI", "Python"],
+            "popular": true
+        },
+        {
+            "id": 2,
+            "title": "Data Science Internship",
+            "category": "AI & Machine Learning",
+            "icon": "fas fa-robot",
+            "description": "Build ML models, work with real-world datasets, and solve complex business problems.",
+            "features": [
+                "ML algorithms & projects",
+                "Real-world datasets",
+                "Mentor-guided learning",
+                "Project portfolio"
+            ],
+            "duration": "8-12 Weeks",
+            "mode": "Online/Offline",
+            "skills": ["Python", "ML", "Deep Learning", "NLP"],
+            "popular": true
+        },
+        {
+            "id": 3,
+            "title": "Full Stack Development Internship",
+            "category": "Web Development",
+            "icon": "fas fa-code",
+            "description": "Build complete web applications with modern frontend and backend technologies.",
+            "features": [
+                "Frontend & backend projects",
+                "Live website deployment",
+                "Industry coding practices",
+                "GitHub portfolio"
+            ],
+            "duration": "6-10 Weeks",
+            "mode": "Online/Offline",
+            "skills": ["HTML/CSS", "JavaScript", "React", "Node.js", "Python/Django"],
+            "popular": true
+        },
+        {
+            "id": 4,
+            "title": "Digital Marketing Internship",
+            "category": "Marketing",
+            "icon": "fas fa-bullhorn",
+            "description": "Plan and execute real marketing campaigns, analyze performance, and optimize strategies.",
+            "features": [
+                "Live campaign management",
+                "SEO & analytics tools",
+                "Brand-building projects",
+                "Performance metrics"
+            ],
+            "duration": "4-8 Weeks",
+            "mode": "Online/Offline",
+            "skills": ["SEO", "Google Ads", "Social Media", "Analytics"],
+            "popular": false
+        },
+        {
+            "id": 4,
+            "title": "Digital Marketing Internship",
+            "category": "Marketing",
+            "icon": "fas fa-bullhorn",
+            "description": "Plan and execute real marketing campaigns, analyze performance, and optimize strategies.",
+            "features": [
+                "Live campaign management",
+                "SEO & analytics tools",
+                "Brand-building projects",
+                "Performance metrics"
+            ],
+            "duration": "4-8 Weeks",
+            "mode": "Online/Offline",
+            "skills": ["SEO", "Google Ads", "Social Media", "Analytics"],
+            "popular": false
+        }
+    ]
+}

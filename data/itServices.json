@@ -1,0 +1,95 @@
+{
+    "itServices": [{
+            "id": 1,
+            "name": "AWS Training in BTM",
+            "slug": "aws-training-btm",
+            "link": "https://learnmoretechnologies.in/aws-training-in-btm/",
+            "icon": "fab fa-aws",
+            "description": "Master Amazon Web Services with hands-on training",
+            "category": "Cloud",
+            "location": "BTM"
+        },
+        {
+            "id": 2,
+            "name": "Python Training in BTM",
+            "slug": "python-training-btm",
+            "link": "https://learnmoretechnologies.in/python-training-in-btm/",
+            "icon": "fab fa-python",
+            "description": "Learn Python programming from basics to advanced",
+            "category": "Programming",
+            "location": "BTM"
+        },
+        {
+            "id": 3,
+            "name": "DevOps Training in BTM",
+            "slug": "devops-training-btm",
+            "link": "https://learnmoretechnologies.in/devops-training-in-btm/",
+            "icon": "fas fa-cogs",
+            "description": "Master DevOps practices and tools",
+            "category": "DevOps",
+            "location": "BTM"
+        },
+        {
+            "id": 4,
+            "name": "Software Testing Training in BTM",
+            "slug": "software-testing-training-btm",
+            "link": "https://learnmoretechnologies.in/software-testing-training-in-btm/",
+            "icon": "fas fa-bug",
+            "description": "Learn manual and automation testing",
+            "category": "Testing",
+            "location": "BTM"
+        },
+        {
+            "id": 5,
+            "name": "Java Full Stack Training in BTM",
+            "slug": "java-full-stack-training-btm",
+            "link": "https://learnmoretechnologies.in/the-best-java-full-stack-training-in-btm/",
+            "icon": "fab fa-java",
+            "description": "Complete Java full stack development",
+            "category": "Full Stack",
+            "location": "BTM"
+        },
+        {
+            "id": 6,
+            "name": "Python Full Stack Training in BTM",
+            "slug": "python-full-stack-training-btm",
+            "link": "https://learnmoretechnologies.in/best-python-full-stack-training-in-btm/",
+            "icon": "fab fa-python",
+            "description": "Become a Python full stack developer",
+            "category": "Full Stack",
+            "location": "BTM"
+        },
+        {
+            "id": 7,
+            "name": "Data Analytics Training in BTM",
+            "slug": "data-analytics-training-btm",
+            "link": "https://learnmoretechnologies.in/data-analytics-training-in-btm/",
+            "icon": "fas fa-chart-line",
+            "description": "Master data analysis tools and techniques",
+            "category": "Data Science",
+            "location": "BTM"
+        },
+        {
+            "id": 8,
+            "name": "Microsoft Azure Training in BTM",
+            "slug": "microsoft-azure-training-btm",
+            "link": "https://learnmoretechnologies.in/microsoft-azure-training-in-btm/",
+            "icon": "fab fa-microsoft",
+            "description": "Learn cloud computing with Azure",
+            "category": "Cloud",
+            "location": "BTM"
+        },
+        {
+            "id": 9,
+            "name": "Microsoft Azure Training in BTMaaa",
+            "slug": "microsoft-azure-training-btm",
+            "link": "https://learnmoretechnologies.in/microsoft-azure-training-in-btm/",
+            "icon": "fab fa-microsoft",
+            "description": "Learn cloud computing with Azure",
+            "category": "Cloud",
+            "location": "BTM"
+        }
+
+
+    ]
+}

@@ -1,0 +1,91 @@
+{
+    "contact": {
+        "phoneNumbers": [{
+                "location": "Marathahalli",
+                "number": "+91 90365 24555",
+                "displayNumber": "90365 24555",
+                "fullNumber": "919036524555"
+            },
+            {
+                "location": "BTM",
+                "number": "+91 90365 42555",
+                "displayNumber": "90365 42555",
+                "fullNumber": "919036542555"
+            },
+            {
+                "location": "Kalyan Nagar",
+                "number": "+91 90363 54551",
+                "displayNumber": "90363 54551",
+                "fullNumber": "919036354551"
+            },
+            {
+                "location": "Hebbal",
+                "number": "+91 95142 03013",
+                "displayNumber": "951420 3013",
+                "fullNumber": "919514203013"
+            }
+        ],
+        "email": "office.learnmore@gmail.com",
+        "address": "Bangalore, Karnataka, India",
+        "workingHours": {
+            "weekdays": "Mon – Fri: 9:00 AM – 9:00 PM",
+            "weekend": "Sat – Sun: 10:00 AM – 7:00 PM"
+        },
+        "socialMedia": [{
+                "name": "YouTube",
+                "icon": "fab fa-youtube",
+                "url": "https://www.youtube.com/@learnnmore",
+                "color": "#FF0000"
+            },
+            {
+                "name": "Instagram",
+                "icon": "fab fa-instagram",
+                "url": "https://www.instagram.com/learnmore_technologies/",
+                "color": "#E1306C"
+            },
+            {
+                "name": "LinkedIn",
+                "icon": "fab fa-linkedin-in",
+                "url": "https://www.linkedin.com/company/learnmoretechnologiesbangalore/",
+                "color": "#0077b5"
+            },
+            {
+                "name": "WhatsApp",
+                "icon": "fab fa-whatsapp",
+                "url": "https://wa.me/919514203013",
+                "color": "#25D366"
+            },
+            {
+                "name": "Facebook",
+                "icon": "fab fa-facebook-f",
+                "url": "https://www.facebook.com/share/1CyNbbCSho/",
+                "color": "#156ee9"
+            }
+        ],
+        "branches": [{
+                "name": "Marathahalli",
+                "address": "Marathahalli Bridge, Near Kalamandir, Bangalore - 560037",
+                "phone": "+91 90365 24555",
+                "mapUrl": "https://maps.google.com/?q=Marathahalli+Bangalore"
+            },
+            {
+                "name": "BTM Layout",
+                "address": "BTM 1st Stage, Near Jayadeva Hospital, Bangalore - 560029",
+                "phone": "+91 90365 42555",
+                "mapUrl": "https://maps.google.com/?q=BTM+Layout+Bangalore"
+            },
+            {
+                "name": "Kalyan Nagar",
+                "address": "Kalyan Nagar, HRBR Layout, Bangalore - 560043",
+                "phone": "+91 90363 54551",
+                "mapUrl": "https://maps.google.com/?q=Kalyan+Nagar+Bangalore"
+            },
+            {
+                "name": "Hebbal",
+                "address": "Hebbal, Near Manyata Tech Park, Bangalore - 560024",
+                "phone": "+91 95142 03013",
+                "mapUrl": "https://maps.google.com/?q=Hebbal+Bangalore"
+            }
+        ]
+    }
+}

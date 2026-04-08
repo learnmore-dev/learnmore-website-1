@@ -1,0 +1,148 @@
+{
+    "courses": [{
+            "id": 1,
+            "slug": "python-fullstack",
+            "title": "Python Fullstack Master Program",
+            "shortDescription": "Complete Python web development with Django, React, and modern frameworks.",
+            "fullDescription": "Learn Python programming, Django framework, React frontend, and database integration. Build real-world web applications from scratch. This comprehensive program covers frontend technologies (HTML, CSS, JavaScript, React), backend development with Python and Django, database management with SQL and MongoDB, and deployment on cloud platforms.",
+            "duration": "6 months",
+            "price": 49999,
+            "level": "Beginner to Advanced",
+            "image": "/pythonfullstack.jpg",
+            "icon": "fab fa-python",
+            "features": [
+                "Python Programming Fundamentals",
+                "Django Framework Mastery",
+                "React.js Frontend Development",
+                "Database Management (SQL & MongoDB)",
+                "REST API Development",
+                "Real-time Projects",
+                "100% Placement Assistance",
+                "Industry Certification"
+            ],
+            "tools": ["Python", "Django", "React", "SQL", "Git", "HTML/CSS", "JavaScript"],
+            "certification": "Python Full Stack Developer"
+        },
+        {
+            "id": 2,
+            "slug": "data-analytics",
+            "title": "Data Analytics Master Program",
+            "shortDescription": "Master Excel, SQL, Power BI, Tableau, and Python for data analysis.",
+            "fullDescription": "Master data analysis from basics to advanced. Learn Excel formulas and functions, SQL queries for data extraction, Power BI dashboards for visualization, Tableau for interactive reports, and Python for advanced analytics. Work on real-world datasets and build a strong portfolio.",
+            "duration": "4 months",
+            "price": 39999,
+            "level": "Beginner",
+            "image": "/data-analytics.jpg",
+            "icon": "fas fa-chart-line",
+            "features": [
+                "Excel & Advanced Excel",
+                "SQL Database Queries",
+                "Power BI Dashboards",
+                "Tableau Visualizations",
+                "Python for Data Analysis (Pandas, NumPy)",
+                "Real-world Projects",
+                "PL-300 Certification Prep",
+                "Placement Support"
+            ],
+            "tools": ["Excel", "SQL", "Power BI", "Tableau", "Python", "Pandas"],
+            "certification": "Data Analytics Professional"
+        },
+        {
+            "id": 3,
+            "slug": "cloud-devops",
+            "title": "Cloud DevOps Master Program",
+            "shortDescription": "AWS, Linux, Docker, Kubernetes, Jenkins, and DevOps practices.",
+            "fullDescription": "Master cloud computing with AWS services, Linux administration, containerization with Docker, orchestration with Kubernetes, and CI/CD pipelines with Jenkins. Learn infrastructure as code with Terraform and configuration management with Ansible.",
+            "duration": "5 months",
+            "image": "/devops.jpg",
+            "price": 44999,
+            "level": "Intermediate",
+            "icon": "fab fa-aws",
+            "features": [
+                "AWS Cloud Services (EC2, S3, VPC, Lambda, RDS, IAM)",
+                "Linux Administration & Shell Scripting",
+                "Docker Containers & Containerization",
+                "Kubernetes Orchestration",
+                "Jenkins CI/CD Pipelines",
+                "Terraform Infrastructure as Code",
+                "Ansible Configuration Management",
+                "AWS Certification Preparation"
+            ],
+            "tools": ["AWS", "Linux", "Docker", "Kubernetes", "Jenkins", "Terraform", "Ansible", "Git"],
+            "certification": "Cloud DevOps Engineer"
+        },
+        {
+            "id": 4,
+            "slug": "software-testing",
+            "title": "Software Testing Master Program",
+            "shortDescription": "Manual testing, Selenium automation, API testing, and QA practices.",
+            "fullDescription": "Comprehensive software testing training covering manual testing concepts, Selenium WebDriver automation with Java/Python, API testing with Postman, and QA methodologies. Learn test case design, defect tracking, and automation frameworks.",
+            "duration": "3 months",
+            "image": "/software-testing.jpg",
+            "price": 29999,
+
+            "level": "Beginner",
+            "icon": "fas fa-bug",
+            "features": [
+                "Manual Testing Concepts",
+                "Selenium WebDriver (Java/Python)",
+                "TestNG & PyTest Frameworks",
+                "API Testing with Postman",
+                "Database Testing",
+                "Agile Methodology",
+                "ISTQB Preparation",
+                "Placement Support"
+            ],
+            "tools": ["Selenium", "TestNG", "PyTest", "Postman", "JIRA", "SQL", "Git"],
+            "certification": "Software Testing Professional"
+        },
+        {
+            "id": 5,
+            "slug": "data-engineering",
+            "title": "Data Engineering Master Program",
+            "shortDescription": "SQL, Python, Spark, Kafka, and cloud data platforms.",
+            "fullDescription": "Learn data pipeline development, ETL processes, big data technologies like Apache Spark, streaming with Apache Kafka, and cloud data platforms (AWS/Azure/GCP). Master data warehousing concepts and data lake architecture.",
+            "duration": "6 months",
+            "image": "/data.jpg",
+            "price": 54999,
+            "level": "Intermediate to Advanced",
+            "icon": "fas fa-database",
+            "features": [
+                "Advanced SQL",
+                "Python for Data Engineering",
+                "Apache Spark (PySpark)",
+                "Apache Kafka Streaming",
+                "Cloud Data Platforms (AWS/GCP)",
+                "Data Warehouse Design",
+                "Airflow Orchestration",
+                "Real-time Data Processing"
+            ],
+            "tools": ["Python", "Spark", "Kafka", "SQL", "AWS", "Airflow", "Docker"],
+            "certification": "Data Engineering Professional"
+        },
+        {
+            "id": 6,
+            "slug": "data-science-ai",
+            "title": "Data Science with AI Master Program",
+            "shortDescription": "Machine Learning, Deep Learning, NLP, and Generative AI.",
+            "fullDescription": "Master data science and artificial intelligence with machine learning algorithms, deep learning neural networks, natural language processing, computer vision, and generative AI. Work on real-world AI projects and build a strong portfolio.",
+            "duration": "8 months",
+            "price": 64999,
+            "level": "Intermediate",
+            "image": "/datascince.jpg",
+            "icon": "fas fa-brain",
+            "features": [
+                "Python for Data Science",
+                "Machine Learning Algorithms",
+                "Deep Learning (TensorFlow/PyTorch)",
+                "Natural Language Processing",
+                "Computer Vision",
+                "Generative AI (LLMs)",
+                "Real-world AI Projects",
+                "Placement Support"
+            ],
+            "tools": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "NLP", "OpenCV", "Pandas"],
+            "certification": "Data Science with AI Professional"
+        }
+    ]
+}

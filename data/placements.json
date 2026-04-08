@@ -1,0 +1,377 @@
+{
+    "placements": [{
+            "id": 10,
+            "name": "Kumar Abhishek",
+            "course": "Senior software developer",
+            "company": "Nexgen2AI",
+            "role": "Senior software developer",
+            "image": "/images/students/kumar.jpeg",
+            "package": "15.2 LPA"
+        },
+        {
+            "id": 9,
+            "name": "Altaf Mansoori",
+            "course": "PYTHON Full Stack Developer",
+            "company": "Nexgen2AI",
+            "role": "Python Full Stack Developer",
+            "image": "/images/students/altaf.jpg",
+            "package": "7.2 LPA"
+        },
+
+        {
+            "id": 7,
+            "name": "kanzariya pratik",
+            "course": " React Native",
+            "company": "Nexgen2AI",
+            "role": "React Native Developer",
+            "image": "/images/students/pratik.jpeg",
+            "package": "5.2 LPA"
+        },
+
+        {
+            "id": 1,
+            "name": "Aditya Patel",
+            "course": "AWS & DevOps",
+            "company": "DXC Technologies",
+            "role": "Associate Applications Developer",
+            "image": "/images/students/aditya.jpg",
+
+            "package": "4.5 LPA"
+        },
+        {
+            "id": 8,
+            "name": "vijay kumar gupta ",
+            "course": "Data analyst",
+            "company": "Nexgen2AI",
+            "role": "Data Analyst",
+            "image": "/images/students/vijay.jpg",
+            "package": "6.2 LPA"
+        }, {
+            "id": 8,
+            "name": "Adnan Mohammad",
+            "course": "AWS Cloud & Engineering",
+            "company": "Nexgen2AI",
+            "role": "Cloud Engineer",
+            "image": "/images/students/adana.jpeg",
+            "package": "6.2 LPA"
+        }, {
+            "id": 11,
+            "name": "Kavin Kumar",
+            "course": "Data analyst",
+            "company": "Nexgen2AI",
+            "role": "Data analyst",
+            "image": "/images/students/kavin.jpeg",
+            "package": "8.2 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Priya Sharma",
+            "course": "Data Analytics",
+            "company": "Accenture",
+            "role": "Data Analyst",
+            "image": "/images/students/priya.jpg",
+            "package": "5.2 LPA"
+        },
+        {
+            "id": 3,
+            "name": "Ravi Patel",
+            "course": "Java Full Stack",
+            "company": "TCS",
+            "role": "Software Developer",
+            "package": "4.0 LPA"
+        },
+        {
+            "id": 4,
+            "name": "Sneha Verma",
+            "course": "Software Testing",
+            "company": "Cognizant",
+            "role": "QA Automation Tester",
+            "image": "/images/students/h.jpg",
+            "package": "3.8 LPA"
+        },
+        {
+            "id": 5,
+            "name": "Akash Gupta",
+            "course": "React JS",
+            "company": "Wipro",
+            "role": "Frontend Developer",
+            "package": "4.2 LPA"
+        },
+        {
+            "id": 6,
+            "name": "Priyanka Karmur",
+            "course": "Python Development",
+            "company": "Infosys",
+            "role": "Python Developer",
+            "image": "/images/students/Priyanka.png",
+            "package": "7.5 LPA"
+        },
+        {
+            "id": 6,
+            "name": "Satvik Tripathi",
+            "course": "IT analyst",
+            "company": "TCS",
+            "role": "IT analyst",
+            "image": "/images/students/rajesh.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 6,
+            "name": "Kishan Choudhary",
+            "course": "Software analyst",
+            "company": "Capgemini",
+            "role": "Software Analyst",
+            "image": "/images/students/kishan.png",
+            "package": "`10.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "Aditya Patel",
+            "course": "Associate applications developer",
+            "company": "DXC technologies",
+            "role": "Associate applications developer",
+            "image": "/images/students/aditya1.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "Rohit Yadav",
+            "course": "Snowflake developer",
+            "company": "Bizmetric",
+            "role": "Snowflake developer",
+            "image": "/images/students/rohit.png",
+            "package": "7.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "Subham P",
+            "course": "TEAM LEAD",
+            "company": "TECH MAHINDRA",
+            "role": "TEAM LEAD",
+            "image": "/images/students/ram.png",
+            "package": "6.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "RAJESH K",
+            "course": "PROJECT MANAGER",
+            "company": "HCL",
+            "role": "PROJECT MANAGER",
+            "image": "/images/students/kana.png",
+            "package": "6.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "Dhanya ",
+            "course": "Data analyst",
+            "company": "TCS",
+            "role": "Data analyst",
+            "image": "/images/students/dhanya.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "Rishab ",
+            "course": "Software analyst",
+            "company": "Bizmetric",
+            "role": "Software analyst",
+            "image": "/images/students/saja.jpg",
+            "package": "11.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "ankit ",
+            "course": "Data analyst",
+            "company": "Infosys",
+            "role": "Data analyst",
+            "image": "/images/students/ankit.jpg",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 5,
+            "name": "sarath",
+            "course": "React JS",
+            "company": "Wipro",
+            "role": "Frontend Developer",
+            "image": "/images/students/sarath.jpg",
+            "package": "4.2 LPA"
+        },
+        {
+            "id": 7,
+            "name": "anurag ",
+            "course": "PYTHON Full Stack Developer",
+            "company": "360 It hub",
+            "role": "PYTHON Full Stack Developer",
+            "image": "/images/students/anurag11.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 2,
+            "name": "arshivad",
+            "course": "Data Analytics",
+            "company": "Accenture",
+            "role": "Data Analyst",
+            "image": "/images/students/chacha.png",
+            "package": "5.2 LPA"
+        },
+        {
+            "id": 9,
+            "name": "kishor kumar",
+            "course": "PYTHON Full Stack Developer",
+            "company": "Nexgen2AI",
+            "role": "Python Full Stack Developer",
+            "image": "/images/students/fayba.png",
+            "package": "7.2 LPA"
+        },
+        {
+            "id": 7,
+            "name": "jeetendra ",
+            "course": "Associate applications developer",
+            "company": "DXC technologies",
+            "role": "Associate applications developer",
+            "image": "/images/students/name.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 6,
+            "name": "kiran Karmur",
+            "course": "Python Development",
+            "company": "4c it solutions",
+            "role": "Python Developer",
+            "image": "/images/students/kiran.png",
+            "package": "7.5 LPA"
+        },
+        {
+            "id": 2,
+            "name": "mahendra",
+            "course": "Data Analytics",
+            "company": "tcs",
+            "role": "Data Analyst",
+            "image": "/images/students/jaya.png",
+            "package": "5.2 LPA"
+        },
+        {
+            "id": 7,
+            "name": "vijay pandya",
+            "course": "TEAM LEAD",
+            "company": "Bizmetric",
+            "role": "TEAM LEAD",
+            "image": "/images/students/x.png",
+            "package": "6.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "yash parmar ",
+            "course": "Data analyst",
+            "company": "4c it solutions",
+            "role": "Data analyst",
+            "image": "/images/students/x1.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 2,
+            "name": "maruti",
+            "course": "Data Analytics",
+            "company": "Accenture",
+            "role": "Data Analyst",
+            "image": "/images/students/maruti.png",
+            "package": "5.2 LPA"
+        },
+
+        {
+            "id": 7,
+            "name": "anmol",
+            "course": " React Native",
+            "company": "Infosys",
+            "role": "React Native Developer",
+            "image": "/images/students/x3.png",
+            "package": "5.2 LPA"
+        },
+        {
+            "id": 7,
+            "name": "hitesh",
+            "course": "Snowflake developer",
+            "company": "Bizmetric",
+            "role": "Snowflake developer",
+            "image": "/images/students/x4.png",
+            "package": "7.5 LPA"
+        },
+        {
+            "id": 7,
+            "name": "jay patel",
+            "course": "Associate applications developer",
+            "company": "DXC technologies",
+            "role": "Associate applications developer",
+            "image": "/images/students/x5.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 9,
+            "name": "Rajeshvari",
+            "course": "PYTHON Full Stack Developer",
+            "company": "wexer technologies",
+            "role": "Python Full Stack Developer",
+            "image": "/images/students/x6.png",
+            "package": "7.2 LPA"
+        },
+        {
+            "id": 7,
+            "name": "ritesh varma ",
+            "course": "Associate applications developer",
+            "company": "DXC technologies",
+            "role": "Associate applications developer",
+            "image": "/images/students/x7.png",
+            "package": "8.5 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Sneha Verma",
+            "course": "Data Analytics",
+            "company": "tcs",
+            "role": "Data Analyst",
+            "image": "/images/students/x8.png",
+            "package": "5.2 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Arjun",
+            "course": "Data Science",
+            "company": "ibm",
+            "role": "Data scientist",
+            "image": "/images/students/x9.png",
+            "package": "5.2 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Bharath",
+            "course": "Associate applications developer",
+            "company": "ibm",
+            "role": "Associate applications developer",
+            "image": "/images/students/x10.png",
+            "package": "7.1 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Aryan",
+            "course": " React Native",
+            "company": "ABB",
+            "role": "React Native Developer",
+            "image": "/images/students/x11.png",
+            "package": "8.9 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Devaratha",
+            "course": " Team Lead",
+            "company": "Verizon",
+            "role": "Team Lead",
+            "image": "/images/students/x12.png",
+            "package": "5.2 LPA"
+        }
+
+
+
+
+
+    ]
+}
