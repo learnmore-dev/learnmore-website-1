@@ -9,13 +9,57 @@ import Footer from '@/components/common/Footer';
 import EnrollModal from '@/components/common/EnrollModal';
 import coursesData from '@/data/courses.json';
 
+// Syllabus PDF mapping
+const syllabusPDFs: Record<string, string> = {
+  'python-fullstack': '/pdfs/python-fullstack-syllabus.pdf',
+  'data-analytics': '/pdfs/data-analytics-syllabus.pdf',
+  'cloud-devops': '/pdfs/cloud-devops-syllabus.pdf',
+  'software-testing': '/pdfs/software-testing-syllabus.pdf',
+  'data-engineering': '/pdfs/data-engineering-syllabus.pdf',
+  'data-science-ai': '/pdfs/data-science-ai-syllabus.pdf',
+};
+
 export default function CoursePage({ params }: { params: { slug: string } }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [showSyllabusModal, setShowSyllabusModal] = useState(false);
   const course = coursesData.courses.find(c => c.slug === params.slug);
   
   if (!course) {
     notFound();
   }
+
+  // Get syllabus PDF path
+  const syllabusPDFPath = syllabusPDFs[course.slug] || '/pdfs/default-syllabus.pdf';
+
+  // Handle syllabus download
+  const handleDownloadSyllabus = () => {
+    if (isEnrolled) {
+      const link = document.createElement('a');
+      link.href = syllabusPDFPath;
+      link.download = `${course.slug}-syllabus.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      setShowSyllabusModal(true);
+    }
+  };
+
+  // Handle successful enrollment
+  const handleEnrollmentSuccess = () => {
+    setIsEnrolled(true);
+    setIsModalOpen(false);
+    // After enrollment, download syllabus automatically
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = syllabusPDFPath;
+      link.download = `${course.slug}-syllabus.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 500);
+  };
 
   // Hero tags from tools or create default
   const heroTags = course.tools?.slice(0, 5) || [
@@ -113,7 +157,6 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
       <main>
         {/* Hero Section with Background Image */}
         <section className="relative py-20 text-white overflow-hidden">
-          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
               src={getBackgroundImage()}
@@ -129,14 +172,10 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
                 }
               }}
             />
-            {/* Dark Overlay for better text readability */}
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
-          
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
           
-          {/* Content */}
           <div className="relative z-10 container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
@@ -159,8 +198,11 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
                 >
                   Enroll Now <i className="fas fa-arrow-right ml-2"></i>
                 </button>
-                <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-red-600 transition">
-                  Download Syllabus
+                <button 
+                  onClick={handleDownloadSyllabus}
+                  className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-red-600 transition"
+                >
+                  <i className="fas fa-download mr-2"></i> Download Syllabus
                 </button>
               </div>
             </div>
@@ -223,8 +265,6 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
                     </span>
                   ))}
                 </div>
-
-                {/* Certificate Info */}
                 <div className="mt-6 pt-4 border-t border-gray-100">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
                     <i className="fas fa-certificate text-yellow-500"></i> Certification
@@ -240,7 +280,21 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         {course.syllabus && (
           <section className="py-16 bg-white">
             <div className="container mx-auto px-4 max-w-4xl">
-              <h2 className="text-3xl font-bold mb-6 text-center">Course Syllabus</h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-bold text-center flex-1">Course Syllabus</h2>
+                <button
+                  onClick={handleDownloadSyllabus}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 ${
+                    isEnrolled 
+                      ? 'bg-red-500 text-white hover:bg-red-600' 
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                  disabled={!isEnrolled}
+                >
+                  <i className="fas fa-download"></i> Download PDF
+                  {!isEnrolled && <span className="text-xs ml-1">(Enroll first)</span>}
+                </button>
+              </div>
               <div className="space-y-4">
                 {Object.entries(course.syllabus).map(([module, topics]: [string, any], idx) => (
                   <details key={idx} className="border rounded-lg p-4 bg-gray-50">
@@ -275,7 +329,6 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
               ))}
             </div>
             
-            {/* Hiring Companies */}
             <div className="mt-8 text-center">
               <h3 className="text-xl font-bold mb-4">Top Hiring Companies</h3>
               <div className="flex flex-wrap justify-center gap-4">
@@ -301,8 +354,11 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
               >
                 Enroll Now
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-red-600 transition">
-                Book Free Demo
+              <button 
+                onClick={handleDownloadSyllabus}
+                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-red-600 transition"
+              >
+                <i className="fas fa-download mr-2"></i> Download Syllabus
               </button>
             </div>
             <p className="text-sm text-red-100 mt-4">Limited seats available. Enroll today!</p>
@@ -310,7 +366,44 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         </section>
       </main>
       <Footer />
-      <EnrollModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} courseName={course.title} />
+      <EnrollModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        courseName={course.title}
+        onSuccess={handleEnrollmentSuccess}
+      />
+      
+      {/* Syllabus Download Modal - Message for non-enrolled users */}
+      {showSyllabusModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[1000] p-4" onClick={() => setShowSyllabusModal(false)}>
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 text-center" onClick={(e) => e.stopPropagation()}>
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i className="fas fa-download text-yellow-500 text-3xl"></i>
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Download Syllabus</h3>
+            <p className="text-gray-600 mb-4">
+              Please complete the enrollment form to download the syllabus.
+            </p>
+            <div className="flex gap-3">
+              <button 
+                onClick={() => {
+                  setShowSyllabusModal(false);
+                  setIsModalOpen(true);
+                }}
+                className="flex-1 bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+              >
+                Enroll Now
+              </button>
+              <button 
+                onClick={() => setShowSyllabusModal(false)}
+                className="flex-1 border border-gray-300 text-gray-600 py-2 rounded-lg font-semibold hover:bg-gray-50 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
