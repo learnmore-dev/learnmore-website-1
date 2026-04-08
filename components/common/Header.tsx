@@ -111,8 +111,8 @@ export default function Header() {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
-  const phoneNumber = "+919036354552";
-  const whatsappNumber = "919514203013";
+  const phoneNumber = "+919036524555";
+  const whatsappNumber = "+919036354552";
 
   return (
     <>
