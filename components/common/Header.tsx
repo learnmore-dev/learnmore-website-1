@@ -43,7 +43,8 @@ const navLinks: NavItem[] = [
   { name: 'Placement', link: '/placement', type: 'link' },
   { name: 'Services', link: '/services', type: 'link' },
   { name: 'Internships', link: '/internships', type: 'link' },
-  { name: 'Offers', link: '/offer', type: 'link' },
+  { name: 'Blog', link: '/blog', type: 'link' },        // ✅ Blog Link Added
+  { name: 'Offers', link: '/offer', type: 'link' },     // ✅ Offers Link (already there)
 ];
 
 export default function Header() {
@@ -118,7 +119,7 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Offer Banner - Shows at the very top */}
+      {/* Top Offer Banner */}
       <TopOfferBanner />
 
       <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
