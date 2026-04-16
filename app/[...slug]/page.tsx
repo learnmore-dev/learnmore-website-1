@@ -37,6 +37,157 @@ const syllabusPDFs: Record<string, string> = {
   'cybersecurity': '/pdfs/cybersecurity-syllabus.pdf',
 };
 
+// Syllabus Details for each course
+const syllabusDetails: Record<string, { modules: { title: string; topics: string[] }[] }> = {
+  'python-fullstack': {
+    modules: [
+      { title: "Python Fundamentals", topics: ["Python Introduction & Setup", "Variables & Data Types", "Operators & Expressions", "Control Flow (if/else, loops)", "Functions & Modules", "Lambda Functions"] },
+      { title: "Data Structures", topics: ["Lists & List Methods", "Tuples & Dictionaries", "Sets & Frozensets", "Strings & String Methods", "List Comprehension", "Generators & Iterators"] },
+      { title: "Object Oriented Programming", topics: ["Classes & Objects", "Inheritance & Polymorphism", "Encapsulation & Abstraction", "Magic Methods", "Decorators & Properties", "Exception Handling"] },
+      { title: "Database with SQL", topics: ["SQL Basics (SELECT, INSERT, UPDATE, DELETE)", "Joins & Subqueries", "Indexes & Views", "Stored Procedures", "Database Design", "SQL Optimization"] },
+      { title: "Django Framework", topics: ["Django Setup & Architecture", "Models & Migrations", "Views & URL Routing", "Templates & Static Files", "Forms & Validation", "Django REST Framework"] },
+      { title: "React.js Frontend", topics: ["React Components & JSX", "Props & State", "Hooks (useState, useEffect)", "Event Handling", "API Integration", "React Router & Deployment"] }
+    ]
+  },
+  'data-analytics': {
+    modules: [
+      { title: "Excel & Advanced Excel", topics: ["Excel Basics & Formulas", "Pivot Tables & Charts", "VLOOKUP & HLOOKUP", "Data Validation", "Conditional Formatting", "Macros & VBA"] },
+      { title: "SQL for Data Analysis", topics: ["SQL Fundamentals", "Complex Queries", "Window Functions", "CTEs & Subqueries", "Data Aggregation", "Performance Optimization"] },
+      { title: "Power BI", topics: ["Power BI Desktop", "Data Modeling", "DAX Formulas", "Visualizations", "Dashboards & Reports", "Power BI Service"] },
+      { title: "Tableau", topics: ["Tableau Basics", "Data Connections", "Calculations", "Charts & Graphs", "Dashboards", "Storytelling with Data"] },
+      { title: "Python for Analytics", topics: ["Pandas for Data Manipulation", "NumPy for Numerical Computing", "Data Visualization (Matplotlib, Seaborn)", "Exploratory Data Analysis", "Statistical Analysis"] }
+    ]
+  },
+  'cloud-devops': {
+    modules: [
+      { title: "Linux Administration", topics: ["Linux Commands", "File System Management", "User & Group Management", "Shell Scripting", "Process Management", "Network Configuration"] },
+      { title: "AWS Cloud Services", topics: ["EC2 & EBS", "S3 Storage", "VPC Networking", "IAM Security", "Load Balancers", "Auto Scaling"] },
+      { title: "Docker Containerization", topics: ["Docker Architecture", "Dockerfile & Images", "Container Management", "Docker Compose", "Docker Networking", "Container Registry"] },
+      { title: "Kubernetes Orchestration", topics: ["K8s Architecture", "Pods & Services", "Deployments & ReplicaSets", "ConfigMaps & Secrets", "Ingress & Networking", "Helm Charts"] },
+      { title: "CI/CD with Jenkins", topics: ["Jenkins Setup", "Pipeline as Code", "Integration with Git", "Build & Test Automation", "Deployment Strategies", "Monitoring & Logging"] },
+      { title: "Infrastructure as Code", topics: ["Terraform Basics", "AWS Provider", "Modules & Variables", "State Management", "Remote Backends", "IaC Best Practices"] }
+    ]
+  },
+  'software-testing': {
+    modules: [
+      { title: "Manual Testing", topics: ["SDLC & STLC", "Test Case Design", "Bug Life Cycle", "Test Planning", "Agile Testing", "Test Management Tools"] },
+      { title: "Selenium WebDriver", topics: ["Selenium Architecture", "Locators & Waits", "WebDriver Commands", "Handling Alerts & Windows", "Page Object Model", "Data-Driven Testing"] },
+      { title: "TestNG & Frameworks", topics: ["TestNG Annotations", "Assertions", "Test Suites", "Parameterization", "Report Generation", "Framework Design"] },
+      { title: "API Testing", topics: ["REST API Basics", "Postman Tool", "API Automation", "JSON/XML Validation", "Authentication", "Performance Testing"] },
+      { title: "Database Testing", topics: ["SQL Queries", "Data Validation", "Stored Procedures Testing", "Database Integrity", "Backend Testing"] }
+    ]
+  },
+  'data-science-ai': {
+    modules: [
+      { title: "Python for Data Science", topics: ["NumPy Arrays", "Pandas DataFrames", "Data Cleaning", "Data Visualization", "Exploratory Data Analysis"] },
+      { title: "Machine Learning", topics: ["Supervised Learning", "Linear Regression", "Classification Algorithms", "Decision Trees", "Random Forest", "Model Evaluation"] },
+      { title: "Advanced ML", topics: ["Unsupervised Learning", "Clustering (K-Means, DBSCAN)", "PCA & Dimensionality Reduction", "Ensemble Methods", "XGBoost"] },
+      { title: "Deep Learning", topics: ["Neural Networks", "TensorFlow & Keras", "CNN for Image Processing", "RNN/LSTM for Sequences", "Transfer Learning"] },
+      { title: "NLP & Generative AI", topics: ["Text Preprocessing", "Sentiment Analysis", "Transformers", "LLM Fine-tuning", "Prompt Engineering", "RAG Implementation"] }
+    ]
+  },
+  'data-engineering': {
+    modules: [
+      { title: "Advanced SQL", topics: ["Complex Queries", "Query Optimization", "Window Functions", "Stored Procedures", "ETL Design"] },
+      { title: "Python for Data Engineering", topics: ["Python Scripting", "File Processing", "API Integration", "Data Pipelines", "Error Handling"] },
+      { title: "Apache Spark", topics: ["Spark Architecture", "RDD & DataFrames", "Spark SQL", "Spark Streaming", "Performance Tuning"] },
+      { title: "Apache Kafka", topics: ["Kafka Architecture", "Producers & Consumers", "Topics & Partitions", "Stream Processing", "Kafka Connect"] },
+      { title: "Cloud Data Platforms", topics: ["AWS Glue", "AWS Redshift", "Google BigQuery", "Azure Synapse", "Data Lake Architecture"] }
+    ]
+  },
+  'aws': {
+    modules: [
+      { title: "AWS Fundamentals", topics: ["AWS Global Infrastructure", "IAM Users & Roles", "EC2 Instances", "EBS Volumes", "Load Balancing", "Auto Scaling"] },
+      { title: "Storage Services", topics: ["S3 Buckets", "S3 Lifecycle Policies", "Glacier Storage", "EFS", "Storage Gateway"] },
+      { title: "Networking", topics: ["VPC Design", "Subnets & Route Tables", "Security Groups & NACLs", "VPN & Direct Connect", "Route53 DNS"] },
+      { title: "Database Services", topics: ["RDS", "DynamoDB", "Redshift", "Aurora", "ElastiCache"] },
+      { title: "DevOps on AWS", topics: ["CodeCommit", "CodeBuild", "CodeDeploy", "CodePipeline", "CloudFormation", "Elastic Beanstalk"] }
+    ]
+  },
+  'python': {
+    modules: [
+      { title: "Python Basics", topics: ["Variables & Data Types", "Operators", "Strings & String Methods", "Lists & Tuples", "Dictionaries & Sets"] },
+      { title: "Control Flow", topics: ["If-Else Statements", "For Loops", "While Loops", "Break & Continue", "List Comprehension"] },
+      { title: "Functions & Modules", topics: ["Function Definition", "Arguments & Return", "Lambda Functions", "Built-in Functions", "Custom Modules"] },
+      { title: "File Handling", topics: ["Reading Files", "Writing Files", "CSV Processing", "JSON Processing", "Exception Handling"] },
+      { title: "OOP Concepts", topics: ["Classes & Objects", "Inheritance", "Polymorphism", "Encapsulation", "Magic Methods"] }
+    ]
+  },
+  'java': {
+    modules: [
+      { title: "Java Basics", topics: ["JVM Architecture", "Data Types & Variables", "Operators", "Control Statements", "Arrays"] },
+      { title: "OOP in Java", topics: ["Classes & Objects", "Inheritance", "Polymorphism", "Abstraction", "Encapsulation", "Interfaces"] },
+      { title: "Exception Handling", topics: ["Try-Catch Blocks", "Checked vs Unchecked", "Custom Exceptions", "Finally Block", "Throw & Throws"] },
+      { title: "Collections Framework", topics: ["ArrayList", "LinkedList", "HashSet", "HashMap", "Queue & Stack", "Comparators"] },
+      { title: "Multithreading", topics: ["Thread Creation", "Thread Lifecycle", "Synchronization", "Executor Service", "Concurrent Collections"] }
+    ]
+  },
+  'java-fullstack': {
+    modules: [
+      { title: "Core Java", topics: ["OOP Concepts", "Collections", "Multithreading", "JDBC", "Exception Handling"] },
+      { title: "Spring Framework", topics: ["Spring Core", "Spring MVC", "Spring Boot", "Dependency Injection", "AOP"] },
+      { title: "Spring Boot", topics: ["Auto Configuration", "REST APIs", "Spring Data JPA", "Spring Security", "Microservices"] },
+      { title: "Hibernate", topics: ["ORM Mapping", "HQL", "Caching", "Transactions", "Entity Relationships"] },
+      { title: "React.js Frontend", topics: ["React Components", "State & Props", "Hooks", "API Integration", "React Router"] }
+    ]
+  },
+  'azure': {
+    modules: [
+      { title: "Azure Fundamentals", topics: ["Azure Portal", "Resource Groups", "Virtual Machines", "Storage Accounts", "Networking"] },
+      { title: "Azure Compute", topics: ["App Services", "Functions", "Container Instances", "AKS", "VM Scale Sets"] },
+      { title: "Azure Storage", topics: ["Blob Storage", "File Storage", "Queue Storage", "Table Storage", "Data Lake"] },
+      { title: "Azure DevOps", topics: ["Azure Boards", "Azure Repos", "Azure Pipelines", "Azure Test Plans", "Azure Artifacts"] },
+      { title: "Azure Security", topics: ["Azure AD", "Role-Based Access", "Key Vault", "Security Center", "Sentinel"] }
+    ]
+  },
+  'power-bi': {
+    modules: [
+      { title: "Power BI Desktop", topics: ["Data Connection", "Data Transformation", "Data Modeling", "DAX Basics", "Visualizations"] },
+      { title: "DAX Formulas", topics: ["Calculated Columns", "Measures", "Time Intelligence", "Filter Functions", "Aggregation Functions"] },
+      { title: "Dashboard Design", topics: ["Report Design", "Interactive Dashboards", "Bookmarks & Buttons", "Drill-through", "Mobile View"] },
+      { title: "Power BI Service", topics: ["Workspaces", "Sharing & Collaboration", "Scheduled Refresh", "Data Gateway", "Row-Level Security"] }
+    ]
+  },
+  'react': {
+    modules: [
+      { title: "React Fundamentals", topics: ["JSX", "Components (Class & Functional)", "Props & State", "Event Handling", "Conditional Rendering"] },
+      { title: "Hooks", topics: ["useState", "useEffect", "useContext", "useReducer", "useRef", "Custom Hooks"] },
+      { title: "State Management", topics: ["Context API", "Redux", "Redux Toolkit", "Zustand", "State Persistence"] },
+      { title: "React Router", topics: ["Route Setup", "Nested Routes", "Navigation", "Protected Routes", "Lazy Loading"] },
+      { title: "API Integration", topics: ["Fetch API", "Axios", "Error Handling", "Loading States", "Data Caching"] }
+    ]
+  },
+  'digital-marketing': {
+    modules: [
+      { title: "SEO Fundamentals", topics: ["On-Page SEO", "Off-Page SEO", "Keyword Research", "Link Building", "Technical SEO"] },
+      { title: "Social Media Marketing", topics: ["Facebook Marketing", "Instagram Marketing", "LinkedIn Marketing", "Twitter Marketing", "Content Strategy"] },
+      { title: "Google Ads", topics: ["Search Ads", "Display Ads", "Video Ads", "Shopping Ads", "Remarketing"] },
+      { title: "Email Marketing", topics: ["Campaign Setup", "List Building", "Automation", "A/B Testing", "Analytics"] },
+      { title: "Analytics", topics: ["Google Analytics", "Conversion Tracking", "Data Studio", "Performance Reports", "ROI Analysis"] }
+    ]
+  },
+  'cybersecurity': {
+    modules: [
+      { title: "Network Security", topics: ["Firewalls", "IDS/IPS", "VPN", "Network Monitoring", "Packet Analysis"] },
+      { title: "Ethical Hacking", topics: ["Reconnaissance", "Scanning", "Exploitation", "Post-Exploitation", "Reporting"] },
+      { title: "Cryptography", topics: ["Encryption Algorithms", "PKI", "SSL/TLS", "Digital Signatures", "Hash Functions"] },
+      { title: "Security Auditing", topics: ["Risk Assessment", "Vulnerability Scanning", "Penetration Testing", "Compliance", "Audit Reporting"] },
+      { title: "Incident Response", topics: ["Incident Handling", "Forensics", "Malware Analysis", "Disaster Recovery", "Business Continuity"] }
+    ]
+  }
+};
+
+// Default syllabus for courses without specific details
+const defaultSyllabus = {
+  modules: [
+    { title: "Introduction to the Course", topics: ["Course Overview", "Learning Objectives", "Industry Applications", "Tools Setup", "Career Path"] },
+    { title: "Core Concepts", topics: ["Fundamentals", "Key Terminology", "Best Practices", "Common Use Cases", "Hands-on Exercise"] },
+    { title: "Advanced Topics", topics: ["Advanced Techniques", "Optimization Strategies", "Real-world Scenarios", "Case Studies", "Project Work"] },
+    { title: "Practical Implementation", topics: ["Project Planning", "Implementation Guide", "Testing & Debugging", "Deployment", "Portfolio Building"] },
+    { title: "Career Preparation", topics: ["Resume Building", "Interview Questions", "Mock Interviews", "Certification Guide", "Job Search Strategy"] }
+  ]
+};
+
 // કોર્સ મેપિંગ - બધા કોર્સ
 const courseMapping = {
   // AWS & Cloud DevOps
@@ -237,7 +388,7 @@ const courseMapping = {
   
   // React JS Training
   'react': { 
-      
+    slug: 'react', 
     name: 'React JS Training', 
     fullName: 'React JS Development',
     icon: 'fab fa-react', 
@@ -288,7 +439,10 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
   const course = coursesData.courses.find(c => c.slug === courseKey);
   
   // Get syllabus PDF path
-  const syllabusPDFPath = syllabusPDFs[courseKey!] || syllabusPDFs[courseKey!] || '/pdfs/default-syllabus.pdf';
+  const syllabusPDFPath = syllabusPDFs[courseKey!] || '/pdfs/default-syllabus.pdf';
+  
+  // Get syllabus details for this course
+  const syllabus = syllabusDetails[courseKey!] || defaultSyllabus;
   
   // Handle syllabus download (only after enrollment)
   const handleDownloadSyllabus = () => {
@@ -308,7 +462,6 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
   const handleEnrollmentSuccess = () => {
     setIsEnrolled(true);
     setIsModalOpen(false);
-    // After enrollment, download syllabus automatically
     setTimeout(() => {
       const link = document.createElement('a');
       link.href = syllabusPDFPath;
@@ -562,7 +715,7 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
           {/* Syllabus Tab */}
           {activeTab === 'syllabus' && (
             <div className="bg-white rounded-xl shadow-md p-5">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
                 <h2 className="text-xl font-bold flex items-center gap-2">
                   <i className={`fas fa-book-open ${colors.text}`}></i>
                   Course Syllabus
@@ -571,7 +724,7 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
                   onClick={handleDownloadSyllabus}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 ${
                     isEnrolled 
-                      ? 'bg-red-500 text-white hover:bg-red-600' 
+                      ? `bg-${colors.text} text-white hover:bg-${colors.hover}` 
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
                   disabled={!isEnrolled}
@@ -580,38 +733,44 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
                   {!isEnrolled && <span className="text-xs ml-1">(Enroll first)</span>}
                 </button>
               </div>
-              <div className="space-y-3">
-                {(course as any)?.syllabus ? (
-                  Object.entries((course as any).syllabus).map(([module, topics]: [string, any], idx) => (
-                    <details key={idx} className="border rounded-lg p-3">
-                      <summary className="font-semibold cursor-pointer hover:text-blue-600 text-sm">
-                        Module {idx + 1}: {module.charAt(0).toUpperCase() + module.slice(1)}
-                      </summary>
-                      <ul className="mt-2 ml-4 space-y-1">
-                        {topics.map((topic: string, tidx: number) => (
-                          <li key={tidx} className="text-gray-600 text-sm flex items-start gap-2">
-                            <i className={`fas fa-circle ${colors.text} text-[6px] mt-1.5`}></i>
-                            {topic}
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  ))
-                ) : (
-                  <div className="text-center py-8">
-                    <i className="fas fa-file-alt text-4xl text-gray-300 mb-3"></i>
-                    <p className="text-gray-500">Syllabus details coming soon...</p>
-                    {isEnrolled && (
-                      <button
-                        onClick={handleDownloadSyllabus}
-                        className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition"
-                      >
-                        Download Sample Syllabus
-                      </button>
-                    )}
-                  </div>
-                )}
+              
+              <div className="space-y-4">
+                {syllabus.modules.map((module, idx) => (
+                  <details key={idx} className="border rounded-lg p-4 hover:shadow-md transition">
+                    <summary className="font-semibold text-md cursor-pointer hover:text-blue-600 flex items-center gap-2">
+                      <div className={`w-6 h-6 ${colors.light} rounded-full flex items-center justify-center`}>
+                        <span className={`${colors.text} text-sm font-bold`}>{idx + 1}</span>
+                      </div>
+                      {module.title}
+                    </summary>
+                    <ul className="mt-3 ml-6 space-y-2">
+                      {module.topics.map((topic, tidx) => (
+                        <li key={tidx} className="text-gray-600 text-sm flex items-start gap-2">
+                          <i className={`fas fa-circle ${colors.text} text-[6px] mt-1.5`}></i>
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
               </div>
+              
+              {!isEnrolled && (
+                <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                  <div className="flex items-center gap-3">
+                    <i className="fas fa-lock text-yellow-600"></i>
+                    <p className="text-yellow-700 text-sm">
+                      <strong>Full syllabus is locked.</strong> Please enroll to access the complete syllabus and download PDF.
+                    </p>
+                    <button 
+                      onClick={() => setIsModalOpen(true)}
+                      className="ml-auto bg-yellow-500 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-yellow-600 transition"
+                    >
+                      Enroll Now
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           
@@ -723,7 +882,7 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
                             </div>
                           </div>
                           <p class="text-xs text-gray-400 mt-6">
-                            Certificate ID: LMT-${courseKey?.toUpperCase() || courseKey?.toUpperCase()}-2026-XXXX
+                            Certificate ID: LMT-${courseKey?.toUpperCase()}-2026-XXXX
                           </p>
                         `;
                         parent.appendChild(textVersion);
@@ -745,7 +904,7 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
                     onClick={() => {
                       const link = document.createElement('a');
                       link.href = '/images/courses/certificate-sample.png';
-                      link.download = `${courseKey || courseKey}-certificate.png`;
+                      link.download = `${courseKey}-certificate.png`;
                       link.click();
                     }}
                     className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition"
