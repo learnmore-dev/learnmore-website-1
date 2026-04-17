@@ -293,30 +293,8 @@
             "description": "Our France center in Paris offers excellent IT training facilities.",
             "timings": "Mon-Fri: 9:00 AM - 9:00 PM CET, Sat-Sun: 10:00 AM - 6:00 PM CET"
         },
-        {
-            "id": 26,
-            "slug": "marathahalli",
-            "name": "Marathahalli",
-            "address": "Marathahalli Bridge, Near Kalamandir, Bangalore - 560037",
-            "phone": "+91 90365 24555",
-            "email": "marathahalli@learnmore.com",
-            "courses": ["Python Fullstack", "Data Analytics", "Cloud DevOps"],
-            "mapUrl": "https://maps.google.com/?q=Marathahalli+Bangalore",
-            "description": "Our Marathahalli center is located in the heart of the IT hub.",
-            "timings": "Mon-Sat: 9:00 AM - 9:00 PM, Sun: 10:00 AM - 6:00 PM"
-        },
-        {
-            "id": 27,
-            "slug": "btm",
-            "name": "BTM Layout",
-            "address": "BTM 1st Stage, Near Jayadeva Hospital, Bangalore - 560029",
-            "phone": "+91 90365 24555",
-            "email": "btm@learnmore.com",
-            "courses": ["Data Science", "Software Testing", "Data Engineering"],
-            "mapUrl": "https://maps.google.com/?q=BTM+Layout+Bangalore",
-            "description": "Our BTM Layout center is conveniently located.",
-            "timings": "Mon-Sat: 9:00 AM - 9:00 PM, Sun: 10:00 AM - 6:00 PM"
-        },
+
+
         {
             "id": 28,
             "slug": "kalyan-nagar",
@@ -329,18 +307,7 @@
             "description": "Our Kalyan Nagar center serves the eastern part of Bangalore.",
             "timings": "Mon-Sat: 9:00 AM - 9:00 PM, Sun: 10:00 AM - 6:00 PM"
         },
-        {
-            "id": 29,
-            "slug": "hebbal",
-            "name": "Hebbal",
-            "address": "Hebbal, Near Manyata Tech Park, Bangalore - 560024",
-            "phone": "+91 90365 24555",
-            "email": "hebbal@learnmore.com",
-            "courses": ["Data Science", "Data Engineering", "Software Testing"],
-            "mapUrl": "https://maps.google.com/?q=Hebbal+Bangalore",
-            "description": "Our Hebbal center is located near Manyata Tech Park.",
-            "timings": "Mon-Sat: 9:00 AM - 9:00 PM, Sun: 10:00 AM - 6:00 PM"
-        },
+
         {
             "id": 30,
             "slug": "ahmedabad",

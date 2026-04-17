@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import EnrollModal from '@/components/common/EnrollModal';
+import { useEnroll } from '@/context/EnrollContext';
+import TopOfferBanner from './TopOfferBanner';
 
 interface NavItem {
   name: string;
@@ -42,13 +43,15 @@ const navLinks: NavItem[] = [
   { name: 'Placement', link: '/placement', type: 'link' },
   { name: 'Services', link: '/services', type: 'link' },
   { name: 'Internships', link: '/internships', type: 'link' },
+  { name: 'Blog', link: '/blog', type: 'link' },        // ✅ Blog Link Added
+  { name: 'Offers', link: '/offer', type: 'link' },     // ✅ Offers Link (already there)
 ];
 
 export default function Header() {
+  const { openEnrollModal } = useEnroll();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -112,10 +115,13 @@ export default function Header() {
   };
 
   const phoneNumber = "+919036524555";
-  const whatsappNumber = "+919036354552";
+  const whatsappNumber = "919514203013";
 
   return (
     <>
+      {/* Top Offer Banner */}
+      <TopOfferBanner />
+
       <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
         {/* Contact Bar - Hidden on mobile, shows only on desktop */}
         <div className="contact-bar hidden md:block">
@@ -174,7 +180,7 @@ export default function Header() {
             {/* Right Side */}
             <div className="nav-right">
               <button 
-                onClick={() => setIsModalOpen(true)} 
+                onClick={() => openEnrollModal()} 
                 className="btn-primary"
               >
                 Enroll Now
@@ -269,7 +275,7 @@ export default function Header() {
           <button 
             onClick={() => {
               closeMenu();
-              setIsModalOpen(true);
+              openEnrollModal();
             }} 
             className="btn-primary mobile-enroll-btn"
           >
@@ -289,9 +295,6 @@ export default function Header() {
           <span className="tooltip">WhatsApp</span>
         </a>
       </div>
-
-      {/* Enroll Modal */}
-      <EnrollModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
