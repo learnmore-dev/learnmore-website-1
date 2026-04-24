@@ -1,21 +1,28 @@
 {
     "placements": [{
-            "id": 10,
-            "name": "Kumar Abhishek",
-            "course": "Senior software developer",
-            "company": "Nexgen2AI",
-            "role": "Senior software developer",
-            "image": "/images/students/kumar.jpeg",
-            "package": "15.2 LPA"
-        },
-        {
-            "id": 9,
-            "name": "Altaf Mansoori",
-            "course": "PYTHON Full Stack Developer",
-            "company": "Nexgen2AI",
-            "role": "Python Full Stack Developer",
-            "image": "/images/students/altaf.jpg",
-            "package": "7.2 LPA"
+            "id": 7,
+            "name": "Subham P",
+            "course": "TEAM LEAD",
+            "company": "TECH MAHINDRA",
+            "role": "TEAM LEAD",
+            "image": "/images/students/ram.png",
+            "package": "6.5 LPA"
+        }, {
+            "id": 7,
+            "name": "Rohit Yadav",
+            "course": "Snowflake developer",
+            "company": "Bizmetric",
+            "role": "Snowflake developer",
+            "image": "/images/students/rohit.png",
+            "package": "7.5 LPA"
+        }, {
+            "id": 2,
+            "name": "Priya Sharma",
+            "course": "Data Analytics",
+            "company": "Accenture",
+            "role": "Data Analyst",
+            "image": "/images/students/priya.jpg",
+            "package": "5.2 LPA"
         },
 
         {
@@ -39,14 +46,6 @@
             "package": "4.5 LPA"
         },
         {
-            "id": 8,
-            "name": "vijay kumar gupta ",
-            "course": "Data analyst",
-            "company": "Nexgen2AI",
-            "role": "Data Analyst",
-            "image": "/images/students/vijay.jpg",
-            "package": "6.2 LPA"
-        }, {
             "id": 8,
             "name": "Adnan Mohammad",
             "course": "AWS Cloud & Engineering",
@@ -141,17 +140,7 @@
             "role": "Snowflake developer",
             "image": "/images/students/rohit.png",
             "package": "7.5 LPA"
-        },
-        {
-            "id": 7,
-            "name": "Subham P",
-            "course": "TEAM LEAD",
-            "company": "TECH MAHINDRA",
-            "role": "TEAM LEAD",
-            "image": "/images/students/ram.png",
-            "package": "6.5 LPA"
-        },
-        {
+        }, {
             "id": 7,
             "name": "RAJESH K",
             "course": "PROJECT MANAGER",
@@ -189,7 +178,7 @@
         },
         {
             "id": 5,
-            "name": "sarath",
+            "name": "Sarath",
             "course": "React JS",
             "company": "Wipro",
             "role": "Frontend Developer",
@@ -198,7 +187,7 @@
         },
         {
             "id": 7,
-            "name": "anurag ",
+            "name": "Anurag ",
             "course": "PYTHON Full Stack Developer",
             "company": "360 It hub",
             "role": "PYTHON Full Stack Developer",
@@ -207,7 +196,7 @@
         },
         {
             "id": 2,
-            "name": "arshivad",
+            "name": "Arshivad",
             "course": "Data Analytics",
             "company": "Accenture",
             "role": "Data Analyst",
@@ -215,8 +204,17 @@
             "package": "5.2 LPA"
         },
         {
+            "id": 10,
+            "name": "Kumar Abhishek",
+            "course": "Senior software developer",
+            "company": "Nexgen2AI",
+            "role": "Senior software developer",
+            "image": "/images/students/kumar.jpeg",
+            "package": "15.2 LPA"
+        },
+        {
             "id": 9,
-            "name": "kishor kumar",
+            "name": "Kishor kumar",
             "course": "PYTHON Full Stack Developer",
             "company": "Nexgen2AI",
             "role": "Python Full Stack Developer",
@@ -224,6 +222,14 @@
             "package": "7.2 LPA"
         },
         {
+            "id": 9,
+            "name": "Altaf Mansoori",
+            "course": "PYTHON Full Stack Developer",
+            "company": "Nexgen2AI",
+            "role": "Python Full Stack Developer",
+            "image": "/images/students/altaf.jpg",
+            "package": "7.2 LPA"
+        }, {
             "id": 7,
             "name": "jeetendra ",
             "course": "Associate applications developer",

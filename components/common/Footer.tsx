@@ -71,26 +71,40 @@ export default function Footer() {
     index === self.findIndex((l) => l.slug === loc.slug)
   );
 
-  // Filter Bangalore locations
-  const bangaloreSlugs = ['marathahalli', 'btm', 'kalyan-nagar', 'hebbal', 'whitefield'];
+  // ==================== BANGALORE LOCATIONS (ALL 70+) ====================
+  // All Bangalore locations - identified by address containing "Bangalore" OR specific Bangalore slugs
+  // This will automatically include ALL Bangalore locations from your JSON
   const bangaloreLocations = uniqueLocations.filter(loc => 
-    bangaloreSlugs.includes(loc.slug)
+    loc.address?.includes('Bangalore') || 
+    loc.address?.includes('Bengaluru') ||
+    ['marathahalli', 'btm', 'kalyan-nagar', 'hebbal', 'whitefield', 'koramangala', 
+     'indiranagar', 'electronic-city', 'jayanagar', 'rajajinagar', 'yeshwanthpur', 
+     'malleshwaram', 'banashankari', 'hsr-layout', 'basavanagudi', 'bellandur', 
+     'sarjapur', 'yelahanka', 'frazer-town', 'vijayanagar', 'cv-raman-nagar', 
+     'mahadevapura', 'kr-puram', 'bannerghatta-road', 'kanakapura-road', 'devanahalli', 
+     'nelamangala', 'doddanakundi', 'ramamurthy-nagar', 'jalahalli', 'horamavu', 
+     'kadugodi', 'brookfield', 'varthur', 'hoodi', 'chikkabanavara', 'kengeri', 
+     'peenya', 'dasarahalli', 'nagarbhavi', 'attibele', 'anekal', 'magadi-road', 
+     'vijaypura', 'hoskote', 'malur', 'doddaballapur', 'ramanagara', 'channapatna', 
+     'kolar', 'bommanahalli', 'begur', 'gottigere', 'kumaraswamy-layout', 'jp-nagar', 
+     'uttarahalli', 'pattanagere', 'kamakshipalya', 'nandini-layout', 'sahakara-nagar', 
+     'thanisandra', 'bagalur', 'attur', 'chikkajala', 'kannur', 'budigere', 'nerige', 
+     'sulibele', 'avalahalli', 'chandapura'].includes(loc.slug)
   );
   
   // Filter India locations (excluding Bangalore)
-  const indiaSlugs = ['ahmedabad', 'jaipur', 'mumbai', 'patna', 'chandigarh', 'trivandrum', 
-    'indore', 'delhi', 'hyderabad', 'gurgaon', 'visakhapatnam', 'noida', 'mysore', 
-    'lucknow', 'cochin', 'chennai', 'warangal', 'trichy'];
   const indiaLocations = uniqueLocations.filter(loc => 
-    indiaSlugs.includes(loc.slug)
+    loc.address?.includes('India') || 
+    ['ahmedabad', 'jaipur', 'mumbai', 'patna', 'chandigarh', 'trivandrum', 
+     'indore', 'delhi', 'hyderabad', 'gurgaon', 'visakhapatnam', 'noida', 'mysore', 
+     'lucknow', 'cochin', 'chennai', 'warangal', 'trichy'].includes(loc.slug)
   );
   
   // Filter International locations
-  const internationalSlugs = ['usa', 'singapore', 'macao-sar', 'luxembourg', 'denmark', 'taiwan', 
-    'qatar', 'norway', 'uae', 'belgium', 'austria', 'switzerland', 'brunei', 'guyana', 
-    'australia', 'germany', 'france'];
   const internationalLocations = uniqueLocations.filter(loc => 
-    internationalSlugs.includes(loc.slug)
+    ['usa', 'singapore', 'macao-sar', 'luxembourg', 'denmark', 'taiwan', 
+     'qatar', 'norway', 'uae', 'belgium', 'austria', 'switzerland', 'brunei', 
+     'guyana', 'australia', 'germany', 'france'].includes(loc.slug)
   );
 
   // List of all courses for "Training in All Locations" section
@@ -115,12 +129,18 @@ export default function Footer() {
   // Top offers for footer
   const topOffers = offers.slice(0, 4);
 
+  // Split Bangalore locations into chunks for better display
+  const chunkSize = 15;
+  const bangaloreChunks = [];
+  for (let i = 0; i < bangaloreLocations.length; i += chunkSize) {
+    bangaloreChunks.push(bangaloreLocations.slice(i, i + chunkSize));
+  }
+
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
       <div className="container mx-auto px-4">
         
         {/* ================= AWS Training in All Locations (Dynamic Section) ================= */}
-        {/* This section shows current course training in all locations */}
         {currentCourse && currentCourseName && currentCourseDisplayName && (
           <div className="border-b border-gray-800 pb-8 mb-8">
             <div className="text-center mb-6">
@@ -135,12 +155,12 @@ export default function Footer() {
               </div>
             </div>
             
-            {/* Bangalore Locations */}
+            {/* Bangalore Locations - All 70+ */}
             <div className="mb-6">
               <h4 className="text-red-400 font-semibold text-md mb-3 flex items-center gap-2">
-                <i className="fas fa-map-marker-alt text-red-500"></i> Bangalore Centers
+                <i className="fas fa-map-marker-alt text-red-500"></i> Bangalore Centers ({bangaloreLocations.length})
               </h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
                 {bangaloreLocations.map((loc) => (
                   <Link 
                     key={loc.id} 
@@ -158,9 +178,9 @@ export default function Footer() {
             {indiaLocations.length > 0 && (
               <div className="mb-6">
                 <h4 className="text-red-400 font-semibold text-md mb-3 flex items-center gap-2">
-                  <i className="fas fa-map-marker-alt text-red-500"></i> Other Cities in India
+                  <i className="fas fa-map-marker-alt text-red-500"></i> Other Cities in India ({indiaLocations.length})
                 </h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
                   {indiaLocations.map((loc) => (
                     <Link 
                       key={loc.id} 
@@ -179,9 +199,9 @@ export default function Footer() {
             {internationalLocations.length > 0 && (
               <div>
                 <h4 className="text-red-400 font-semibold text-md mb-3 flex items-center gap-2">
-                  <i className="fas fa-globe text-red-500"></i> International Centers
+                  <i className="fas fa-globe text-red-500"></i> International Centers ({internationalLocations.length})
                 </h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
                   {internationalLocations.map((loc) => (
                     <Link 
                       key={loc.id} 
@@ -217,7 +237,7 @@ export default function Footer() {
                 <div className="space-y-1">
                   <p className="text-gray-500 text-xs mb-2">Available in:</p>
                   <div className="flex flex-wrap gap-1">
-                    {bangaloreLocations.slice(0, 3).map((loc) => (
+                    {bangaloreLocations.slice(0, 5).map((loc) => (
                       <Link 
                         key={loc.id} 
                         href={`/${course.key}-training-in-${loc.slug}`}
@@ -227,22 +247,13 @@ export default function Footer() {
                         {loc.name}
                       </Link>
                     ))}
-                    {indiaLocations.length > 0 && (
-                      <Link 
-                        href={`/${course.key}-training-in-${indiaLocations[0]?.slug}`}
-                        className="text-gray-400 hover:text-red-500 text-xs flex items-center gap-1 px-1 py-0.5 rounded hover:bg-gray-800"
-                      >
-                        <i className="fas fa-map-marker-alt text-red-500 text-[8px]"></i>
-                        +{indiaLocations.length + internationalLocations.length} more
-                      </Link>
-                    )}
+                    <Link 
+                      href={`/${course.key}-training-in-marathahalli`}
+                      className="text-red-500 text-xs hover:underline block mt-2"
+                    >
+                      +{bangaloreLocations.length + indiaLocations.length + internationalLocations.length} more locations →
+                    </Link>
                   </div>
-                  <Link 
-                    href={`/${course.key}-training-in-marathahalli`}
-                    className="text-red-500 text-xs hover:underline block mt-2"
-                  >
-                    View All Locations →
-                  </Link>
                 </div>
               </div>
             ))}
@@ -299,24 +310,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 - Training in Bangalore */}
+          {/* Column 3 - Training in Bangalore (All 70+ locations) */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">📍 Training in Bangalore</h3>
-            <ul className="space-y-2">
-              {bangaloreLocations.map((loc) => (
-                <li key={loc.id}>
-                  <Link href={`/location/${loc.slug}`} className="text-gray-400 hover:text-red-500 transition text-sm flex items-center gap-2">
-                    <i className="fas fa-map-marker-alt text-red-500 text-xs"></i>
-                    {loc.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="pt-2">
-                <Link href="/location" className="text-red-500 text-sm font-semibold hover:underline flex items-center gap-1">
-                  View All Locations <i className="fas fa-arrow-right text-xs"></i>
-                </Link>
-              </li>
-            </ul>
+           
+      
           </div>
 
           {/* Column 4 - Quick Training Links */}
@@ -384,7 +381,7 @@ export default function Footer() {
         {/* India Locations Section */}
         {indiaLocations.length > 0 && (
           <div className="border-t border-gray-800 pt-8 mb-8">
-            <h3 className="text-white font-bold text-lg mb-4 text-center">🇮🇳 Nationwide Excellence in Skill Development</h3>
+            <h3 className="text-white font-bold text-lg mb-4 text-center">🇮🇳 Nationwide Excellence in Skill Development ({indiaLocations.length} cities)</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
               {indiaLocations.map((loc) => (
                 <Link 
@@ -403,7 +400,7 @@ export default function Footer() {
         {/* International Locations Section */}
         {internationalLocations.length > 0 && (
           <div className="border-t border-gray-800 pt-8 mb-8">
-            <h3 className="text-white font-bold text-lg mb-4 text-center">🌍 Worldwide Professional Training Centers</h3>
+            <h3 className="text-white font-bold text-lg mb-4 text-center">🌍 Worldwide Professional Training Centers ({internationalLocations.length} countries)</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
               {internationalLocations.map((loc) => (
                 <Link 
@@ -421,7 +418,7 @@ export default function Footer() {
 
         {/* All Courses Links Section */}
         <div className="border-t border-gray-800 pt-8 mb-8">
-          <h3 className="text-white font-bold text-lg mb-4 text-center">📚 All Courses</h3>
+          <h3 className="text-white font-bold text-lg mb-4 text-center">📚 All Courses ({courses.length}+)</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {courses.map((course: any) => (
               <Link 
