@@ -455,7 +455,7 @@ export default function Header() {
 
         .mobile-logo img {
           height: 40px;
-          filter: brightness(0) invert(1);
+         
         }
 
         /* Navigation Links */

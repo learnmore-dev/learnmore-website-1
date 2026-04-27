@@ -516,6 +516,11 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
     }
   };
 
+  // Function to handle certificate redirect
+  const handleCertificateRedirect = () => {
+    window.location.href = '/certificate/verify';
+  };
+
   return (
     <>
       <Header />
@@ -536,90 +541,89 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
         </div>
 
         {/* Hero Section */}
-        {/* Hero Section */}
-<section className={`bg-gradient-to-r ${colors.bg} text-white`}>
-  <div className="container mx-auto px-4 py-16 md:py-20">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <div className="flex items-center gap-4 mb-6">
-          <div className="bg-white/20 rounded-2xl p-4 backdrop-blur">
-            <i className={`${foundCourse.icon} text-5xl md:text-6xl`}></i>
-          </div>
-          <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{foundCourse.name}</h1>
-            <p className="text-white/80 mt-2 text-lg md:text-xl">Training at {location.name}</p>
-          </div>
-        </div>
-        <p className="text-white/80 mb-8 leading-relaxed text-base md:text-lg">{foundCourse.shortDesc}</p>
-        
-        {/* Stats */}
-        <div className="flex gap-4 flex-wrap mb-8">
-          <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
-            <i className="fas fa-star text-yellow-400 text-lg"></i>
-            <span className="font-semibold">4.9 Rating</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
-            <i className="fas fa-users text-lg"></i>
-            <span className="font-semibold">5,000+ Students</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
-            <i className="fas fa-briefcase text-lg"></i>
-            <span className="font-semibold">95% Placement</span>
-          </div>
-        </div>
-        
-        {/* CTA Buttons - મોટા બટન */}
-        <div className="flex gap-5 flex-wrap">
-          <button 
-            onClick={() => setIsModalOpen(true)} 
-            className={`bg-white ${colors.text} px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg text-base md:text-lg`}
-          >
-            <i className="fas fa-graduation-cap mr-2"></i> Enroll Now at {location.name}
-          </button>
-          <button 
-            onClick={handleDownloadSyllabus}
-            className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-gray-800 transition text-base md:text-lg shadow-lg"
-          >
-            <i className="fas fa-download mr-2"></i> Download Syllabus
-          </button>
-        </div>
-      </div>
-      
-      {/* Hero Image */}
-      <div className="relative">
-        <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
-          <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
-            <Image
-              src={foundCourse.image || '/images/courses/placeholder-course.jpg'}
-              alt={`${foundCourse.name} Training`}
-              fill
-              className="object-cover"
-              onError={(e) => {
-                e.currentTarget.src = '/images/courses/placeholder-course.jpg';
-              }}
-            />
-          </div>
-          <div className="text-center mt-5">
-            <i className={`${foundCourse.icon} text-5xl mb-3`}></i>
-            <p className="text-xl font-bold">Certified Training Program</p>
-            <p className="text-white/70 text-base">Industry Recognized Certification</p>
-            <div className="flex justify-center gap-8 mt-5">
-              <div className="text-center">
-                <p className="text-2xl font-bold">₹{price.toLocaleString()}</p>
-                <p className="text-sm text-white/70">Course Fee</p>
+        <section className={`bg-gradient-to-r ${colors.bg} text-white`}>
+          <div className="container mx-auto px-4 py-16 md:py-20">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="bg-white/20 rounded-2xl p-4 backdrop-blur">
+                    <i className={`${foundCourse.icon} text-5xl md:text-6xl`}></i>
+                  </div>
+                  <div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{foundCourse.name}</h1>
+                    <p className="text-white/80 mt-2 text-lg md:text-xl">Training at {location.name}</p>
+                  </div>
+                </div>
+                <p className="text-white/80 mb-8 leading-relaxed text-base md:text-lg">{foundCourse.shortDesc}</p>
+                
+                {/* Stats */}
+                <div className="flex gap-4 flex-wrap mb-8">
+                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
+                    <i className="fas fa-star text-yellow-400 text-lg"></i>
+                    <span className="font-semibold">4.9 Rating</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
+                    <i className="fas fa-users text-lg"></i>
+                    <span className="font-semibold">5,000+ Students</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
+                    <i className="fas fa-briefcase text-lg"></i>
+                    <span className="font-semibold">95% Placement</span>
+                  </div>
+                </div>
+                
+                {/* CTA Buttons */}
+                <div className="flex gap-5 flex-wrap">
+                  <button 
+                    onClick={() => setIsModalOpen(true)} 
+                    className={`bg-white ${colors.text} px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg text-base md:text-lg`}
+                  >
+                    <i className="fas fa-graduation-cap mr-2"></i> Enroll Now at {location.name}
+                  </button>
+                  <button 
+                    onClick={handleDownloadSyllabus}
+                    className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-gray-800 transition text-base md:text-lg shadow-lg"
+                  >
+                    <i className="fas fa-download mr-2"></i> Download Syllabus
+                  </button>
+                </div>
               </div>
-              <div className="w-px bg-white/30"></div>
-              <div className="text-center">
-                <p className="text-2xl font-bold">{duration}</p>
-                <p className="text-sm text-white/70">Duration</p>
+              
+              {/* Hero Image */}
+              <div className="relative">
+                <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
+                  <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
+                    <Image
+                      src={foundCourse.image || '/images/courses/placeholder-course.jpg'}
+                      alt={`${foundCourse.name} Training`}
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/courses/placeholder-course.jpg';
+                      }}
+                    />
+                  </div>
+                  <div className="text-center mt-5">
+                    <i className={`${foundCourse.icon} text-5xl mb-3`}></i>
+                    <p className="text-xl font-bold">Certified Training Program</p>
+                    <p className="text-white/70 text-base">Industry Recognized Certification</p>
+                    <div className="flex justify-center gap-8 mt-5">
+                      <div className="text-center">
+                        <p className="text-2xl font-bold">₹{price.toLocaleString()}</p>
+                        <p className="text-sm text-white/70">Course Fee</p>
+                      </div>
+                      <div className="w-px bg-white/30"></div>
+                      <div className="text-center">
+                        <p className="text-2xl font-bold">{duration}</p>
+                        <p className="text-sm text-white/70">Duration</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
         
         {/* Location Info Bar */}
         <div className="bg-white shadow-md sticky top-0 z-10">
@@ -846,93 +850,105 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
             </div>
           )}
           
-          {/* Certificate Tab */}
-          {activeTab === 'certificate' && (
-            <div className="bg-white rounded-xl shadow-md p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4 flex items-center justify-center gap-2">
-                <i className="fas fa-certificate text-yellow-500"></i>
-                Course Completion Certificate
-              </h2>
-              <div className="max-w-2xl mx-auto">
-                <div className="relative rounded-xl overflow-hidden border-4 border-yellow-500 mb-6 bg-white shadow-lg">
-                  <Image
-                    src="/images/courses/certificate-sample.png"
-                    alt="Course Completion Certificate"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto object-contain"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      const parent = e.currentTarget.parentElement;
-                      if (parent) {
-                        const textVersion = document.createElement('div');
-                        textVersion.className = "bg-gradient-to-br from-yellow-50 to-amber-50 p-8 text-center";
-                        textVersion.innerHTML = `
-                          <i class="fas fa-certificate text-6xl text-yellow-500 mb-4"></i>
-                          <h3 class="text-3xl font-bold text-gray-800 mb-2">CERTIFICATE OF COMPLETION</h3>
-                          <div class="w-24 h-1 bg-yellow-500 mx-auto my-3"></div>
-                          <p class="text-gray-600 text-lg mb-6">This certifies that</p>
-                          <p class="text-4xl font-bold text-red-600 mb-4">[Student Name]</p>
-                          <p class="text-gray-600 text-lg mb-3">has successfully completed the course</p>
-                          <p class="text-2xl font-bold text-blue-600 mb-8 bg-blue-50 inline-block px-6 py-2 rounded-lg">
-                            ${foundCourse.name}
-                          </p>
-                          <div class="flex justify-center gap-12 mb-6">
-                            <div>
-                              <p class="text-gray-500 text-sm">Awarded on</p>
-                              <p class="font-semibold">[Date]</p>
-                            </div>
-                            <div>
-                              <p class="text-gray-500 text-sm">Issued by</p>
-                              <p class="font-semibold">Learnmore Technologies</p>
-                            </div>
-                          </div>
-                          <div class="border-t-2 border-gray-300 pt-6 mt-4">
-                            <div class="flex justify-between px-8">
-                              <div class="text-center">
-                                <div class="w-40 h-0.5 bg-gray-400 mb-2"></div>
-                                <p class="text-sm text-gray-500">Authorized Signature</p>
-                              </div>
-                              <div class="text-center">
-                                <div class="w-40 h-0.5 bg-gray-400 mb-2"></div>
-                                <p class="text-sm text-gray-500">Program Director</p>
-                              </div>
-                            </div>
-                          </div>
-                          <p class="text-xs text-gray-400 mt-6">
-                            Certificate ID: LMT-${courseKey?.toUpperCase()}-2026-XXXX
-                          </p>
-                        `;
-                        parent.appendChild(textVersion);
-                      }
-                    }}
-                  />
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Upon successful completion, you'll receive an industry-recognized certificate that validates your skills in {foundCourse.name}.
+          {/* Certificate Tab - Image with Redirect */}
+{activeTab === 'certificate' && (
+  <div className="bg-white rounded-xl shadow-md p-8 text-center">
+    <h2 className="text-2xl font-bold mb-4 flex items-center justify-center gap-2">
+      <i className="fas fa-certificate text-yellow-500"></i>
+      Course Completion Certificate
+    </h2>
+    <div className="max-w-2xl mx-auto">
+      {/* Clickable Certificate Image - Redirects to /certificate/verify */}
+      <div 
+        className="relative rounded-xl overflow-hidden border-4 border-yellow-500 mb-6 bg-white shadow-lg cursor-pointer hover:shadow-xl transition-all"
+        onClick={handleCertificateRedirect}
+      >
+        <Image
+          src="/images/courses/certificate-sample.png"
+          alt="Course Completion Certificate"
+          width={800}
+          height={600}
+          className="w-full h-auto object-contain"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+            const parent = e.currentTarget.parentElement;
+            if (parent) {
+              const textVersion = document.createElement('div');
+              textVersion.className = "bg-gradient-to-br from-yellow-50 to-amber-50 p-8 text-center cursor-pointer";
+              textVersion.onclick = () => handleCertificateRedirect();
+              textVersion.innerHTML = `
+                <i class="fas fa-certificate text-6xl text-yellow-500 mb-4"></i>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">CERTIFICATE OF COMPLETION</h3>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto my-3"></div>
+                <p class="text-gray-600 text-lg mb-6">This certifies that</p>
+                <p class="text-4xl font-bold text-red-600 mb-4">[Student Name]</p>
+                <p class="text-gray-600 text-lg mb-3">has successfully completed the course</p>
+                <p class="text-2xl font-bold text-blue-600 mb-8 bg-blue-50 inline-block px-6 py-2 rounded-lg">
+                  ${foundCourse.name}
                 </p>
-                <div className="flex gap-4 justify-center">
-                  <button 
-                    onClick={() => window.open('/images/courses/certificate-sample.png', '_blank')}
-                    className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition"
-                  >
-                    View Certificate
-                  </button>
-                  <button 
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = '/images/courses/certificate-sample.png';
-                      link.download = `${courseKey}-certificate.png`;
-                      link.click();
-                    }}
-                    className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition"
-                  >
-                    Download Certificate
-                  </button>
+                <div class="flex justify-center gap-12 mb-6">
+                  <div>
+                    <p class="text-gray-500 text-sm">Awarded on</p>
+                    <p class="font-semibold">[Date]</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500 text-sm">Issued by</p>
+                    <p class="font-semibold">Learnmore Technologies</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
+                <div class="border-t-2 border-gray-300 pt-6 mt-4">
+                  <div class="flex justify-between px-8">
+                    <div class="text-center">
+                      <div class="w-40 h-0.5 bg-gray-400 mb-2"></div>
+                      <p class="text-sm text-gray-500">Authorized Signature</p>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-40 h-0.5 bg-gray-400 mb-2"></div>
+                      <p class="text-sm text-gray-500">Program Director</p>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-400 mt-6">
+                  Certificate ID: LMT-${courseKey?.toUpperCase()}-2026-XXXX
+                </p>
+                <p class="text-sm text-blue-500 mt-3">Click to verify certificate →</p>
+              `;
+              parent.appendChild(textVersion);
+            }
+          }}
+        />
+        {/* Overlay with click instruction */}
+        <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-all flex items-center justify-center">
+          <div className="opacity-0 hover:opacity-100 transition-all bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+            <i className="fas fa-external-link-alt mr-2"></i>
+            Click to Verify Certificate
+          </div>
+        </div>
+      </div>
+      
+      <p className="text-gray-600 mb-4">
+        Upon successful completion, you'll receive an industry-recognized certificate that validates your skills in {foundCourse.name}.
+      </p>
+      
+      <div className="flex gap-4 justify-center">
+        <button 
+          onClick={handleCertificateRedirect}
+          className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition flex items-center gap-2"
+        >
+          <i className="fas fa-external-link-alt"></i>
+          Verify Certificate
+        </button>
+        <button 
+          onClick={handleCertificateRedirect}
+          className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition flex items-center gap-2"
+        >
+          <i className="fas fa-qrcode"></i>
+          Scan QR Code
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
           {/* Course Details Section - Enhanced Content */}
           <div className="bg-white rounded-xl shadow-md p-6 mb-6">
@@ -1214,7 +1230,7 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
                     <td className="p-3">08:00 AM IST</td>
                     <td className="p-3"><span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Limited Seats</span></td>
                   </tr>
-                  <tr>
+                  <tr className="border-b">
                     <td className="p-3 font-semibold">25th April 2026</td>
                     <td className="p-3">Weekend (Sat-Sun)</td>
                     <td className="p-3">11:00 AM IST</td>

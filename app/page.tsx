@@ -82,14 +82,7 @@ export default function Home() {
   const { testimonials } = testimonialsData;
   const featuredCourses = courses.slice(0, 9);
 
-  const categories = [
-    { id: 'all', name: 'All Programs', icon: 'fas fa-th-large' },
-    { id: 'development', name: 'Development', icon: 'fas fa-code' },
-    { id: 'data', name: 'Data Science & AI', icon: 'fas fa-brain' },
-    { id: 'cloud', name: 'Cloud & DevOps', icon: 'fas fa-cloud' },
-    { id: 'testing', name: 'Testing', icon: 'fas fa-bug' },
-    { id: 'marketing', name: 'Marketing', icon: 'fas fa-bullhorn' },
-  ];
+ 
 
   const filteredCourses = courses.filter(course => {
     if (activeCategory === 'all') return true;
@@ -262,27 +255,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Categories Filter Section */}
-        <section className="py-8 bg-white sticky top-0 z-10 shadow-sm">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-5 py-2 rounded-full font-medium transition flex items-center gap-2 ${
-                    activeCategory === category.id
-                      ? 'bg-blue-600 text-white shadow-md'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <i className={`${category.icon} text-sm`}></i>
-                  {category.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
+    
 
         {/* All Courses Grid Section */}
        
@@ -931,7 +904,7 @@ export default function Home() {
     <h2 className="text-2xl md:text-3xl font-bold mb-4">Trusted by Digital Leaders</h2>
     <p className="text-gray-500 mb-8">from Top Companies Worldwide</p>
     
-    <style jsx>{`
+    <style>{`
       @keyframes scrollRightToLeft {
         0% {
           transform: translateX(0);
@@ -977,7 +950,7 @@ export default function Home() {
               <img
                 src={company.logo}
                 alt={company.name}
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition duration-300"
+                className="max-w-full max-h-full object-contain"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   const parent = e.currentTarget.parentElement;
@@ -1006,6 +979,108 @@ export default function Home() {
     </div>
   </div>
 </section>
+
+        {/* Contact & Map Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              {/* Contact Information and Form - Left Side */}
+              <div>
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-800">Contact Information</h2>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i className="fas fa-phone-alt text-blue-600"></i>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-700">Phone</p>
+                        <p className="text-gray-600">+91 90365 24555</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i className="fas fa-envelope text-blue-600"></i>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-700">Email</p>
+                        <p className="text-gray-600">office.learnmore@gmail.com</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i className="fas fa-map-marker-alt text-blue-600"></i>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-700">Head Office</p>
+                        <p className="text-gray-600">Bangalore, Karnataka, India</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-xl p-6 text-center mb-8">
+                  <i className="fas fa-chalkboard-user text-blue-600 text-3xl mb-3"></i>
+                  <h3 className="text-xl font-bold text-gray-800">Talk to Our Career Counselor</h3>
+                  <button onClick={() => openEnrollModal()} className="mt-3 bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition">
+                    Book a Free Session
+                  </button>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
+                  <form className="space-y-4">
+                    <div>
+                      <label className="block text-gray-700 font-medium mb-1">Full Name *</label>
+                      <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 font-medium mb-1">Email Address *</label>
+                      <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 font-medium mb-1">Phone Number</label>
+                      <input type="tel" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 font-medium mb-1">Service Interested In</label>
+                      <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
+                        <option>Select a service</option>
+                        <option>Python Training</option>
+                        <option>Data Science Course</option>
+                        <option>Cloud Computing</option>
+                        <option>Full Stack Development</option>
+                        <option>DevOps Certification</option>
+                        <option>Digital Marketing</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 font-medium mb-1">Message *</label>
+                      <textarea rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"></textarea>
+                    </div>
+                    <button type="submit" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition w-full md:w-auto">
+                      Send Message
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              {/* Map - Right Side */}
+              <div className="bg-gray-100 rounded-xl overflow-hidden shadow-lg h-[500px] md:h-[600px] sticky top-24">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.8847302244!2d77.4908534743164!3d12.953847699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1614571234567!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy"
+                  className="min-h-[500px]"
+                  title="Learnmore Technologies Location"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Placement Stats Section */}
 
