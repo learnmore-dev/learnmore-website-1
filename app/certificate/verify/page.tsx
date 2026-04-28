@@ -165,7 +165,7 @@ export default function CertificateVerifyPage() {
                           rel="noopener noreferrer"
                           className="text-blue-600 text-xs font-mono break-all hover:underline"
                         >
-                          https://learnmoretechnologies.info/certificate/verify?verify={certificateId}
+                          https://learnmoretechnologies.in/certificate/verify
                         </a>
                       </div>
                     </div>

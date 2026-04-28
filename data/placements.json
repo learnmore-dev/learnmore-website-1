@@ -7,6 +7,15 @@
             "role": "TEAM LEAD",
             "image": "/images/students/ram.png",
             "package": "6.5 LPA"
+        },
+        {
+            "id": 2,
+            "name": "Vishal B Pandey",
+            "course": "Data Analytics",
+            "company": "Accenture",
+            "role": "Data Analyst",
+            "image": "/images/students/VISHAL.jpg",
+            "package": "5.2 LPA"
         }, {
             "id": 7,
             "name": "Rohit Yadav",

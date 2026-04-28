@@ -557,20 +557,20 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
                 <p className="text-white/80 mb-8 leading-relaxed text-base md:text-lg">{foundCourse.shortDesc}</p>
                 
                 {/* Stats */}
-                <div className="flex gap-4 flex-wrap mb-8">
-                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
-                    <i className="fas fa-star text-yellow-400 text-lg"></i>
-                    <span className="font-semibold">4.9 Rating</span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
-                    <i className="fas fa-users text-lg"></i>
-                    <span className="font-semibold">5,000+ Students</span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-base">
-                    <i className="fas fa-briefcase text-lg"></i>
-                    <span className="font-semibold">95% Placement</span>
-                  </div>
-                </div>
+          <div className="flex gap-4 flex-wrap mb-8">
+  <div className="flex items-center gap-2 bg-blue-200/50 rounded-full px-4 py-2 text-base">
+    <i className="fas fa-star text-blue-600 text-lg"></i>
+    <span className="font-semibold text-blue-800">4.9 Rating</span>
+  </div>
+  <div className="flex items-center gap-2 bg-blue-200/50 rounded-full px-4 py-2 text-base">
+    <i className="fas fa-users text-blue-600 text-lg"></i>
+    <span className="font-semibold text-blue-800">5,000+ Students</span>
+  </div>
+  <div className="flex items-center gap-2 bg-blue-200/50 rounded-full px-4 py-2 text-base">
+    <i className="fas fa-briefcase text-blue-600 text-lg"></i>
+    <span className="font-semibold text-blue-800">95% Placement</span>
+  </div>
+</div>
                 
                 {/* CTA Buttons */}
                 <div className="flex gap-5 flex-wrap">
