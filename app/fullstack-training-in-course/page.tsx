@@ -768,7 +768,7 @@ export default function FullStackAllLocationsPage() {
                         Module {idx + 1}: {module}
                       </summary>
                       <ul className="mt-3 ml-6 space-y-2">
-                        {topics.map((topic, tidx) => (
+                        {(topics as string[]).map((topic: string, tidx: number) => (
                           <li key={tidx} className="text-gray-600 text-sm flex items-start gap-2">
                             <i className={`fas fa-circle text-${selectedCourse.textColor.split('-')[1]}-500 text-[6px] mt-1.5`}></i>
                             {topic}

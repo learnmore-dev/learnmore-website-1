@@ -1,0 +1,1528 @@
+'use client';
+
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { useState } from 'react';
+import Image from 'next/image';
+import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
+import EnrollModal from '@/components/common/EnrollModal';
+import coursesData from '@/data/courses.json';
+import locationsData from '@/data/locations.json';
+
+interface CatchAllPageProps {
+  params: {
+    slug: string[];
+  };
+}
+
+// Syllabus PDF mapping
+
+import { syllabusPDFs, syllabusDetails, defaultSyllabus, courseMapping } from './courseData';
+
+
+export default function CatchAllPageClient({ params }: CatchAllPageProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [showSyllabusModal, setShowSyllabusModal] = useState(false);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [leadForm, setLeadForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const fullSlug = params.slug.join('-');
+  
+  // કોર્સ શોધો
+  let foundCourse = null;
+  let courseKey = null;
+  
+  for (const key of Object.keys(courseMapping)) {
+    if (fullSlug.startsWith(`${key}-training-in-`)) {
+      courseKey = key;
+      foundCourse = courseMapping[key as keyof typeof courseMapping];
+      break;
+    }
+  }
+  
+  if (!foundCourse) {
+    notFound();
+  }
+  
+  // લોકેશન શોધો
+  const locationPart = fullSlug.replace(`${courseKey}-training-in-`, '');
+  const location = locationsData.locations.find(l => 
+    l.slug === locationPart || 
+    l.name.toLowerCase().replace(/\s+/g, '-') === locationPart
+  );
+  
+  if (!location) {
+    notFound();
+  }
+  
+  // કોર્સ ડેટા લોડ કરો
+  const course = coursesData.courses.find(c => c.slug === courseKey);
+  
+  // કોર્સ કીમતી ડેટા અને ફીચર્સ (વિકાસશીલ અને વ્યાપક)
+  const features = course?.features || foundCourse.features || [
+    "Expert-led training sessions",
+    "Hands-on practical projects",
+    "Industry-recognized certification",
+    "Placement assistance",
+    "Real-world case studies",
+    "24/7 mentor support"
+  ];
+  
+  const tools = course?.tools || ["Industry Tools", "Modern Technologies", "Best Practices"];
+  const duration = course?.duration || "3-6 Months";
+  const price = course?.price || 29999;
+  const level = course?.level || "Beginner to Intermediate";
+  const certification = course?.certification || `${foundCourse.name} Certification`;
+  const fullDescription = course?.fullDescription || foundCourse.shortDesc || `Comprehensive ${foundCourse.name} program designed to make you industry-ready with hands-on experience and real-world projects.`;
+
+  // Get syllabus PDF path
+  const syllabusPDFPath = syllabusPDFs[courseKey!] || '/pdfs/default-syllabus.pdf';
+  
+  // Get syllabus details for this course
+  const syllabus = syllabusDetails[courseKey!] || defaultSyllabus;
+  
+  // Handle syllabus download (only after enrollment)
+  const handleDownloadSyllabus = () => {
+    if (isEnrolled) {
+      const link = document.createElement('a');
+      link.href = syllabusPDFPath;
+      link.download = `${foundCourse.name.toLowerCase().replace(/\s+/g, '-')}-syllabus.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      setShowSyllabusModal(true);
+    }
+  };
+  
+  // Handle successful enrollment
+  const handleEnrollmentSuccess = () => {
+    setIsEnrolled(true);
+    setIsModalOpen(false);
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = syllabusPDFPath;
+      link.download = `${foundCourse.name.toLowerCase().replace(/\s+/g, '-')}-syllabus.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 500);
+  };
+  
+  // કલર કોડ
+  const colorClasses = {
+    blue: { bg: "from-blue-600 to-blue-800", light: "bg-blue-50", hover: "hover:bg-blue-700", text: "text-blue-600", border: "border-blue-600", button: "bg-blue-600 hover:bg-blue-700" },
+    yellow: { bg: "from-yellow-600 to-yellow-800", light: "bg-yellow-50", hover: "hover:bg-yellow-700", text: "text-yellow-600", border: "border-yellow-600", button: "bg-yellow-600 hover:bg-yellow-700" },
+    purple: { bg: "from-purple-600 to-purple-800", light: "bg-purple-50", hover: "hover:bg-purple-700", text: "text-purple-600", border: "border-purple-600", button: "bg-purple-600 hover:bg-purple-700" },
+    green: { bg: "from-green-600 to-green-800", light: "bg-green-50", hover: "hover:bg-green-700", text: "text-green-600", border: "border-green-600", button: "bg-green-600 hover:bg-green-700" },
+    orange: { bg: "from-orange-600 to-orange-800", light: "bg-orange-50", hover: "hover:bg-orange-700", text: "text-orange-600", border: "border-orange-600", button: "bg-orange-600 hover:bg-orange-700" },
+    red: { bg: "from-red-600 to-red-800", light: "bg-red-50", hover: "hover:bg-red-700", text: "text-red-600", border: "border-red-600", button: "bg-red-600 hover:bg-red-700" },
+    teal: { bg: "from-teal-600 to-teal-800", light: "bg-teal-50", hover: "hover:bg-teal-700", text: "text-teal-600", border: "border-teal-600", button: "bg-teal-600 hover:bg-teal-700" }
+  };
+  
+  const colors = colorClasses[foundCourse.color as keyof typeof colorClasses] || colorClasses.blue;
+  
+  const faqs = [
+    { q: `Is placement assistance provided for this ${foundCourse.name} course in ${location.name}?`, a: `Yes! We provide 100% placement assistance, resume optimization, mock interviews, and organize recruitment drives with top IT firms in Bangalore directly from our ${location.name} center.` },
+    { q: `What is the duration and timings of the ${foundCourse.name} class batches?`, a: `The ${foundCourse.name} course duration is ${duration}. We offer flexible timings including early morning, late evening, and weekend batches to suit working professionals and students.` },
+    { q: `Are classroom training sessions available for ${foundCourse.name} at ${location.name}?`, a: `Yes, we provide fully-interactive physical classroom training sessions at our ${location.name} center with individual lab configurations and dedicated mentor support.` },
+    { q: `Can I attend a free demo class before registering?`, a: `Absolutely. You can request a free demo session by clicking the 'Book Free Demo' button. Our subject matter expert will guide you through the syllabus and tools covered.` }
+  ];
+
+  const handleLeadSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!leadForm.name || !leadForm.phone) return;
+    setFormSubmitted(true);
+    setTimeout(() => {
+      setLeadForm({ name: '', email: '', phone: '', message: '' });
+    }, 4000);
+  };
+
+  // Helper function to get button color class
+  const getButtonColorClass = () => {
+    switch(foundCourse.color) {
+      case 'blue': return 'bg-blue-600 hover:bg-blue-700';
+      case 'yellow': return 'bg-yellow-600 hover:bg-yellow-700';
+      case 'purple': return 'bg-purple-600 hover:bg-purple-700';
+      case 'green': return 'bg-green-600 hover:bg-green-700';
+      case 'orange': return 'bg-orange-600 hover:bg-orange-700';
+      case 'red': return 'bg-red-600 hover:bg-red-700';
+      case 'teal': return 'bg-teal-600 hover:bg-teal-700';
+      default: return 'bg-blue-600 hover:bg-blue-700';
+    }
+  };
+
+  // Function to handle certificate redirect
+  const handleCertificateRedirect = () => {
+    window.location.href = '/certificate/verify';
+  };
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen bg-gray-50">
+        {/* Breadcrumb Navigation */}
+        <div className="bg-white border-b border-gray-200 py-3">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+              <Link href="/" className="hover:text-red-500 transition">Home</Link>
+              <i className="fas fa-chevron-right text-xs"></i>
+              <Link href="/course" className="hover:text-red-500 transition">Courses</Link>
+              <i className="fas fa-chevron-right text-xs"></i>
+              <span className="text-gray-800 font-medium">{foundCourse.name}</span>
+              <i className="fas fa-chevron-right text-xs"></i>
+              <span className="text-gray-800 font-medium">{location.name}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Section */}
+        <section className={`bg-gradient-to-r ${colors.bg} text-white`}>
+          <div className="container mx-auto px-4 py-16 md:py-20">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="bg-white/20 rounded-2xl p-4 backdrop-blur">
+                    <i className={`${foundCourse.icon} text-5xl md:text-6xl`}></i>
+                  </div>
+                  <div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{foundCourse.name}</h1>
+                    <p className="text-white/80 mt-2 text-lg md:text-xl">Training at {location.name}</p>
+                  </div>
+                </div>
+                <p className="text-white/80 mb-8 leading-relaxed text-base md:text-lg">{foundCourse.shortDesc}</p>
+                
+                {/* Stats */}
+          <div className="flex gap-4 flex-wrap mb-8">
+  <div className="flex items-center gap-2 bg-blue-200/50 rounded-full px-4 py-2 text-base">
+    <i className="fas fa-star text-blue-600 text-lg"></i>
+    <span className="font-semibold text-blue-800">4.9 Rating</span>
+  </div>
+  <div className="flex items-center gap-2 bg-blue-200/50 rounded-full px-4 py-2 text-base">
+    <i className="fas fa-users text-blue-600 text-lg"></i>
+    <span className="font-semibold text-blue-800">5,000+ Students</span>
+  </div>
+  <div className="flex items-center gap-2 bg-blue-200/50 rounded-full px-4 py-2 text-base">
+    <i className="fas fa-briefcase text-blue-600 text-lg"></i>
+    <span className="font-semibold text-blue-800">95% Placement</span>
+  </div>
+</div>
+                
+                {/* CTA Buttons */}
+                <div className="flex gap-5 flex-wrap">
+                  <button 
+                    onClick={() => setIsModalOpen(true)} 
+                    className={`bg-white ${colors.text} px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg text-base md:text-lg`}
+                  >
+                    <i className="fas fa-graduation-cap mr-2"></i> Enroll Now at {location.name}
+                  </button>
+                  <button 
+                    onClick={handleDownloadSyllabus}
+                    className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-gray-800 transition text-base md:text-lg shadow-lg"
+                  >
+                    <i className="fas fa-download mr-2"></i> Download Syllabus
+                  </button>
+                </div>
+              </div>
+              
+              {/* Hero Image */}
+              <div className="relative">
+                <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
+                  <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
+                    <Image
+                      src={foundCourse.image || '/images/courses/placeholder-course.jpg'}
+                      alt={`${foundCourse.name} Training`}
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/courses/placeholder-course.jpg';
+                      }}
+                    />
+                  </div>
+                  <div className="text-center mt-5">
+                    <i className={`${foundCourse.icon} text-5xl mb-3`}></i>
+                    <p className="text-xl font-bold">Certified Training Program</p>
+                    <p className="text-white/70 text-base">Industry Recognized Certification</p>
+                    <div className="flex justify-center gap-8 mt-5">
+                      <div className="text-center">
+                        <p className="text-2xl font-bold">₹{price.toLocaleString()}</p>
+                        <p className="text-sm text-white/70">Course Fee</p>
+                      </div>
+                      <div className="w-px bg-white/30"></div>
+                      <div className="text-center">
+                        <p className="text-2xl font-bold">{duration}</p>
+                        <p className="text-sm text-white/70">Duration</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Location Info Bar */}
+        <div className="bg-white shadow-md sticky top-0 z-10">
+          <div className="container mx-auto px-4 py-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+              <div className="flex items-center gap-2">
+                <i className="fas fa-map-marker-alt text-red-500"></i>
+                <span className="font-semibold">{location.name}:</span>
+                <span className="text-gray-600 truncate max-w-[300px]">{location.address}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <a href={`tel:${location.phone}`} className="text-red-500 hover:text-red-600">
+                  <i className="fas fa-phone"></i> {location.phone}
+                </a>
+                <Link href="/location" className="text-blue-500 hover:text-blue-600 text-sm">
+                  View All Locations →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="container mx-auto px-4 py-8">
+          {/* Tabs */}
+          <div className="flex flex-wrap border-b border-gray-200 mb-6 overflow-x-auto">
+            {['overview', 'syllabus', 'projects', 'career', 'certificate'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2.5 font-semibold text-sm md:text-base transition whitespace-nowrap ${
+                  activeTab === tab
+                    ? `border-b-2 ${colors.border} ${colors.text}`
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                {tab === 'overview' && '📋 Overview'}
+                {tab === 'syllabus' && '📒 Syllabus'}
+                {tab === 'projects' && '🛠️ Projects'}
+                {tab === 'career' && '👨🏻‍🎓 Career'}
+                {tab === 'certificate' && '🏅 Certificate'}
+              </button>
+            ))}
+          </div>
+          
+          {/* Overview Tab */}
+          {activeTab === 'overview' && (
+            <div className="space-y-8">
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 space-y-6">
+                  {/* About the Course Card */}
+                  <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+                    <h2 className="text-xl font-bold mb-3 flex items-center gap-2 text-gray-800">
+                      <i className={`${foundCourse.icon} ${colors.text}`}></i>
+                      About the Course
+                    </h2>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">{fullDescription}</p>
+                  </div>
+                  
+                  {/* What You'll Learn Card */}
+                  <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+                    <h2 className="text-xl font-bold mb-3 text-gray-800">What You'll Learn</h2>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      {features.map((feature: string, idx: number) => (
+                        <div key={idx} className="flex items-start gap-2 text-sm">
+                          <i className="fas fa-check-circle text-green-500 mt-0.5 text-xs"></i>
+                          <span className="text-gray-700 font-medium">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Highlights Sidebar Card */}
+                <div>
+                  <div className="bg-white rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 p-6 sticky top-24 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-300">
+                    <div className="text-center mb-4">
+                      <div className={`w-20 h-20 ${colors.light} rounded-full flex items-center justify-center mx-auto mb-3`}>
+                        <i className={`${foundCourse.icon} text-3xl ${colors.text}`}></i>
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-800">Course Highlights</h3>
+                    </div>
+                    <div className="space-y-3.5 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Duration</span>
+                        <span className="font-semibold text-gray-800">{duration}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Level</span>
+                        <span className="font-semibold text-gray-800">{level}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Certification</span>
+                        <span className="font-semibold text-gray-800 text-right">{certification}</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 text-sm mb-2">Tools Covered</p>
+                        <div className="flex flex-wrap gap-2">
+                          {tools.slice(0, 5).map((tool: string, idx: number) => (
+                            <span key={idx} className="bg-gray-100 px-2 py-1 rounded-full text-xs text-gray-600 font-medium">{tool}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t">
+                        <p className={`text-3xl font-extrabold text-center ${colors.text}`}>₹{price.toLocaleString()}</p>
+                        <button 
+                          onClick={() => setIsModalOpen(true)} 
+                          className={`w-full mt-3 ${colors.button} text-white py-3 rounded-xl font-bold transition text-sm shadow-md`}
+                        >
+                          Enroll Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map Direction Section */}
+              <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <i className="fas fa-map-marked-alt text-red-500"></i> Center Location Map
+                </h2>
+                <div className="relative w-full h-[320px] rounded-xl overflow-hidden shadow-inner border border-gray-50">
+                  <iframe
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                      location.address || `Learnmore Technologies, ${location.name}, Bangalore`
+                    )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    title={`${location.name} map`}
+                  ></iframe>
+                </div>
+              </div>
+
+              {/* Quick Callback Inquiry Form */}
+              <div className="bg-gray-50/50 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-1 flex items-center gap-2">
+                  <i className="fas fa-paper-plane text-red-500"></i> Course & Batch Inquiry
+                </h2>
+                <p className="text-gray-500 text-sm mb-6">
+                  Submit details below to schedule a free demo session for {foundCourse.name} at our {location.name} center.
+                </p>
+
+                {formSubmitted ? (
+                  <div className="bg-green-50 border border-green-200 text-green-800 rounded-xl p-6 text-center animate-fade-in">
+                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="text-xl font-bold mb-1">Inquiry Registered!</h3>
+                    <p className="text-green-700">Thank you. One of our batch coordinators will call you back shortly.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleLeadSubmit} className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                          placeholder="Your Name"
+                          value={leadForm.name}
+                          onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Phone Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                          placeholder="Your Mobile Number"
+                          value={leadForm.phone}
+                          onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                        <input
+                          type="email"
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                          placeholder="example@mail.com"
+                          value={leadForm.email}
+                          onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Selected Training Center</label>
+                        <input
+                          type="text"
+                          disabled
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-100 text-gray-600 font-medium cursor-not-allowed"
+                          value={`${location.name} Center`}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1">Message / Batch preference</label>
+                      <textarea
+                        className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                        rows={3}
+                        placeholder={`I want to enroll for ${foundCourse.name} weekend batch training...`}
+                        value={leadForm.message}
+                        onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-[0_4px_15px_rgba(239,68,68,0.2)]"
+                    >
+                      Submit Demo Request
+                    </button>
+                  </form>
+                )}
+              </div>
+
+              {/* FAQs Section */}
+              <div className="border-t pt-8">
+                <h2 className="text-xl font-bold text-gray-800 mb-5 flex items-center gap-2">
+                  <i className="fas fa-question-circle text-red-500"></i> Course FAQs
+                </h2>
+                <div className="space-y-3">
+                  {faqs.map((faq, idx) => (
+                    <div key={idx} className="border border-gray-100 rounded-xl overflow-hidden bg-white shadow-sm">
+                      <button
+                        onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                        className="w-full px-5 py-4 text-left font-bold text-gray-800 flex justify-between items-center gap-4 hover:bg-gray-50 transition"
+                      >
+                        <span>{faq.q}</span>
+                        <i className={`fas fa-chevron-down text-gray-400 transition-transform duration-300 ${activeFaq === idx ? 'rotate-180 text-red-500' : ''}`}></i>
+                      </button>
+                      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeFaq === idx ? 'max-h-40 border-t border-gray-50 p-5' : 'max-h-0'}`}>
+                        <p className="text-gray-600 leading-relaxed text-sm md:text-base">{faq.a}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Syllabus Tab */}
+          {activeTab === 'syllabus' && (
+            <div className="bg-white rounded-xl shadow-md p-5">
+              <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
+                <h2 className="text-xl font-bold flex items-center gap-2">
+                  <i className={`fas fa-book-open ${colors.text}`}></i>
+                  Course Syllabus
+                </h2>
+                <button
+                  onClick={handleDownloadSyllabus}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 ${
+                    isEnrolled 
+                      ? `${getButtonColorClass()} text-white` 
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                  disabled={!isEnrolled}
+                >
+                  <i className="fas fa-download"></i> Download PDF
+                  {!isEnrolled && <span className="text-xs ml-1">(Enroll first)</span>}
+                </button>
+              </div>
+              
+              <div className="space-y-4">
+                {syllabus.modules.map((module, idx) => (
+                  <details key={idx} className="border rounded-lg p-4 hover:shadow-md transition">
+                    <summary className="font-semibold text-md cursor-pointer hover:text-blue-600 flex items-center gap-2">
+                      <div className={`w-6 h-6 ${colors.light} rounded-full flex items-center justify-center`}>
+                        <span className={`${colors.text} text-sm font-bold`}>{idx + 1}</span>
+                      </div>
+                      {module.title}
+                    </summary>
+                    <ul className="mt-3 ml-6 space-y-2">
+                      {module.topics.map((topic, tidx) => (
+                        <li key={tidx} className="text-gray-600 text-sm flex items-start gap-2">
+                          <i className={`fas fa-circle ${colors.text} text-[6px] mt-1.5`}></i>
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
+              </div>
+              
+              {!isEnrolled && (
+                <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                  <div className="flex items-center gap-3">
+                    <i className="fas fa-lock text-yellow-600"></i>
+                    <p className="text-yellow-700 text-sm">
+                      <strong>Full syllabus is locked.</strong> Please enroll to access the complete syllabus and download PDF.
+                    </p>
+                    <button 
+                      onClick={() => setIsModalOpen(true)}
+                      className="ml-auto bg-yellow-500 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-yellow-600 transition"
+                    >
+                      Enroll Now
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Projects Tab */}
+          {activeTab === 'projects' && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">Real-World Projects</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { name: "Project 1: Application Development", description: "Build a complete application using the technologies learned in this course." },
+                  { name: "Project 2: Real-World Implementation", description: "Implement real-world scenarios and industry best practices." },
+                  { name: "Project 3: Deployment & Showcase", description: "Deploy your project and showcase it in your portfolio." },
+                  { name: "Project 4: Capstone Project", description: "Work on a comprehensive capstone project that demonstrates all skills learned." }
+                ].map((project, idx) => (
+                  <div key={idx} className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-10 h-10 ${colors.light} rounded-lg flex items-center justify-center`}>
+                        <i className={`fas fa-code ${colors.text}`}></i>
+                      </div>
+                      <h3 className="font-bold">{project.name}</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">{project.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Career Tab */}
+          {activeTab === 'career' && (
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl shadow-md p-5">
+                <h2 className="text-xl font-bold mb-3">Career Opportunities</h2>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    "Software Developer", "Web Developer", "Application Developer",
+                    "Full Stack Developer", "Backend Engineer", "Frontend Developer",
+                    "Cloud Engineer", "DevOps Engineer"
+                  ].map((career, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm">
+                      <i className={`fas fa-check-circle ${colors.text} text-xs`}></i>
+                      <span>{career}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white rounded-xl shadow-md p-5">
+                <h2 className="text-xl font-bold mb-3">Top Hiring Companies</h2>
+                <div className="flex flex-wrap gap-2">
+                  {["Amazon", "Google", "Microsoft", "TCS", "Infosys", "Accenture", "IBM", "Deloitte", "Wipro", "Capgemini"].map((company, idx) => (
+                    <span key={idx} className="bg-gray-100 px-3 py-1 rounded-full text-sm">{company}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Certificate Tab - Image with Redirect */}
+{activeTab === 'certificate' && (
+  <div className="bg-white rounded-xl shadow-md p-8 text-center">
+    <h2 className="text-2xl font-bold mb-4 flex items-center justify-center gap-2">
+      <i className="fas fa-certificate text-yellow-500"></i>
+      Course Completion Certificate
+    </h2>
+    <div className="max-w-2xl mx-auto">
+      {/* Clickable Certificate Image - Redirects to /certificate/verify */}
+      <div 
+        className="relative rounded-xl overflow-hidden border-4 border-yellow-500 mb-6 bg-white shadow-lg cursor-pointer hover:shadow-xl transition-all"
+        onClick={handleCertificateRedirect}
+      >
+        <Image
+          src="/images/courses/certificate-sample.png"
+          alt="Course Completion Certificate"
+          width={800}
+          height={600}
+          className="w-full h-auto object-contain"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+            const parent = e.currentTarget.parentElement;
+            if (parent) {
+              const textVersion = document.createElement('div');
+              textVersion.className = "bg-gradient-to-br from-yellow-50 to-amber-50 p-8 text-center cursor-pointer";
+              textVersion.onclick = () => handleCertificateRedirect();
+              textVersion.innerHTML = `
+                <i class="fas fa-certificate text-6xl text-yellow-500 mb-4"></i>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">CERTIFICATE OF COMPLETION</h3>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto my-3"></div>
+                <p class="text-gray-600 text-lg mb-6">This certifies that</p>
+                <p class="text-4xl font-bold text-red-600 mb-4">[Student Name]</p>
+                <p class="text-gray-600 text-lg mb-3">has successfully completed the course</p>
+                <p class="text-2xl font-bold text-blue-600 mb-8 bg-blue-50 inline-block px-6 py-2 rounded-lg">
+                  ${foundCourse.name}
+                </p>
+                <div class="flex justify-center gap-12 mb-6">
+                  <div>
+                    <p class="text-gray-500 text-sm">Awarded on</p>
+                    <p class="font-semibold">[Date]</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500 text-sm">Issued by</p>
+                    <p class="font-semibold">Learnmore Technologies</p>
+                  </div>
+                </div>
+                <div class="border-t-2 border-gray-300 pt-6 mt-4">
+                  <div class="flex justify-between px-8">
+                    <div class="text-center">
+                      <div class="w-40 h-0.5 bg-gray-400 mb-2"></div>
+                      <p class="text-sm text-gray-500">Authorized Signature</p>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-40 h-0.5 bg-gray-400 mb-2"></div>
+                      <p class="text-sm text-gray-500">Program Director</p>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-400 mt-6">
+                  Certificate ID: LMT-${courseKey?.toUpperCase()}-2026-XXXX
+                </p>
+                <p class="text-sm text-blue-500 mt-3">Click to verify certificate →</p>
+              `;
+              parent.appendChild(textVersion);
+            }
+          }}
+        />
+        {/* Overlay with click instruction */}
+        <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-all flex items-center justify-center">
+          <div className="opacity-0 hover:opacity-100 transition-all bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+            <i className="fas fa-external-link-alt mr-2"></i>
+            Click to Verify Certificate
+          </div>
+        </div>
+      </div>
+      
+      <p className="text-gray-600 mb-4">
+        Upon successful completion, you'll receive an industry-recognized certificate that validates your skills in {foundCourse.name}.
+      </p>
+      
+      <div className="flex gap-4 justify-center">
+        <button 
+          onClick={handleCertificateRedirect}
+          className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition flex items-center gap-2"
+        >
+          <i className="fas fa-external-link-alt"></i>
+          Verify Certificate
+        </button>
+        <button 
+          onClick={handleCertificateRedirect}
+          className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition flex items-center gap-2"
+        >
+          <i className="fas fa-qrcode"></i>
+          Scan QR Code
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+          {/* Course Details Section - Enhanced Content */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-bullseye text-blue-500"></i>
+              Course Objective
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              The primary objective of this {foundCourse.name} is to equip you with comprehensive 
+              scripting techniques through extensive hands-on sessions. Our curriculum is designed 
+              to cater to both beginners and experienced professionals, ensuring a solid foundation 
+              in core concepts before advancing to complex topics.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Whether you're from a non-Computer Science background or an experienced developer, 
+              our structured approach ensures you grasp essential OOPS concepts and programming 
+              fundamentals before diving deep into {foundCourse.name.split(' ')[0]} technologies.
+            </p>
+          </div>
+
+          {/* Unique Syllabus Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-star text-yellow-500"></i>
+              Why Our {foundCourse.name} Stands Out
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Our syllabus is uniquely crafted by industry experts with decades of experience 
+              in leading IT companies across Bangalore. We've designed this program specifically 
+              for:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-4">
+              <li>Fresh graduates looking to start their IT career</li>
+              <li>Working professionals wanting to upskill or switch careers</li>
+              <li>Students with basic programming knowledge seeking advanced expertise</li>
+              <li>Entrepreneurs wanting to understand technology for their business</li>
+            </ul>
+            <p className="text-gray-700 leading-relaxed">
+              All course materials, assignments, and project guides are provided at no additional cost, 
+              ensuring you have everything you need to succeed.
+            </p>
+          </div>
+
+          {/* Job Opportunities & Placement Statistics Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-briefcase text-green-500"></i>
+              Job Opportunities After {foundCourse.name}
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {foundCourse.name.split(' ')[0]} is one of the most in-demand technologies globally, 
+              with applications across multiple domains:
+            </p>
+            
+            {/* Domains Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
+              {[
+                "Web Development",
+                "Data Science",
+                "Artificial Intelligence",
+                "Cloud Computing",
+                "DevOps",
+                "Automation Testing",
+                "Cybersecurity",
+                "Mobile Development",
+                "Backend Development",
+                "Frontend Development",
+                "Database Administration",
+                "System Architecture"
+              ].map((domain, idx) => (
+                <div key={idx} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2 hover:bg-blue-50 transition">
+                  <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                  <span className="text-sm text-gray-700">{domain}</span>
+                </div>
+              ))}
+            </div>
+            
+            {/* Salary Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 text-center border border-green-200">
+                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i className="fas fa-user-graduate text-white text-xl"></i>
+                </div>
+                <p className="text-sm text-gray-600 mb-1">Freshers Starting Salary</p>
+                <p className="text-2xl font-bold text-green-600">₹4-6 LPA</p>
+                <p className="text-xs text-gray-500 mt-1">0-2 Years Experience</p>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 text-center border border-blue-200">
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i className="fas fa-chart-line text-white text-xl"></i>
+                </div>
+                <p className="text-sm text-gray-600 mb-1">Experienced Professionals</p>
+                <p className="text-2xl font-bold text-blue-600">Up to 100% Hike</p>
+                <p className="text-xs text-gray-500 mt-1">2-5 Years Experience</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 text-center border border-purple-200">
+                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i className="fas fa-globe text-white text-xl"></i>
+                </div>
+                <p className="text-sm text-gray-600 mb-1">Global Opportunities</p>
+                <p className="text-2xl font-bold text-purple-600">$70k - $120k</p>
+                <p className="text-xs text-gray-500 mt-1">USA / UK / Canada / Australia</p>
+              </div>
+            </div>
+            
+            {/* Average Salary Chart */}
+            <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <h3 className="font-semibold text-gray-700 mb-3">Average Salary by Experience</h3>
+              <div className="space-y-3">
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span>Entry Level (0-2 years)</span>
+                    <span className="font-semibold text-green-600">₹4-6 LPA</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '25%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span>Mid Level (2-5 years)</span>
+                    <span className="font-semibold text-blue-600">₹8-12 LPA</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '50%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span>Senior Level (5-8 years)</span>
+                    <span className="font-semibold text-purple-600">₹15-25 LPA</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span>Expert Level (8+ years)</span>
+                    <span className="font-semibold text-red-600">₹30-50 LPA</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-red-500 h-2 rounded-full" style={{ width: '100%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Placement Assistance Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-handshake text-blue-500"></i>
+              Placement Assistance at Learnmore Technologies
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-file-alt text-green-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Resume Building</p>
+                      <p className="text-sm text-gray-600">Professional resume tailored for target roles</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-microphone text-blue-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Mock Interviews</p>
+                      <p className="text-sm text-gray-600">Technical & HR interview preparation</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-users text-purple-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Placement Drives</p>
+                      <p className="text-sm text-gray-600">Regular campus placement drives</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-building text-yellow-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Hiring Partners</p>
+                      <p className="text-sm text-gray-600">50+ active hiring partners</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-chart-line text-red-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Salary Negotiation</p>
+                      <p className="text-sm text-gray-600">Guidance for better package</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-certificate text-indigo-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Certification Support</p>
+                      <p className="text-sm text-gray-600">Industry certification guidance</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Placement Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-100">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-blue-600">95%</p>
+                <p className="text-xs text-gray-500">Placement Rate</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-green-600">50+</p>
+                <p className="text-xs text-gray-500">Hiring Partners</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-purple-600">1000+</p>
+                <p className="text-xs text-gray-500">Students Placed</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-red-600">6.5 LPA</p>
+                <p className="text-xs text-gray-500">Highest Package</p>
+              </div>
+            </div>
+            
+            {/* Placement Button */}
+            <div className="mt-4 text-center">
+              <Link 
+                href="/placement" 
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition"
+              >
+                View Placement Records
+                <i className="fas fa-arrow-right text-xs"></i>
+              </Link>
+            </div>
+          </div>
+          
+          {/* Batch Schedule Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-calendar-alt text-blue-500"></i>
+              Upcoming Batch Schedule at {location.name}
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="p-3 text-left">Start Date</th>
+                    <th className="p-3 text-left">Batch Type</th>
+                    <th className="p-3 text-left">Time</th>
+                    <th className="p-3 text-left">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="p-3 font-semibold">27th April 2026</td>
+                    <td className="p-3">Weekdays (Mon-Fri)</td>
+                    <td className="p-3">08:00 AM IST</td>
+                    <td className="p-3"><span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Enrolling</span></td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3 font-semibold">23rd April 2026</td>
+                    <td className="p-3">Weekdays (Mon-Fri)</td>
+                    <td className="p-3">08:00 AM IST</td>
+                    <td className="p-3"><span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Limited Seats</span></td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3 font-semibold">25th April 2026</td>
+                    <td className="p-3">Weekend (Sat-Sun)</td>
+                    <td className="p-3">11:00 AM IST</td>
+                    <td className="p-3"><span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Available</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4 text-center">
+              <p className="text-gray-500 text-sm">Can't find a batch that works for you?</p>
+              <button onClick={() => setIsModalOpen(true)} className="mt-2 text-blue-600 font-semibold hover:underline">
+                Request a Custom Batch →
+              </button>
+            </div>
+          </div>
+
+          {/* Trainer Profile Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-chalkboard-user text-purple-500"></i>
+              Meet Your Trainers
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Our trainers are industry professionals with 10+ years of experience in leading 
+                  MNCs across Bangalore. They bring real-world project experience into the classroom, 
+                  ensuring you learn not just theory but practical implementation.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                    20+ Years Combined Industry Experience
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                    Previously worked at Google, Amazon, Microsoft
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                    Certified Professionals with Global Recognition
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <i className="fas fa-user-circle text-4xl text-gray-400"></i>
+                  <div>
+                    <p className="font-semibold">Expert Trainers Panel</p>
+                    <p className="text-xs text-gray-500">AWS Certified | Python Expert | DevOps Specialist</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm">
+                  Our trainers are proactive professionals dedicated to addressing individual student challenges, 
+                  ensuring you develop strong analytical and problem-solving abilities required in the industry.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Features Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-key text-blue-500"></i>
+              Key Features of {foundCourse.name} at {location.name}
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <i className="fas fa-clock text-blue-500 text-2xl mb-2"></i>
+                <p className="font-semibold text-sm">30+ Hours</p>
+                <p className="text-xs text-gray-500">Course Duration</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <i className="fas fa-briefcase text-blue-500 text-2xl mb-2"></i>
+                <p className="font-semibold text-sm">100% Job Oriented</p>
+                <p className="text-xs text-gray-500">Training</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <i className="fas fa-users text-blue-500 text-2xl mb-2"></i>
+                <p className="font-semibold text-sm">800+ Batches</p>
+                <p className="text-xs text-gray-500">Completed</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <i className="fas fa-certificate text-blue-500 text-2xl mb-2"></i>
+                <p className="font-semibold text-sm">Certification</p>
+                <p className="text-xs text-gray-500">Guidance Included</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-question-circle text-blue-500"></i>
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-3">
+              {[
+                { q: "Why should I learn this course from Learnmore Technologies?", 
+                  a: "We offer industry-expert trainers, hands-on projects, placement assistance, and flexible batch timings. Our curriculum is designed by professionals currently working in top MNCs." },
+                { q: "Does Learnmore Technologies offer placement assistance after course completion?", 
+                  a: "Yes, we provide 100% placement assistance including resume building, mock interviews, and direct referrals to our 50+ hiring partner companies." },
+                { q: "What if I miss a session?", 
+                  a: "We provide recorded sessions for all classes. You can access them anytime through our learning portal and catch up on missed content." },
+                { q: "What certification will I receive after course completion?", 
+                  a: "You'll receive an industry-recognized certificate from Learnmore Technologies, valid for job applications worldwide." }
+              ].map((faq, idx) => (
+                <details key={idx} className="border rounded-lg p-3">
+                  <summary className="font-semibold cursor-pointer hover:text-blue-600 text-sm">
+                    {faq.q}
+                  </summary>
+                  <p className="mt-2 text-gray-600 text-sm pl-4">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+          {/* Online Training Benefits */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-laptop-code text-blue-500"></i>
+              Live Instructor-Led Online Training Available
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Can't make it to our {location.name} center? Join our live online classes from anywhere 
+                  in the world. Get the same quality training with additional flexibility.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                    Live Instructor-Led Sessions
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                    Recorded Sessions for Revision
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <i className="fas fa-check-circle text-green-500 text-xs"></i>
+                    100% Placement Support Included
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 text-center">
+                <i className="fas fa-globe text-4xl text-blue-500 mb-2"></i>
+                <p className="font-semibold">Students from 10+ Countries</p>
+                <p className="text-sm text-gray-600">India • USA • UK • Australia • Canada • Singapore</p>
+                <button onClick={() => setIsModalOpen(true)} className="mt-3 bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">
+                  Enroll for Online Training
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Blogs Section */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <i className="fas fa-blog text-orange-500"></i>
+              Related Blogs
+            </h2>
+            
+            {/* Blog Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {(() => {
+                // Course-specific blog titles
+                const getBlogsByCourse = (courseType: string | null) => {
+                  const blogs: Record<string, string[]> = {
+                    'python': [
+                      "15 Features Of Python That Make Everyone Love It",
+                      "Advantages and Disadvantages of Python",
+                      "Brief Overview of Python Language",
+                      "Advanced Python Concepts",
+                      "Python Applications in Real World",
+                      "Python Break and Continue Statements",
+                      "Python Inheritance Explained",
+                      "Python Career Opportunities",
+                      "Python Input and Output Operations",
+                      "Python Control Flow Statements",
+                      "Identifiers in Python",
+                      "Python Data Types Explained",
+                      "How to Install Python",
+                      "Python Dictionary Tutorial",
+                      "Python Keywords List",
+                      "Python List Methods",
+                      "Python Exception Handling Guide",
+                      "Python Loops (For, While)",
+                      "Python File Handling",
+                      "Python Functions Tutorial",
+                      "Python Machine Learning Basics",
+                      "Python Modules and Packages",
+                      "Python Numbers (int, float, complex)",
+                      "Python Object Oriented Programming",
+                      "Python Operators Guide",
+                      "Python Programming Language Overview",
+                      "Python Sets Tutorial",
+                      "Python Variables Guide",
+                      "Python vs PHP: Which is Better?",
+                      "Python vs R vs SAS Comparison",
+                      "Why Learn Python? Top Reasons",
+                      "What is Python? Introduction"
+                    ],
+                    'aws': [
+                      "AWS Cloud Computing: Beginner's Guide",
+                      "Top 10 AWS Services You Should Know",
+                      "AWS vs Azure vs GCP Comparison",
+                      "AWS Certification Path Guide",
+                      "AWS EC2 Complete Tutorial",
+                      "AWS S3 Storage Guide",
+                      "AWS VPC Networking Explained",
+                      "AWS IAM Security Best Practices",
+                      "AWS Lambda Serverless Computing",
+                      "AWS RDS Database Guide",
+                      "AWS CloudFormation Tutorial",
+                      "AWS DevOps Tools Overview",
+                      "AWS Cost Optimization Tips",
+                      "AWS Security Best Practices",
+                      "AWS Career Opportunities"
+                    ],
+                    'cloud-devops': [
+                      "DevOps Culture: Complete Guide",
+                      "CI/CD Pipeline Explained",
+                      "Docker Tutorial for Beginners",
+                      "Kubernetes Architecture Guide",
+                      "Jenkins CI/CD Setup Guide",
+                      "Terraform Infrastructure as Code",
+                      "Ansible Configuration Management",
+                      "Prometheus Monitoring Guide",
+                      "Git Version Control Tutorial",
+                      "DevOps Career Path",
+                      "Top DevOps Tools 2024",
+                      "DevOps Salary Guide",
+                      "DevOps vs Agile vs SRE",
+                      "Continuous Integration Best Practices",
+                      "DevOps Interview Questions"
+                    ],
+                    'software-testing': [
+                      "Manual Testing Complete Guide",
+                      "Selenium WebDriver Tutorial",
+                      "TestNG Framework Guide",
+                      "API Testing with Postman",
+                      "Automation Testing Best Practices",
+                      "Software Testing Life Cycle (STLC)",
+                      "Bug Life Cycle Explained",
+                      "Agile Testing Methodology",
+                      "Performance Testing Tools",
+                      "Security Testing Guide",
+                      "Mobile App Testing",
+                      "Database Testing Tutorial",
+                      "Test Case Design Techniques",
+                      "Software Testing Career Path",
+                      "Top Testing Tools 2024"
+                    ],
+                    'data-science-ai': [
+                      "Data Science Complete Roadmap",
+                      "Machine Learning Algorithms Guide",
+                      "Deep Learning Explained",
+                      "NLP Tutorial for Beginners",
+                      "Generative AI Overview",
+                      "Python for Data Science",
+                      "Pandas DataFrame Tutorial",
+                      "NumPy Array Operations",
+                      "Matplotlib Data Visualization",
+                      "Scikit-learn ML Guide",
+                      "TensorFlow Tutorial",
+                      "Data Science Career Guide",
+                      "AI vs ML vs DL vs DS",
+                      "Data Cleaning Techniques",
+                      "Data Science Interview Questions"
+                    ],
+                    'data-analytics': [
+                      "Data Analytics Complete Guide",
+                      "Excel Formulas and Functions",
+                      "SQL for Data Analysis",
+                      "Power BI Tutorial for Beginners",
+                      "Tableau Visualization Guide",
+                      "Data Visualization Best Practices",
+                      "Business Intelligence Overview",
+                      "Data Cleaning in Excel",
+                      "Pivot Tables Masterclass",
+                      "DAX Formulas in Power BI",
+                      "Data Analytics Career Path",
+                      "Top Data Analytics Tools",
+                      "Data Storytelling Techniques",
+                      "Dashboard Design Tips",
+                      "Data Analytics Interview Questions"
+                    ],
+                    'data-engineering': [
+                      "Data Engineering Complete Roadmap",
+                      "SQL Advanced Queries Guide",
+                      "Python for Data Engineering",
+                      "Apache Spark Tutorial",
+                      "Apache Kafka Guide",
+                      "ETL vs ELT Explained",
+                      "Data Warehouse Design",
+                      "Data Lake Architecture",
+                      "AWS Glue Tutorial",
+                      "Google BigQuery Guide",
+                      "Azure Synapse Analytics",
+                      "Data Pipeline Best Practices",
+                      "Data Engineering Career Path",
+                      "Big Data Technologies",
+                      "Data Modeling Techniques"
+                    ],
+                    'java': [
+                      "Java Programming Complete Guide",
+                      "OOP Concepts in Java",
+                      "Java Exception Handling",
+                      "Java Collections Framework",
+                      "Multithreading in Java",
+                      "JDBC Tutorial",
+                      "Java 8 Features",
+                      "Spring Framework Guide",
+                      "Java Career Opportunities",
+                      "Java vs Python vs C++",
+                      "Java Interview Questions",
+                      "Java Design Patterns",
+                      "Java Memory Management",
+                      "Java Stream API Guide",
+                      "Java Certification Path"
+                    ],
+                    'azure': [
+                      "Microsoft Azure Complete Guide",
+                      "Azure Virtual Machines Tutorial",
+                      "Azure Storage Services",
+                      "Azure Networking Guide",
+                      "Azure DevOps Tutorial",
+                      "Azure Functions Serverless",
+                      "Azure Kubernetes Service (AKS)",
+                      "Azure Certification Path",
+                      "Azure vs AWS vs GCP",
+                      "Azure Security Best Practices",
+                      "Azure Cost Optimization",
+                      "Azure Data Factory Guide",
+                      "Azure SQL Database",
+                      "Azure Active Directory",
+                      "Azure Career Opportunities"
+                    ],
+                    'power-bi': [
+                      "Power BI Complete Tutorial",
+                      "Power BI Desktop Guide",
+                      "DAX Formulas Masterclass",
+                      "Power BI Dashboard Design",
+                      "Data Modeling in Power BI",
+                      "Power BI Service Overview",
+                      "Power BI vs Tableau",
+                      "Power BI Interview Questions",
+                      "Power BI Career Path",
+                      "Power BI Tips and Tricks",
+                      "Power BI Data Sources",
+                      "Row Level Security in Power BI",
+                      "Power BI Gateways",
+                      "Power BI Report Publishing",
+                      "Power BI Certification Guide"
+                    ],
+                    'react': [
+                      "React JS Complete Guide",
+                      "React Components Explained",
+                      "React Hooks Tutorial",
+                      "State Management in React",
+                      "React Router Guide",
+                      "Redux Complete Tutorial",
+                      "React Performance Optimization",
+                      "React vs Angular vs Vue",
+                      "React Interview Questions",
+                      "React Career Opportunities",
+                      "React Native for Mobile Apps",
+                      "Next.js Framework Guide",
+                      "React Testing Library",
+                      "React Best Practices",
+                      "React Certification Guide"
+                    ],
+                    'digital-marketing': [
+                      "Digital Marketing Complete Guide",
+                      "SEO Tutorial for Beginners",
+                      "Social Media Marketing Guide",
+                      "Google Ads Complete Tutorial",
+                      "Email Marketing Best Practices",
+                      "Content Marketing Strategy",
+                      "Google Analytics Guide",
+                      "Digital Marketing Career Path",
+                      "Digital Marketing Tools",
+                      "Facebook Marketing Guide",
+                      "Instagram Marketing Tips",
+                      "LinkedIn Marketing Guide",
+                      "YouTube SEO Guide",
+                      "Influencer Marketing",
+                      "Digital Marketing Certification"
+                    ],
+                    'cybersecurity': [
+                      "Cybersecurity Complete Guide",
+                      "Network Security Basics",
+                      "Ethical Hacking Tutorial",
+                      "Cryptography Explained",
+                      "Penetration Testing Guide",
+                      "Security Auditing Best Practices",
+                      "Incident Response Plan",
+                      "Cybersecurity Career Path",
+                      "Top Cybersecurity Tools",
+                      "CISSP Certification Guide",
+                      "CEH Certification Tutorial",
+                      "Data Protection Laws",
+                      "Cloud Security Guide",
+                      "Ransomware Protection",
+                      "Cybersecurity Interview Questions"
+                    ]
+                  };
+                  
+                  if (courseKey && blogs[courseKey]) {
+                    return blogs[courseKey];
+                  }
+                  
+                  // Default blogs for any other course
+                  return [
+                    "15 Features Of This Technology That Make Everyone Love It",
+                    "Advantages and Disadvantages of This Technology",
+                    "Brief Overview of This Technology Language",
+                    "Advanced Concepts in This Technology",
+                    "Real-World Applications of This Technology",
+                    "Career Opportunities in This Technology",
+                    "Complete Learning Path",
+                    "Why You Should Learn This Technology",
+                    "Top Tools and Frameworks",
+                    "Interview Questions and Answers",
+                    "Certification Guide",
+                    "Industry Best Practices"
+                  ];
+                };
+                
+                const blogs = getBlogsByCourse(courseKey);
+                return blogs.slice(0, 16).map((blogTitle, idx) => (
+                  <Link
+                    key={idx}
+                    href={`/blog/${blogTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
+                    className="block bg-gray-50 hover:bg-gray-100 rounded-lg p-2 transition group"
+                  >
+                    <div className="flex items-start gap-2">
+                      <i className="fas fa-newspaper text-blue-400 text-xs mt-0.5"></i>
+                      <p className="text-xs text-gray-600 group-hover:text-blue-600 line-clamp-2">
+                        {blogTitle}
+                      </p>
+                    </div>
+                  </Link>
+                ));
+              })()}
+            </div>
+            
+            {/* View All Blogs Link */}
+            <div className="mt-4 text-center pt-3 border-t border-gray-100">
+              <Link 
+                href="/blog" 
+                className="text-blue-500 text-sm font-semibold hover:underline inline-flex items-center gap-1"
+              >
+                View All Blogs
+                <i className="fas fa-arrow-right text-xs"></i>
+              </Link>
+            </div>
+          </div>
+        </div>
+        
+        {/* CTA Section */}
+        <section className={`bg-gradient-to-r ${colors.bg} text-white py-10`}>
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Ready to Start Your {foundCourse.name.split(' ')[0]} Career?</h2>
+            <p className="text-base mb-5">Join our training at {location.name} and become a certified professional</p>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <button onClick={() => setIsModalOpen(true)} className="bg-white text-gray-800 px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-100 transition text-sm">
+                Enroll Now
+              </button>
+              <button 
+                onClick={handleDownloadSyllabus}
+                className="border-2 border-white text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-white hover:text-gray-800 transition text-sm"
+              >
+                <i className="fas fa-download mr-2"></i> Download Syllabus
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <EnrollModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        courseName={foundCourse.name}
+        onSuccess={handleEnrollmentSuccess}
+      />
+      
+      {/* Syllabus Download Modal - Message for non-enrolled users */}
+      {showSyllabusModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[1000] p-4" onClick={() => setShowSyllabusModal(false)}>
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 text-center" onClick={(e) => e.stopPropagation()}>
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i className="fas fa-download text-yellow-500 text-3xl"></i>
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Download Syllabus</h3>
+            <p className="text-gray-600 mb-4">
+              Please complete the enrollment form to download the syllabus.
+            </p>
+            <div className="flex gap-3">
+              <button 
+                onClick={() => {
+                  setShowSyllabusModal(false);
+                  setIsModalOpen(true);
+                }}
+                className="flex-1 bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+              >
+                Enroll Now
+              </button>
+              <button 
+                onClick={() => setShowSyllabusModal(false)}
+                className="flex-1 border border-gray-300 text-gray-600 py-2 rounded-lg font-semibold hover:bg-gray-50 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
