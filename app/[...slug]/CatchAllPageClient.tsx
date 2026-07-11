@@ -26,6 +26,9 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   const [activeTab, setActiveTab] = useState('overview');
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [showSyllabusModal, setShowSyllabusModal] = useState(false);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [leadForm, setLeadForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const fullSlug = params.slug.join('-');
   
   // કોર્સ શોધો
@@ -58,6 +61,23 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   // કોર્સ ડેટા લોડ કરો
   const course = coursesData.courses.find(c => c.slug === courseKey);
   
+  // કોર્સ કીમતી ડેટા અને ફીચર્સ (વિકાસશીલ અને વ્યાપક)
+  const features = course?.features || foundCourse.features || [
+    "Expert-led training sessions",
+    "Hands-on practical projects",
+    "Industry-recognized certification",
+    "Placement assistance",
+    "Real-world case studies",
+    "24/7 mentor support"
+  ];
+  
+  const tools = course?.tools || ["Industry Tools", "Modern Technologies", "Best Practices"];
+  const duration = course?.duration || "3-6 Months";
+  const price = course?.price || 29999;
+  const level = course?.level || "Beginner to Intermediate";
+  const certification = course?.certification || `${foundCourse.name} Certification`;
+  const fullDescription = course?.fullDescription || foundCourse.shortDesc || `Comprehensive ${foundCourse.name} program designed to make you industry-ready with hands-on experience and real-world projects.`;
+
   // Get syllabus PDF path
   const syllabusPDFPath = syllabusPDFs[courseKey!] || '/pdfs/default-syllabus.pdf';
   
@@ -105,22 +125,21 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   
   const colors = colorClasses[foundCourse.color as keyof typeof colorClasses] || colorClasses.blue;
   
-  // કોર્સ ફીચર્સ
-  const features = course?.features || foundCourse.features || [
-    "Expert-led training sessions",
-    "Hands-on practical projects",
-    "Industry-recognized certification",
-    "Placement assistance",
-    "Real-world case studies",
-    "24/7 mentor support"
+  const faqs = [
+    { q: `Is placement assistance provided for this ${foundCourse.name} course in ${location.name}?`, a: `Yes! We provide 100% placement assistance, resume optimization, mock interviews, and organize recruitment drives with top IT firms in Bangalore directly from our ${location.name} center.` },
+    { q: `What is the duration and timings of the ${foundCourse.name} class batches?`, a: `The ${foundCourse.name} course duration is ${duration}. We offer flexible timings including early morning, late evening, and weekend batches to suit working professionals and students.` },
+    { q: `Are classroom training sessions available for ${foundCourse.name} at ${location.name}?`, a: `Yes, we provide fully-interactive physical classroom training sessions at our ${location.name} center with individual lab configurations and dedicated mentor support.` },
+    { q: `Can I attend a free demo class before registering?`, a: `Absolutely. You can request a free demo session by clicking the 'Book Free Demo' button. Our subject matter expert will guide you through the syllabus and tools covered.` }
   ];
-  
-  const tools = course?.tools || ["Industry Tools", "Modern Technologies", "Best Practices"];
-  const duration = course?.duration || "3-6 Months";
-  const price = course?.price || 29999;
-  const level = course?.level || "Beginner to Intermediate";
-  const certification = course?.certification || `${foundCourse.name} Certification`;
-  const fullDescription = course?.fullDescription || foundCourse.shortDesc || `Comprehensive ${foundCourse.name} program designed to make you industry-ready with hands-on experience and real-world projects.`;
+
+  const handleLeadSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!leadForm.name || !leadForm.phone) return;
+    setFormSubmitted(true);
+    setTimeout(() => {
+      setLeadForm({ name: '', email: '', phone: '', message: '' });
+    }, 4000);
+  };
 
   // Helper function to get button color class
   const getButtonColorClass = () => {
@@ -290,65 +309,200 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
           
           {/* Overview Tab */}
           {activeTab === 'overview' && (
-            <div className="grid lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <div className="bg-white rounded-xl shadow-md p-5 mb-5">
-                  <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-                    <i className={`${foundCourse.icon} ${colors.text}`}></i>
-                    About the Course
-                  </h2>
-                  <p className="text-gray-700 leading-relaxed text-sm md:text-base">{fullDescription}</p>
+            <div className="space-y-8">
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 space-y-6">
+                  {/* About the Course Card */}
+                  <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+                    <h2 className="text-xl font-bold mb-3 flex items-center gap-2 text-gray-800">
+                      <i className={`${foundCourse.icon} ${colors.text}`}></i>
+                      About the Course
+                    </h2>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">{fullDescription}</p>
+                  </div>
+                  
+                  {/* What You'll Learn Card */}
+                  <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+                    <h2 className="text-xl font-bold mb-3 text-gray-800">What You'll Learn</h2>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      {features.map((feature: string, idx: number) => (
+                        <div key={idx} className="flex items-start gap-2 text-sm">
+                          <i className="fas fa-check-circle text-green-500 mt-0.5 text-xs"></i>
+                          <span className="text-gray-700 font-medium">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="bg-white rounded-xl shadow-md p-5">
-                  <h2 className="text-xl font-bold mb-3">What You'll Learn</h2>
-                  <div className="grid md:grid-cols-2 gap-2">
-                    {features.map((feature: string, idx: number) => (
-                      <div key={idx} className="flex items-start gap-2 text-sm">
-                        <i className="fas fa-check-circle text-green-500 mt-0.5 text-xs"></i>
-                        <span className="text-gray-700">{feature}</span>
+                {/* Highlights Sidebar Card */}
+                <div>
+                  <div className="bg-white rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 p-6 sticky top-24 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-300">
+                    <div className="text-center mb-4">
+                      <div className={`w-20 h-20 ${colors.light} rounded-full flex items-center justify-center mx-auto mb-3`}>
+                        <i className={`${foundCourse.icon} text-3xl ${colors.text}`}></i>
                       </div>
-                    ))}
+                      <h3 className="text-lg font-bold text-gray-800">Course Highlights</h3>
+                    </div>
+                    <div className="space-y-3.5 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Duration</span>
+                        <span className="font-semibold text-gray-800">{duration}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Level</span>
+                        <span className="font-semibold text-gray-800">{level}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Certification</span>
+                        <span className="font-semibold text-gray-800 text-right">{certification}</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 text-sm mb-2">Tools Covered</p>
+                        <div className="flex flex-wrap gap-2">
+                          {tools.slice(0, 5).map((tool: string, idx: number) => (
+                            <span key={idx} className="bg-gray-100 px-2 py-1 rounded-full text-xs text-gray-600 font-medium">{tool}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t">
+                        <p className={`text-3xl font-extrabold text-center ${colors.text}`}>₹{price.toLocaleString()}</p>
+                        <button 
+                          onClick={() => setIsModalOpen(true)} 
+                          className={`w-full mt-3 ${colors.button} text-white py-3 rounded-xl font-bold transition text-sm shadow-md`}
+                        >
+                          Enroll Now
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              <div>
-                <div className="bg-white rounded-xl shadow-md p-5 sticky top-24">
-                  <div className="text-center mb-4">
-                    <div className={`w-20 h-20 ${colors.light} rounded-full flex items-center justify-center mx-auto mb-3`}>
-                      <i className={`${foundCourse.icon} text-3xl ${colors.text}`}></i>
+
+              {/* Map Direction Section */}
+              <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <i className="fas fa-map-marked-alt text-red-500"></i> Center Location Map
+                </h2>
+                <div className="relative w-full h-[320px] rounded-xl overflow-hidden shadow-inner border border-gray-50">
+                  <iframe
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                      location.address || `Learnmore Technologies, ${location.name}, Bangalore`
+                    )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    title={`${location.name} map`}
+                  ></iframe>
+                </div>
+              </div>
+
+              {/* Quick Callback Inquiry Form */}
+              <div className="bg-gray-50/50 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-1 flex items-center gap-2">
+                  <i className="fas fa-paper-plane text-red-500"></i> Course & Batch Inquiry
+                </h2>
+                <p className="text-gray-500 text-sm mb-6">
+                  Submit details below to schedule a free demo session for {foundCourse.name} at our {location.name} center.
+                </p>
+
+                {formSubmitted ? (
+                  <div className="bg-green-50 border border-green-200 text-green-800 rounded-xl p-6 text-center animate-fade-in">
+                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                      <i className="fas fa-check"></i>
                     </div>
-                    <h3 className="text-lg font-bold">Course Highlights</h3>
+                    <h3 className="text-xl font-bold mb-1">Inquiry Registered!</h3>
+                    <p className="text-green-700">Thank you. One of our batch coordinators will call you back shortly.</p>
                   </div>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Duration</span>
-                      <span className="font-semibold">{duration}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Level</span>
-                      <span className="font-semibold">{level}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Certification</span>
-                      <span className="font-semibold text-right">{certification}</span>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 text-sm mb-2">Tools Covered</p>
-                      <div className="flex flex-wrap gap-2">
-                        {tools.slice(0, 5).map((tool: string, idx: number) => (
-                          <span key={idx} className="bg-gray-100 px-2 py-1 rounded-full text-xs">{tool}</span>
-                        ))}
+                ) : (
+                  <form onSubmit={handleLeadSubmit} className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                          placeholder="Your Name"
+                          value={leadForm.name}
+                          onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Phone Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                          placeholder="Your Mobile Number"
+                          value={leadForm.phone}
+                          onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+                        />
                       </div>
                     </div>
-                    <div className="pt-3 border-t">
-                      <p className="text-2xl font-bold text-center text-blue-600">₹{price.toLocaleString()}</p>
-                      <button onClick={() => setIsModalOpen(true)} className="w-full mt-3 bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition text-sm">
-                        Enroll Now
-                      </button>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                        <input
+                          type="email"
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                          placeholder="example@mail.com"
+                          value={leadForm.email}
+                          onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">Selected Training Center</label>
+                        <input
+                          type="text"
+                          disabled
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-100 text-gray-600 font-medium cursor-not-allowed"
+                          value={`${location.name} Center`}
+                        />
+                      </div>
                     </div>
-                  </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1">Message / Batch preference</label>
+                      <textarea
+                        className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                        rows={3}
+                        placeholder={`I want to enroll for ${foundCourse.name} weekend batch training...`}
+                        value={leadForm.message}
+                        onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-[0_4px_15px_rgba(239,68,68,0.2)]"
+                    >
+                      Submit Demo Request
+                    </button>
+                  </form>
+                )}
+              </div>
+
+              {/* FAQs Section */}
+              <div className="border-t pt-8">
+                <h2 className="text-xl font-bold text-gray-800 mb-5 flex items-center gap-2">
+                  <i className="fas fa-question-circle text-red-500"></i> Course FAQs
+                </h2>
+                <div className="space-y-3">
+                  {faqs.map((faq, idx) => (
+                    <div key={idx} className="border border-gray-100 rounded-xl overflow-hidden bg-white shadow-sm">
+                      <button
+                        onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                        className="w-full px-5 py-4 text-left font-bold text-gray-800 flex justify-between items-center gap-4 hover:bg-gray-50 transition"
+                      >
+                        <span>{faq.q}</span>
+                        <i className={`fas fa-chevron-down text-gray-400 transition-transform duration-300 ${activeFaq === idx ? 'rotate-180 text-red-500' : ''}`}></i>
+                      </button>
+                      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeFaq === idx ? 'max-h-40 border-t border-gray-50 p-5' : 'max-h-0'}`}>
+                        <p className="text-gray-600 leading-relaxed text-sm md:text-base">{faq.a}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

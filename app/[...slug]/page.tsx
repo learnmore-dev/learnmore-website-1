@@ -38,11 +38,34 @@ export async function generateMetadata({ params }: CatchAllPageProps): Promise<M
     return {};
   }
   
+  const title = `Best ${foundCourse.name} in ${location.name}, Bangalore | Learnmore Technologies`;
+  const description = `Looking for top ${foundCourse.name} in ${location.name}, Bangalore? Learnmore Technologies offers practical training, live projects, and 100% placement assistance. Enroll today!`;
+
   return {
-    title: `Best ${foundCourse.name} in ${location.name}, Bangalore | Learnmore Technologies`,
-    description: `Looking for top ${foundCourse.name} in ${location.name}, Bangalore? Learnmore Technologies offers practical training, live projects, and 100% placement assistance. Enroll today!`,
+    title,
+    description,
     alternates: {
       canonical: `/${fullSlug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://learnmore.com/${fullSlug}`,
+      type: 'website',
+      images: [
+        {
+          url: 'https://learnmore.com/logo-square.png',
+          width: 500,
+          height: 500,
+          alt: 'Learnmore Technologies Logo',
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://learnmore.com/logo-square.png'],
     }
   };
 }
@@ -76,5 +99,47 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
     notFound();
   }
 
-  return <CatchAllPageClient params={params} />;
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": foundCourse.name,
+    "description": foundCourse.shortDesc || `Professional ${foundCourse.name} training course.`,
+    "provider": {
+      "@type": "Organization",
+      "name": "Learnmore Technologies",
+      "sameAs": "https://learnmore.com"
+    }
+  };
+
+  const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `Learnmore Technologies - ${location.name}`,
+    "image": "https://learnmore.com/logo-square.png",
+    "telephone": location.phone || "+91 90365 24555",
+    "email": location.email || "info@learnmore.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": location.address || `Learnmore Technologies, ${location.name}`,
+      "addressLocality": location.name,
+      "addressRegion": "Karnataka",
+      "postalCode": "560001",
+      "addressCountry": "IN"
+    },
+    "url": `https://learnmore.com/location/${location.slug}`
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
+      <CatchAllPageClient params={params} />
+    </>
+  );
 }
