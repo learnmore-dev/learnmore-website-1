@@ -48,6 +48,19 @@
             "timings": "Mon-Sat: 9:00 AM - 9:00 PM, Sun: 10:00 AM - 6:00 PM"
         },
         {
+    "id": 87,
+    "slug": "bangalore",
+    "name": "Bangalore",
+    "address": "Learnmore Technologies, Bangalore, Karnataka - 560001",
+    "phone": "+91 90365 24555",
+    "email": "info@learnmore.com",
+    "courses": ["Python Fullstack", "Data Analytics", "Cloud DevOps", "Data Science", "Software Testing", "Data Engineering"],
+    "description": "Our Bangalore center is the main training hub offering industry-focused IT courses with dedicated placement support.",
+    "timings": "Mon-Sat: 9:00 AM - 9:00 PM, Sun: 10:00 AM - 6:00 PM",
+    "mapUrl": "https://maps.google.com/?q=Bangalore"
+}
+,
+        {
             "id": 5,
             "slug": "whitefield",
             "name": "Whitefield",

@@ -6,6 +6,9 @@ import GlobalEnrollModal from '@/components/common/GlobalEnrollModal';
 export const metadata: Metadata = {
   title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
   description: 'Learnmore Technologies offers industry-focused IT courses with hands-on practical learning, real-time projects, and dedicated placement support.',
+  icons: {
+    icon: '/favicon.png?v=1',
+  },
 };
 
 export default function RootLayout({

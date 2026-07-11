@@ -1,5 +1,6 @@
 {
-    "courses": [{
+    "courses": [
+        {
             "id": 1,
             "slug": "python-fullstack",
             "title": "Python Fullstack Master Program",
@@ -20,7 +21,15 @@
                 "100% Placement Assistance",
                 "Industry Certification"
             ],
-            "tools": ["Python", "Django", "React", "SQL", "Git", "HTML/CSS", "JavaScript"],
+            "tools": [
+                "Python",
+                "Django",
+                "React",
+                "SQL",
+                "Git",
+                "HTML/CSS",
+                "JavaScript"
+            ],
             "certification": "Python Full Stack Developer"
         },
         {
@@ -44,7 +53,14 @@
                 "PL-300 Certification Prep",
                 "Placement Support"
             ],
-            "tools": ["Excel", "SQL", "Power BI", "Tableau", "Python", "Pandas"],
+            "tools": [
+                "Excel",
+                "SQL",
+                "Power BI",
+                "Tableau",
+                "Python",
+                "Pandas"
+            ],
             "certification": "Data Analytics Professional"
         },
         {
@@ -68,7 +84,16 @@
                 "Ansible Configuration Management",
                 "AWS Certification Preparation"
             ],
-            "tools": ["AWS", "Linux", "Docker", "Kubernetes", "Jenkins", "Terraform", "Ansible", "Git"],
+            "tools": [
+                "AWS",
+                "Linux",
+                "Docker",
+                "Kubernetes",
+                "Jenkins",
+                "Terraform",
+                "Ansible",
+                "Git"
+            ],
             "certification": "Cloud DevOps Engineer"
         },
         {
@@ -80,7 +105,6 @@
             "duration": "3 months",
             "image": "/software-testing.jpg",
             "price": 18000,
-
             "level": "Beginner",
             "icon": "fas fa-bug",
             "features": [
@@ -93,7 +117,15 @@
                 "ISTQB Preparation",
                 "Placement Support"
             ],
-            "tools": ["Selenium", "TestNG", "PyTest", "Postman", "JIRA", "SQL", "Git"],
+            "tools": [
+                "Selenium",
+                "TestNG",
+                "PyTest",
+                "Postman",
+                "JIRA",
+                "SQL",
+                "Git"
+            ],
             "certification": "Software Testing Professional"
         },
         {
@@ -117,7 +149,15 @@
                 "Airflow Orchestration",
                 "Real-time Data Processing"
             ],
-            "tools": ["Python", "Spark", "Kafka", "SQL", "AWS", "Airflow", "Docker"],
+            "tools": [
+                "Python",
+                "Spark",
+                "Kafka",
+                "SQL",
+                "AWS",
+                "Airflow",
+                "Docker"
+            ],
             "certification": "Data Engineering Professional"
         },
         {
@@ -141,7 +181,15 @@
                 "Real-world AI Projects",
                 "Placement Support"
             ],
-            "tools": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "NLP", "OpenCV", "Pandas"],
+            "tools": [
+                "Python",
+                "TensorFlow",
+                "PyTorch",
+                "Scikit-learn",
+                "NLP",
+                "OpenCV",
+                "Pandas"
+            ],
             "certification": "Data Science with AI Professional"
         }
     ]
