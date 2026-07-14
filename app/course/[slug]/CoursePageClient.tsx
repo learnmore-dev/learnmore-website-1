@@ -6,7 +6,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import EnrollModal from '@/components/common/EnrollModal';
+import dynamic from 'next/dynamic';
+
+const EnrollModal = dynamic(() => import('@/components/common/EnrollModal'), {
+  ssr: false,
+});
 import coursesData from '@/data/courses.json';
 import placementsData from '@/data/placements.json';  // ← આ ઉમેરો
 
@@ -697,22 +701,22 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-3xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-2">Frequently Asked <span className="text-red-500">Questions</span></h2>
+              <h2 className="text-3xl font-bold mb-2">Frequently Asked <span className="text-indigo-600">Questions</span></h2>
               <p className="text-gray-600">Find answers to common questions about this course</p>
             </div>
             <div className="space-y-4">
               {faqs.map((faq, idx) => (
                 <details key={idx} className="bg-gray-50 rounded-xl p-4 hover:shadow-md transition">
-                  <summary className="font-semibold cursor-pointer hover:text-red-500 flex items-center justify-between">
+                  <summary className="font-semibold cursor-pointer hover:text-indigo-600 flex items-center justify-between">
                     <span>{faq.q}</span>
                     <i className="fas fa-chevron-down text-gray-400 text-sm"></i>
                   </summary>
-                  <p className="mt-3 text-gray-600 text-sm pl-4 border-l-2 border-red-500">{faq.a}</p>
+                  <p className="mt-3 text-gray-600 text-sm pl-4 border-l-2 border-indigo-600">{faq.a}</p>
                 </details>
               ))}
             </div>
             <div className="text-center mt-8">
-              <button onClick={() => setIsModalOpen(true)} className="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700 transition">
+              <button onClick={() => setIsModalOpen(true)} className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">
                 Still Have Questions? Contact Us
               </button>
             </div>
@@ -723,28 +727,28 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-2">Related <span className="text-red-500">Blogs</span></h2>
+              <h2 className="text-3xl font-bold mb-2">Related <span className="text-indigo-600">Blogs</span></h2>
               <p className="text-gray-600">Stay updated with our latest articles and insights</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {blogs.map((blog, idx) => (
                 <div key={idx} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition group">
-                  <div className="h-40 bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center">
+                  <div className="h-40 bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center">
                     <i className={`${blog.icon} text-6xl text-white/30`}></i>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">{blog.category}</span>
+                      <span className="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded-full">{blog.category}</span>
                       <span className="text-gray-400 text-xs">{blog.readTime}</span>
                     </div>
-                    <h3 className="font-bold mb-2 group-hover:text-red-500 transition line-clamp-2">{blog.title}</h3>
+                    <h3 className="font-bold mb-2 group-hover:text-indigo-600 transition line-clamp-2">{blog.title}</h3>
                     <p className="text-gray-500 text-xs">{blog.date}</p>
                   </div>
                 </div>
               ))}
             </div>
             <div className="text-center mt-8">
-              <Link href="/blog" className="inline-flex items-center gap-2 text-red-600 font-semibold hover:underline">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline">
                 View All Blogs <i className="fas fa-arrow-right"></i>
               </Link>
             </div>
@@ -752,25 +756,25 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-gradient-to-r from-red-500 to-red-600 text-white text-center">
+        <section className="py-16 bg-gradient-to-r from-indigo-600 to-blue-600 text-white text-center">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
             <p className="text-xl mb-8">Join thousands of successful students who have transformed their careers</p>
             <div className="flex flex-wrap justify-center gap-4">
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg"
+                className="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg"
               >
                 Enroll Now
               </button>
               <button 
                 onClick={handleDownloadSyllabus}
-                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-red-600 transition"
+                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition"
               >
                 <i className="fas fa-download mr-2"></i> Download Syllabus
               </button>
             </div>
-            <p className="text-sm text-red-100 mt-4">Limited seats available. Enroll today!</p>
+            <p className="text-sm text-indigo-100 mt-4">Limited seats available. Enroll today!</p>
           </div>
         </section>
       </main>
@@ -799,7 +803,7 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
                   setShowSyllabusModal(false);
                   setIsModalOpen(true);
                 }}
-                className="flex-1 bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+                className="flex-1 bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
               >
                 Enroll Now
               </button>

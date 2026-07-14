@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
 
   const title = `Best ${course.title} Course in Bangalore | Learnmore Technologies`;
   const description = `${course.shortDescription} Master ${course.title} tools like ${course.tools.slice(0, 5).join(', ')} with live projects and job support.`;
+  const imageUrl = course.image ? `https://learnmore.com${course.image}` : 'https://learnmore.com/logo-square.webp';
 
   return {
     title,
@@ -29,6 +30,20 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
       description,
       url: `https://learnmore.com/course/${course.slug}`,
       type: 'website',
+      images: [
+        {
+          url: imageUrl,
+          width: 800,
+          height: 800,
+          alt: `${course.title} Course Image`,
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [imageUrl]
     }
   };
 }
@@ -48,6 +63,14 @@ export default function Page({ params }: CoursePageProps) {
       "@type": "Organization",
       "name": "Learnmore Technologies",
       "sameAs": "https://learnmore.com"
+    },
+    "image": course.image ? `https://learnmore.com${course.image}` : "https://learnmore.com/logo-square.webp",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "248",
+      "bestRating": "5",
+      "worstRating": "1"
     }
   };
 

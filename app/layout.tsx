@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { EnrollProvider } from '@/context/EnrollContext';
-import GlobalEnrollModal from '@/components/common/GlobalEnrollModal';
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
+
+const GlobalEnrollModal = dynamic(() => import('@/components/common/GlobalEnrollModal'), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
@@ -12,6 +16,28 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'googled04a108ca94ce35c',
+  },
+  openGraph: {
+    title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
+    description: 'Learnmore Technologies offers industry-focused IT courses with hands-on practical learning, real-time projects, and dedicated placement support.',
+    url: 'https://learnmore.com',
+    siteName: 'Learnmore Technologies',
+    images: [
+      {
+        url: 'https://learnmore.com/logo-square.webp',
+        width: 800,
+        height: 800,
+        alt: 'Learnmore Technologies Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
+    description: 'Learnmore Technologies offers industry-focused IT courses with hands-on practical learning, real-time projects, and dedicated placement support.',
+    images: ['https://learnmore.com/logo-square.webp'],
   },
 };
 

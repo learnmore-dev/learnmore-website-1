@@ -6,7 +6,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import EnrollModal from '@/components/common/EnrollModal';
+import dynamic from 'next/dynamic';
+
+const EnrollModal = dynamic(() => import('@/components/common/EnrollModal'), {
+  ssr: false,
+});
 import coursesData from '@/data/courses.json';
 import locationsData from '@/data/locations.json';
 

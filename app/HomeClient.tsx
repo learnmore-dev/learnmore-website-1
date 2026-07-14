@@ -77,6 +77,35 @@ export default function Home() {
   const { openEnrollModal } = useEnroll();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "What software training courses does Learnmore Technologies offer?",
+      a: "We offer job-oriented professional courses including Python Fullstack Development, Data Analytics, Cloud DevOps, Software Testing, and Data Science with AI."
+    },
+    {
+      q: "Does Learnmore Technologies provide 100% placement support?",
+      a: "Yes, we provide dedicated placement support with regular resume building sessions, mock interviews, and direct placement drives with our hiring partners."
+    },
+    {
+      q: "What is the duration of the training programs?",
+      a: "Most certification courses run between 2 to 4 months, featuring extensive hands-on laboratory sessions and live project training."
+    },
+    {
+      q: "Where is Learnmore Technologies located in Bangalore?",
+      a: "Our premium training centers are located in Marathahalli and BTM Layout, Bangalore, fully equipped with lab infrastructure."
+    },
+    {
+      q: "Can I choose weekday or weekend batch timings?",
+      a: "Yes! We offer flexible batch options including daily morning/evening sessions and weekend-only classes for working professionals."
+    },
+    {
+      q: "Is there corporate training services available?",
+      a: "Absolutely. We provide customized corporate training, skill bootcamps, and specialized workshops for organizations looking to upskill their tech teams."
+    }
+  ];
+
   const { courses } = coursesData;
   const { placements } = placementsData;
   const { testimonials } = testimonialsData;
@@ -1083,7 +1112,39 @@ export default function Home() {
 
 
         {/* CTA Section */}
-       
+        {/* FAQ Accordion Section */}
+        <section className="py-20 bg-gray-50 border-t border-b border-gray-100">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="text-center mb-12">
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm">FAQ</span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 text-gray-900">Frequently Asked Questions</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300">
+                  <button
+                    onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                    className="w-full flex justify-between items-center p-6 text-left font-semibold text-lg text-gray-800 hover:text-blue-600 transition outline-none"
+                  >
+                    <span>{faq.q}</span>
+                    <i className={`fas fa-chevron-down transform transition-transform duration-300 ${activeFaq === index ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}></i>
+                  </button>
+                  <div
+                    className={`transition-all duration-300 ease-in-out ${activeFaq === index ? 'max-h-96 border-t border-gray-50' : 'max-h-0'}`}
+                    style={{ overflow: 'hidden' }}
+                  >
+                    <p className="p-6 text-gray-600 leading-relaxed bg-gray-50/50">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </>
