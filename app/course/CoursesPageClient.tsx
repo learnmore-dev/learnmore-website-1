@@ -73,7 +73,7 @@ export default function CoursesPage() {
         <section className="relative py-20 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
-              src="/hero-bg.jpg"
+              src="/hero-bg.webp"
               alt="Courses Hero Background"
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {

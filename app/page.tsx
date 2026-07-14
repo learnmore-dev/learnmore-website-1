@@ -15,7 +15,7 @@ export default function Page() {
     "@type": "EducationalOrganization",
     "name": "Learnmore Technologies",
     "url": "https://learnmore.com",
-    "logo": "https://learnmore.com/logo.png",
+    "logo": "https://learnmore.com/logo.webp",
     "sameAs": [
       "https://www.youtube.com/@learnnmore",
       "https://www.instagram.com/learnmore_technologies/",

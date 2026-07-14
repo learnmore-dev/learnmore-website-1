@@ -266,7 +266,7 @@ export default function Footer() {
           {/* Column 1 - About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="LearnMore Logo" className="h-10" />
+              <img src="/logo.webp" alt="LearnMore Logo" className="h-10" />
               <div>
                 <span className="text-indigo-500 font-bold text-xl">LearnMore</span>
                 <span className="text-white font-bold text-xl"> Technologies</span>

@@ -233,12 +233,12 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                 <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
                   <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
                     <Image
-                      src={foundCourse.image || '/images/courses/placeholder-course.jpg'}
+                      src={foundCourse.image || '/images/courses/placeholder-course.webp'}
                       alt={`${foundCourse.name} Training`}
                       fill
                       className="object-cover"
                       onError={(e) => {
-                        e.currentTarget.src = '/images/courses/placeholder-course.jpg';
+                        e.currentTarget.src = '/images/courses/placeholder-course.webp';
                       }}
                     />
                   </div>
@@ -638,7 +638,7 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
         onClick={handleCertificateRedirect}
       >
         <img
-          src="/images/courses/certificate-sample.png"
+          src="/images/courses/certificate-sample.webp"
           alt="Course Completion Certificate"
           className="w-full h-auto object-contain"
           onError={(e) => {

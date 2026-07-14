@@ -53,7 +53,7 @@ export default function Page({ params }: BlogPostProps) {
       "name": "Learnmore Technologies",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://learnmore.com/logo.png"
+        "url": "https://learnmore.com/logo.webp"
       }
     },
     "mainEntityOfPage": {

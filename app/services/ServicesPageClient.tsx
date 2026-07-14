@@ -125,7 +125,7 @@ export default function ServicesPage() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/services-bg.jpg"
+              src="/services-bg.webp"
               alt="Services Background"
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {

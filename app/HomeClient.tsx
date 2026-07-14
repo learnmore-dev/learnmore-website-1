@@ -133,7 +133,7 @@ export default function Home() {
         <section className="relative py-20 text-white overflow-hidden min-h-[90vh] flex items-center">
           <div className="absolute inset-0 z-0">
             <img
-              src="/hero-bg.jpg"
+              src="/hero-bg.webp"
               alt="Hero Background"
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
@@ -925,18 +925,18 @@ export default function Home() {
       <div className="flex animate-scroll">
         {(() => {
           const companies = [
-            { name: 'TCS', logo: '/images/companies/tcs.png' },
-            { name: 'Infosys', logo: '/images/companies/infosys.png' },
-            { name: 'Wipro', logo: '/images/companies/wipro.png' },
-            { name: 'Accenture', logo: '/images/companies/accenture.png' },
-            { name: 'IBM', logo: '/images/companies/ibm.png' },
-            { name: 'Deloitte', logo: '/images/companies/deloitte.png' },
-            { name: 'Amazon', logo: '/images/companies/amazon.png' },
-            { name: 'Google', logo: '/images/companies/google.png' },
-            { name: 'Microsoft', logo: '/images/companies/microsoft.png' },
-            { name: 'Zomato', logo: '/images/companies/zomato.png' },
-            { name: 'Flipkart', logo: '/images/companies/flipkart.png' },
-            { name: 'Paytm', logo: '/images/companies/paytm.png' },
+            { name: 'TCS', logo: '/images/companies/tcs.webp' },
+            { name: 'Infosys', logo: '/images/companies/infosys.webp' },
+            { name: 'Wipro', logo: '/images/companies/wipro.webp' },
+            { name: 'Accenture', logo: '/images/companies/accenture.webp' },
+            { name: 'IBM', logo: '/images/companies/ibm.webp' },
+            { name: 'Deloitte', logo: '/images/companies/deloitte.webp' },
+            { name: 'Amazon', logo: '/images/companies/amazon.webp' },
+            { name: 'Google', logo: '/images/companies/google.webp' },
+            { name: 'Microsoft', logo: '/images/companies/microsoft.webp' },
+            { name: 'Zomato', logo: '/images/companies/zomato.webp' },
+            { name: 'Flipkart', logo: '/images/companies/flipkart.webp' },
+            { name: 'Paytm', logo: '/images/companies/paytm.webp' },
           ];
           // Double the array for seamless loop
           return [...companies, ...companies].map((company, idx) => (

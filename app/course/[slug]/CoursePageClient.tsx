@@ -190,13 +190,13 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
 
   // Get background image based on course
   const getBackgroundImage = () => {
-    if (course.slug.includes('python')) return '/images/courses/python-bg.jpg';
-    if (course.slug.includes('cloud') || course.slug.includes('devops')) return '/images/courses/aws-bg.jpg';
-    if (course.slug.includes('analytics')) return '/images/courses/analytics-bg.jpg';
-    if (course.slug.includes('testing')) return '/images/courses/testing-bg.jpg';
-    if (course.slug.includes('engineering')) return '/images/courses/data-engineering-bg.jpg';
-    if (course.slug.includes('science')) return '/images/courses/datascience-bg.jpg';
-    return '/images/courses/default-bg.jpg';
+    if (course.slug.includes('python')) return '/images/courses/python-bg.webp';
+    if (course.slug.includes('cloud') || course.slug.includes('devops')) return '/images/courses/aws-bg.webp';
+    if (course.slug.includes('analytics')) return '/images/courses/analytics-bg.webp';
+    if (course.slug.includes('testing')) return '/images/courses/testing-bg.webp';
+    if (course.slug.includes('engineering')) return '/images/courses/data-engineering-bg.webp';
+    if (course.slug.includes('science')) return '/images/courses/datascience-bg.webp';
+    return '/images/courses/default-bg.webp';
   };
 
   return (

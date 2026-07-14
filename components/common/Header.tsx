@@ -145,7 +145,7 @@ export default function Header() {
           <div className="nav-flex">
             {/* Logo */}
             <Link href="/" className="logo" onClick={closeMenu}>
-              <img src="/logo.png" alt="LearnMore Logo" />
+              <img src="/logo.webp" alt="LearnMore Logo" />
               <div>
                 <span className="logo-red">LearnMore</span>
                 <span className="logo-black">Technologies</span>
@@ -209,7 +209,7 @@ export default function Header() {
 
           {/* Logo in Sidebar */}
           <div className="mobile-logo">
-            <img src="/logo.png" alt="LearnMore Logo" />
+            <img src="/logo.webp" alt="LearnMore Logo" />
             <div>
               <span className="logo-red">LearnMore</span>
               <span className="logo-black">Technologies</span>

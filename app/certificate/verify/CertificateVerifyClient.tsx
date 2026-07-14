@@ -73,7 +73,7 @@ export default function CertificateVerifyPage() {
     
     try {
       // Fetch the original certificate image
-      const response = await fetch('/images/courses/certificate-sample.png');
+      const response = await fetch('/images/courses/certificate-sample.webp');
       const blob = await response.blob();
       
       // Create a new HTMLImageElement (not Next.js Image)
@@ -120,7 +120,7 @@ export default function CertificateVerifyPage() {
         
         // Download the modified image
         const link = document.createElement('a');
-        link.download = `certificate-${certificateId}.png`;
+        link.download = `certificate-${certificateId}.webp`;
         link.href = canvas.toDataURL('image/png');
         link.click();
         
@@ -131,8 +131,8 @@ export default function CertificateVerifyPage() {
       htmlImage.onerror = () => {
         // Fallback: download original image
         const link = document.createElement('a');
-        link.href = '/images/courses/certificate-sample.png';
-        link.download = `certificate-${certificateId}.png`;
+        link.href = '/images/courses/certificate-sample.webp';
+        link.download = `certificate-${certificateId}.webp`;
         link.click();
         setIsDownloading(false);
       };
@@ -143,8 +143,8 @@ export default function CertificateVerifyPage() {
       console.error('Download failed:', error);
       // Fallback: download original image
       const link = document.createElement('a');
-      link.href = '/images/courses/certificate-sample.png';
-      link.download = `certificate-${certificateId}.png`;
+      link.href = '/images/courses/certificate-sample.webp';
+      link.download = `certificate-${certificateId}.webp`;
       link.click();
       setIsDownloading(false);
     }
@@ -213,7 +213,7 @@ export default function CertificateVerifyPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div ref={certificateRef} className="relative">
                   <Image
-                    src="/images/courses/certificate-sample.png"
+                    src="/images/courses/certificate-sample.webp"
                     alt="Verified Certificate"
                     width={800}
                     height={600}
