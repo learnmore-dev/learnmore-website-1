@@ -114,13 +114,13 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   
   // કલર કોડ
   const colorClasses = {
-    blue: { bg: "from-blue-600 to-blue-800", light: "bg-blue-50", hover: "hover:bg-blue-700", text: "text-blue-600", border: "border-blue-600", button: "bg-blue-600 hover:bg-blue-700" },
-    yellow: { bg: "from-yellow-600 to-yellow-800", light: "bg-yellow-50", hover: "hover:bg-yellow-700", text: "text-yellow-600", border: "border-yellow-600", button: "bg-yellow-600 hover:bg-yellow-700" },
-    purple: { bg: "from-purple-600 to-purple-800", light: "bg-purple-50", hover: "hover:bg-purple-700", text: "text-purple-600", border: "border-purple-600", button: "bg-purple-600 hover:bg-purple-700" },
-    green: { bg: "from-green-600 to-green-800", light: "bg-green-50", hover: "hover:bg-green-700", text: "text-green-600", border: "border-green-600", button: "bg-green-600 hover:bg-green-700" },
-    orange: { bg: "from-orange-600 to-orange-800", light: "bg-orange-50", hover: "hover:bg-orange-700", text: "text-orange-600", border: "border-orange-600", button: "bg-orange-600 hover:bg-orange-700" },
-    red: { bg: "from-red-600 to-red-800", light: "bg-red-50", hover: "hover:bg-red-700", text: "text-red-600", border: "border-red-600", button: "bg-red-600 hover:bg-red-700" },
-    teal: { bg: "from-teal-600 to-teal-800", light: "bg-teal-50", hover: "hover:bg-teal-700", text: "text-teal-600", border: "border-teal-600", button: "bg-teal-600 hover:bg-teal-700" }
+    blue: { bg: "from-blue-600 to-blue-800", light: "bg-blue-50/50", hover: "hover:from-blue-700 hover:to-blue-900", text: "text-blue-600", border: "border-blue-300", button: "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 hover:shadow-[0_4px_15px_rgba(37,99,235,0.3)]" },
+    yellow: { bg: "from-amber-500 to-amber-700", light: "bg-amber-50/50", hover: "hover:from-amber-600 hover:to-amber-800", text: "text-amber-600", border: "border-amber-300", button: "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 hover:shadow-[0_4px_15px_rgba(245,158,11,0.3)]" },
+    purple: { bg: "from-purple-600 to-purple-800", light: "bg-purple-50/50", hover: "hover:from-purple-700 hover:to-purple-900", text: "text-purple-600", border: "border-purple-300", button: "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 hover:shadow-[0_4px_15px_rgba(147,51,234,0.3)]" },
+    green: { bg: "from-emerald-600 to-emerald-800", light: "bg-emerald-50/50", hover: "hover:from-emerald-700 hover:to-emerald-900", text: "text-emerald-600", border: "border-emerald-300", button: "bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 hover:shadow-[0_4px_15px_rgba(16,185,129,0.3)]" },
+    orange: { bg: "from-orange-500 to-orange-700", light: "bg-orange-50/50", hover: "hover:from-orange-600 hover:to-orange-800", text: "text-orange-600", border: "border-orange-300", button: "bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 hover:shadow-[0_4px_15px_rgba(249,115,22,0.3)]" },
+    red: { bg: "from-rose-600 to-rose-800", light: "bg-rose-50/50", hover: "hover:from-rose-700 hover:to-rose-900", text: "text-rose-600", border: "border-rose-300", button: "bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-550 hover:shadow-[0_4px_15px_rgba(244,63,94,0.3)]" },
+    teal: { bg: "from-teal-600 to-teal-800", light: "bg-teal-50/50", hover: "hover:from-teal-700 hover:to-teal-900", text: "text-teal-600", border: "border-teal-300", button: "bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 hover:shadow-[0_4px_15px_rgba(20,184,166,0.3)]" }
   };
   
   const colors = colorClasses[foundCourse.color as keyof typeof colorClasses] || colorClasses.blue;
@@ -475,7 +475,7 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-[0_4px_15px_rgba(239,68,68,0.2)]"
+                      className={`w-full text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-md ${colors.button} hover:scale-[1.01] hover:shadow-lg active:scale-[0.99]`}
                     >
                       Submit Demo Request
                     </button>
@@ -637,11 +637,9 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
         className="relative rounded-xl overflow-hidden border-4 border-yellow-500 mb-6 bg-white shadow-lg cursor-pointer hover:shadow-xl transition-all"
         onClick={handleCertificateRedirect}
       >
-        <Image
+        <img
           src="/images/courses/certificate-sample.png"
           alt="Course Completion Certificate"
-          width={800}
-          height={600}
           className="w-full h-auto object-contain"
           onError={(e) => {
             e.currentTarget.style.display = 'none';
@@ -1509,7 +1507,7 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                   setShowSyllabusModal(false);
                   setIsModalOpen(true);
                 }}
-                className="flex-1 bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+                className={`flex-1 text-white py-2.5 rounded-xl font-semibold transition-all duration-300 shadow-md ${colors.button} hover:scale-[1.02] active:scale-[0.98]`}
               >
                 Enroll Now
               </button>

@@ -249,7 +249,7 @@ export default function LocationPageClient({ location }: LocationPageClientProps
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-1">Your Message</label>
                       <textarea
-                        className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white"
                         rows={3}
                         placeholder="Any specific questions or batch preference..."
                         value={leadForm.message}
@@ -258,7 +258,7 @@ export default function LocationPageClient({ location }: LocationPageClientProps
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-[0_4px_15px_rgba(239,68,68,0.2)]"
+                      className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold py-3 rounded-xl hover:shadow-[0_4px_20px_rgba(79,70,229,0.35)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 shadow-md"
                     >
                       Request Callback
                     </button>
@@ -290,23 +290,23 @@ export default function LocationPageClient({ location }: LocationPageClientProps
               </div>
               
               {/* Enroll CTA */}
-              <div className="mt-8 bg-gradient-to-r from-red-50 via-rose-50 to-amber-50 rounded-2xl p-8 text-center border border-red-100/50">
-                <h3 className="text-xl font-bold mb-2 text-gray-800">Want to join us at {location.name}?</h3>
-                <p className="text-gray-600 mb-6">Visit our center or contact us to book a free demo class with our subject matter experts.</p>
-                <div className="flex gap-4 justify-center flex-wrap">
-                  <button 
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-red-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-red-700 transition shadow-[0_4px_15px_rgba(239,68,68,0.25)]"
-                  >
-                    Book Free Demo
-                  </button>
-                  <a 
-                    href={`tel:${location.phone || '+919036524555'}`} 
-                    className="bg-white border border-gray-200 text-gray-700 px-8 py-3 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm"
-                  >
-                    <i className="fas fa-phone mr-1 text-red-500"></i> Call Now
-                  </a>
-                </div>
+              <div className="mt-8 bg-gradient-to-r from-indigo-50/50 via-blue-50/30 to-indigo-50/40 rounded-2xl p-8 text-center border border-indigo-100/60">
+              <h3 className="text-xl font-bold mb-2 text-gray-800">Want to join us at {location.name}?</h3>
+              <p className="text-gray-600 mb-6">Visit our center or contact us to book a free demo class with our subject matter experts.</p>
+              <div className="flex gap-4 justify-center flex-wrap">
+                <button 
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white px-8 py-3 rounded-xl font-bold hover:shadow-[0_4px_20px_rgba(79,70,229,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-md"
+                >
+                  Book Free Demo
+                </button>
+                <a 
+                  href={`tel:${location.phone || '+919036524555'}`} 
+                  className="bg-white border border-gray-200 text-gray-700 px-8 py-3 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm"
+                >
+                  <i className="fas fa-phone mr-1 text-indigo-600"></i> Call Now
+                </a>
+              </div>
               </div>
             </div>
           </div>

@@ -14,9 +14,9 @@ body {
 }
 
 :root {
-    --primary: #e63946;
-    --primary-dark: #d00000;
-    --transition: all 0.3s ease;
+    --primary: #4F46E5;
+    --primary-dark: #3730A3;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container {
@@ -266,7 +266,7 @@ body {
 }
 
 .contact-navbar-inner i {
-    color: #e63946;
+    color: var(--primary);
     margin-right: 6px;
 }
 
@@ -277,7 +277,7 @@ body {
 }
 
 .contact-navbar-inner a:hover {
-    color: #e63946;
+    color: var(--primary);
 }
 
 
@@ -327,18 +327,20 @@ body {
 
 .btn-primary-link {
     display: inline-block;
-    background: #e63946;
+    background: linear-gradient(135deg, var(--primary), #2563eb);
     color: white;
-    padding: 14px 32px;
-    border-radius: 30px;
+    padding: 12px 28px;
+    border-radius: var(--border-radius, 12px);
     text-decoration: none;
     font-weight: 600;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
     transition: var(--transition);
 }
 
 .btn-primary-link:hover {
-    background: #d00000;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.45);
+    filter: brightness(1.05);
 }
 
 
@@ -1334,7 +1336,7 @@ body {
 
 .course-icon i {
     font-size: 34px;
-    color: #e63946;
+    color: var(--primary);
 }
 
 .course-card h3 {
@@ -1354,16 +1356,19 @@ body {
 .course-btn {
     display: inline-block;
     padding: 12px 28px;
-    background: #e63946;
+    background: linear-gradient(135deg, var(--primary), #2563eb);
     color: #ffffff;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: var(--border-radius, 12px);
     font-weight: 600;
-    transition: 0.3s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    transition: var(--transition);
 }
 
 .course-btn:hover {
-    background: #d00000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.35);
+    filter: brightness(1.05);
 }
 
 
@@ -2007,7 +2012,7 @@ body {
 }
 
 .mobile-social-icons a:hover {
-    color: #e63946;
+    color: var(--primary);
 }
 
 .mobile-contact-buttons {
@@ -2089,13 +2094,21 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), #7209b7);
+    background: linear-gradient(135deg, var(--primary), #2563eb);
     color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 10px 24px;
+    border-radius: var(--border-radius, 12px);
     border: none;
     font-weight: 600;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+    filter: brightness(1.05);
 }
 
 .navbar-scrolled {
@@ -2104,20 +2117,20 @@ body {
 }
 
 :root {
-    --primary: #e63946;
-    --primary-dark: #d00000;
-    --secondary: #1a1a2e;
-    --accent: #f72585;
-    --success: #4cc9f0;
-    --dark: #0f0f0f;
-    --darker: #0a0a0a;
-    --light: #f8f9fa;
-    --gray: #6c757d;
-    --gray-light: #e9ecef;
-    --border-radius: 12px;
-    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --box-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
-    --transition: all 0.3s ease;
+    --primary: #4F46E5;
+    --primary-dark: #3730A3;
+    --secondary: #0F172A;
+    --accent: #06B6D4;
+    --success: #10B981;
+    --dark: #0F172A;
+    --darker: #020617;
+    --light: #F8FAFC;
+    --gray: #64748B;
+    --gray-light: #F1F5F9;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 

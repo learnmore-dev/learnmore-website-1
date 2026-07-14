@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useEnroll } from '@/context/EnrollContext';
 
 // Complete countries list with all dial codes
@@ -155,11 +155,14 @@ export default function GlobalEnrollModal() {
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Auto Popup after 1 second
+  const hasAutoPopped = useRef(false);
+
+  // Auto Popup after 8 seconds (only once)
   useEffect(() => {
-    if (!isEnrollModalOpen) {
+    if (!isEnrollModalOpen && !hasAutoPopped.current) {
       const timer = setTimeout(() => {
         openEnrollModal();
+        hasAutoPopped.current = true;
       }, 8000);
       return () => clearTimeout(timer);
     }
@@ -202,16 +205,36 @@ export default function GlobalEnrollModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/enroll', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: `${formData.countryCode} ${formData.phone}`,
+          program: formData.program,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit enrollment request');
+      }
+
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
         closeEnrollModal();
         setFormData({ name: '', email: '', countryCode: '+91', phone: '', program: enrollCourseName || '' });
       }, 1500);
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to send request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isEnrollModalOpen) return null;
@@ -220,12 +243,12 @@ export default function GlobalEnrollModal() {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[10000] p-3" onClick={closeEnrollModal}>
       <div className="bg-white rounded-xl max-w-sm w-full shadow-xl" onClick={(e) => e.stopPropagation()}>
         {/* Header - Compact */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-4 py-3 rounded-t-xl">
+        <div className="bg-gradient-to-r from-slate-900 to-indigo-950 px-4 py-4 rounded-t-xl border-b border-indigo-900/20">
           <div className="flex justify-between items-center">
             <h3 className="text-base font-bold text-white">Request a Call Back</h3>
             <button onClick={closeEnrollModal} className="text-white/70 hover:text-white text-xl leading-none">&times;</button>
           </div>
-          <p className="text-red-100 text-xs mt-0.5">Leave your details, our counselor will call you</p>
+          <p className="text-indigo-200/80 text-xs mt-0.5">Leave your details, our counselor will call you</p>
         </div>
         
         {submitted ? (
@@ -247,7 +270,7 @@ export default function GlobalEnrollModal() {
                 value={formData.name} 
                 onChange={handleChange} 
                 required 
-                className="w-full px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-red-400" 
+                className="w-full px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
                 placeholder="Full name" 
               />
             </div>
@@ -261,7 +284,7 @@ export default function GlobalEnrollModal() {
                 value={formData.email} 
                 onChange={handleChange} 
                 required 
-                className="w-full px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-red-400" 
+                className="w-full px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
                 placeholder="Email address" 
               />
             </div>
@@ -288,7 +311,7 @@ export default function GlobalEnrollModal() {
                           placeholder="Search country..." 
                           value={searchTerm} 
                           onChange={(e) => setSearchTerm(e.target.value)} 
-                          className="w-full px-2 py-1 bg-gray-50 border border-gray-200 rounded-md text-gray-700 text-xs focus:outline-none focus:border-red-400"
+                          className="w-full px-2 py-1 bg-gray-50 border border-gray-200 rounded-md text-gray-700 text-xs focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20"
                         />
                       </div>
                       <div className="max-h-48 overflow-y-auto">
@@ -314,7 +337,7 @@ export default function GlobalEnrollModal() {
                   value={formData.phone} 
                   onChange={handleChange} 
                   required 
-                  className="flex-1 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-red-400" 
+                  className="flex-1 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
                   placeholder="Phone number" 
                 />
               </div>
@@ -328,7 +351,7 @@ export default function GlobalEnrollModal() {
                 value={formData.program} 
                 onChange={handleChange} 
                 required 
-                className="w-full px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-red-400"
+                className="w-full px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20"
               >
                 {programs.map((program, idx) => <option key={idx} value={program}>{program}</option>)}
               </select>
@@ -336,9 +359,9 @@ export default function GlobalEnrollModal() {
             
             {/* Privacy Policy */}
             <div className="flex items-start gap-1.5">
-              <input type="checkbox" id="privacyPolicy" required className="mt-0.5 w-3.5 h-3.5 text-red-500 rounded border-gray-300" />
+              <input type="checkbox" id="privacyPolicy" required className="mt-0.5 w-3.5 h-3.5 text-indigo-500 rounded border-gray-300 focus:ring-indigo-500/20" />
               <label htmlFor="privacyPolicy" className="text-gray-400 text-[10px] leading-tight">
-                By submitting, you agree to our <a href="#" className="text-red-400 hover:underline">Privacy Policy</a>
+                By submitting, you agree to our <a href="#" className="text-indigo-500 hover:underline">Privacy Policy</a>
               </label>
             </div>
             
@@ -346,7 +369,7 @@ export default function GlobalEnrollModal() {
             <button 
               type="submit" 
               disabled={isSubmitting} 
-              className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-1.5 rounded-lg font-semibold hover:shadow-md transition text-sm"
+              className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-2 rounded-xl font-semibold hover:shadow-[0_4px_20px_rgba(79,70,229,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm"
             >
               {isSubmitting ? <span className="flex items-center justify-center gap-2"><i className="fas fa-spinner fa-spin text-sm"></i> Sending...</span> : 'Submit'}
             </button>
