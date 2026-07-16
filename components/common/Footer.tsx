@@ -266,9 +266,9 @@ export default function Footer() {
           {/* Column 1 - About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="LearnMore Logo" className="h-10" />
+              <img src="/logo.webp" alt="LearnMore Logo" className="h-10" />
               <div>
-                <span className="text-red-500 font-bold text-xl">LearnMore</span>
+                <span className="text-indigo-500 font-bold text-xl">LearnMore</span>
                 <span className="text-white font-bold text-xl"> Technologies</span>
               </div>
             </div>
@@ -358,19 +358,19 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <i className="fas fa-phone-alt text-red-500 mt-1"></i>
                 <div>
-                  <p className="text-gray-400 text-sm">Marathahalli: <a href="tel:+919036524555" className="hover:text-red-500">+91 90365 24555</a></p>
-                  <p className="text-gray-400 text-sm">BTM: <a href="tel:+919036542555" className="hover:text-red-500">+91 90365 42555</a></p>
-                  <p className="text-gray-400 text-sm">Kalyan Nagar: <a href="tel:+919036354551" className="hover:text-red-500">+91 90363 54551</a></p>
-                  <p className="text-gray-400 text-sm">Hebbal: <a href="tel:+919514203013" className="hover:text-red-500">+91 95142 03013</a></p>
+                  <p className="text-gray-400 text-sm">Marathahalli: <a href="tel:+919036524555" className="hover:text-indigo-400">+91 90365 24555</a></p>
+                  <p className="text-gray-400 text-sm">BTM: <a href="tel:+919036542555" className="hover:text-indigo-400">+91 90365 42555</a></p>
+                  <p className="text-gray-400 text-sm">Kalyan Nagar: <a href="tel:+919036354551" className="hover:text-indigo-400">+91 90363 54551</a></p>
+                  <p className="text-gray-400 text-sm">Hebbal: <a href="tel:+919514203013" className="hover:text-indigo-400">+91 95142 03013</a></p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <i className="fas fa-envelope text-red-500 mt-1"></i>
-                <a href="mailto:office.learnmore@gmail.com" className="text-gray-400 text-sm hover:text-red-500 transition">office.learnmore@gmail.com</a>
+                <i className="fas fa-envelope text-indigo-500 mt-1"></i>
+                <a href="mailto:office.learnmore@gmail.com" className="text-gray-400 text-sm hover:text-indigo-400 transition">office.learnmore@gmail.com</a>
               </div>
               <button 
                 onClick={() => openEnrollModal()}
-                className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold transition text-sm"
+                className="w-full mt-2 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-2.5 rounded-xl font-semibold hover:shadow-[0_4px_15px_rgba(79,70,229,0.35)] transition-all duration-300 text-sm"
               >
                 Enroll Now
               </button>
@@ -387,7 +387,7 @@ export default function Footer() {
                 <Link 
                   key={loc.id} 
                   href={`/location/${loc.slug}`}
-                  className="text-gray-400 hover:text-red-500 transition text-sm flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800"
+                  className="text-gray-400 hover:text-indigo-400 transition text-sm flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800"
                 >
                   <i className="fas fa-map-marker-alt text-red-500 text-xs"></i>
                   {loc.name}
@@ -448,11 +448,11 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:border-red-500"
+                  className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
                 />
                 <button
                   type="submit"
-                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition text-sm"
+                  className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white px-6 py-2 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.98] text-sm"
                 >
                   Subscribe
                 </button>

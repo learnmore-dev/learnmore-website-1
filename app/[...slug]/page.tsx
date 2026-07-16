@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: CatchAllPageProps): Promise<M
       type: 'website',
       images: [
         {
-          url: 'https://learnmore.com/logo-square.png',
+          url: 'https://learnmore.com/logo-square.webp',
           width: 500,
           height: 500,
           alt: 'Learnmore Technologies Logo',
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: CatchAllPageProps): Promise<M
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://learnmore.com/logo-square.png'],
+      images: ['https://learnmore.com/logo-square.webp'],
     }
   };
 }
@@ -115,7 +115,7 @@ export default function CatchAllPage({ params }: CatchAllPageProps) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": `Learnmore Technologies - ${location.name}`,
-    "image": "https://learnmore.com/logo-square.png",
+    "image": "https://learnmore.com/logo-square.webp",
     "telephone": location.phone || "+91 90365 24555",
     "email": location.email || "info@learnmore.com",
     "address": {

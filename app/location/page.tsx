@@ -2,6 +2,15 @@ import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import locationsData from '@/data/locations.json';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Our Software Training Center Locations | Learnmore Technologies',
+  description: 'Find Learnmore Technologies training centers near you. State-of-the-art classroom labs in Marathahalli, BTM Layout, Kalyan Nagar, Hebbal, and nationwide.',
+  alternates: {
+    canonical: 'https://learnmore.com/location',
+  },
+};
 
 export default function LocationsPage() {
   const { locations } = locationsData;

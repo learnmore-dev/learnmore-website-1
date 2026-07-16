@@ -7,12 +7,12 @@
             "content": "Python has become one of the most popular programming languages for web development. Its simplicity, readability, and vast ecosystem make it an excellent choice for both beginners and experienced developers...",
             "author": "Rahul Sharma",
             "authorRole": "Senior Python Developer",
-            "authorImage": "/images/authors/rahul.jpg",
+            "authorImage": "/images/authors/rahul.webp",
             "date": "April 15, 2026",
             "readTime": "5 min read",
             "category": "Python",
             "tags": ["Python", "Web Development", "Django", "Flask"],
-            "image": "/images/blogs/python-web.jpg",
+            "image": "/images/blogs/python-web.webp",
             "featured": true
         },
         {
@@ -23,12 +23,12 @@
             "content": "Artificial Intelligence is revolutionizing the field of data science. From automated machine learning to generative AI, the landscape is changing rapidly...",
             "author": "Priya Patel",
             "authorRole": "Data Scientist",
-            "authorImage": "/images/authors/priya.jpg",
+            "authorImage": "/images/authors/priya.webp",
             "date": "April 12, 2026",
             "readTime": "7 min read",
             "category": "Data Science",
             "tags": ["Data Science", "AI", "Machine Learning", "Deep Learning"],
-            "image": "/images/blogs/data-science-future.jpg",
+            "image": "/images/blogs/data-science-future.webp",
             "featured": true
         },
         {
@@ -39,12 +39,12 @@
             "content": "Cloud DevOps is one of the most sought-after career paths in IT. This comprehensive guide covers the skills you need, certification paths, job roles, and salary expectations...",
             "author": "Amit Kumar",
             "authorRole": "DevOps Architect",
-            "authorImage": "/images/authors/amit.jpg",
+            "authorImage": "/images/authors/amit.webp",
             "date": "April 10, 2026",
             "readTime": "8 min read",
             "category": "DevOps",
             "tags": ["AWS", "DevOps", "Cloud", "Kubernetes", "Docker"],
-            "image": "/images/blogs/devops-career.jpg",
+            "image": "/images/blogs/devops-career.webp",
             "featured": true
         },
         {
@@ -55,12 +55,12 @@
             "content": "React.js has become the go-to library for building modern web applications. Here are the top 10 tips that every React beginner should know...",
             "author": "Sanjay Mehta",
             "authorRole": "Frontend Expert",
-            "authorImage": "/images/authors/sanjay.jpg",
+            "authorImage": "/images/authors/sanjay.webp",
             "date": "April 8, 2026",
             "readTime": "6 min read",
             "category": "React",
             "tags": ["React", "JavaScript", "Frontend", "Web Development"],
-            "image": "/images/blogs/react-tips.jpg",
+            "image": "/images/blogs/react-tips.webp",
             "featured": false
         },
         {
@@ -71,12 +71,12 @@
             "content": "SQL remains one of the most important skills for data professionals. This guide covers advanced SQL techniques for data analysis...",
             "author": "Neha Gupta",
             "authorRole": "Data Analyst",
-            "authorImage": "/images/authors/neha.jpg",
+            "authorImage": "/images/authors/neha.webp",
             "date": "April 5, 2026",
             "readTime": "4 min read",
             "category": "Data Analytics",
             "tags": ["SQL", "Data Analytics", "Database", "Query"],
-            "image": "/images/blogs/sql-analytics.jpg",
+            "image": "/images/blogs/sql-analytics.webp",
             "featured": false
         },
         {
@@ -87,12 +87,12 @@
             "content": "Amazon Web Services (AWS) is the leading cloud platform. This guide will help you understand the core services and get started with AWS...",
             "author": "Vikram Singh",
             "authorRole": "Cloud Consultant",
-            "authorImage": "/images/authors/vikram.jpg",
+            "authorImage": "/images/authors/vikram.webp",
             "date": "April 3, 2026",
             "readTime": "6 min read",
             "category": "Cloud",
             "tags": ["AWS", "Cloud", "EC2", "S3", "Lambda"],
-            "image": "/images/blogs/aws-getting-started.jpg",
+            "image": "/images/blogs/aws-getting-started.webp",
             "featured": false
         },
         {
@@ -103,12 +103,12 @@
             "content": "Java Full Stack development is a rewarding career path. This roadmap will guide you through the technologies and skills you need to master...",
             "author": "Rajesh K",
             "authorRole": "Full Stack Lead",
-            "authorImage": "/images/authors/rajesh.jpg",
+            "authorImage": "/images/authors/rajesh.webp",
             "date": "March 30, 2026",
             "readTime": "9 min read",
             "category": "Java",
             "tags": ["Java", "Spring Boot", "React", "Full Stack"],
-            "image": "/images/blogs/java-roadmap.jpg",
+            "image": "/images/blogs/java-roadmap.webp",
             "featured": false
         },
         {
@@ -119,12 +119,12 @@
             "content": "In Agile development, testing is not a separate phase but an integral part of the development process. This article explains why testing is crucial in Agile...",
             "author": "Swati N",
             "authorRole": "QA Manager",
-            "authorImage": "/images/authors/swati.jpg",
+            "authorImage": "/images/authors/swati.webp",
             "date": "March 28, 2026",
             "readTime": "5 min read",
             "category": "Testing",
             "tags": ["Testing", "Agile", "QA", "Automation"],
-            "image": "/images/blogs/agile-testing.jpg",
+            "image": "/images/blogs/agile-testing.webp",
             "featured": false
         }
     ],

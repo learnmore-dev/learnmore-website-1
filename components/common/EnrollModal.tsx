@@ -67,17 +67,38 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/enroll', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: `${formData.countryCode} ${formData.phone}`,
+          program: formData.program,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit enrollment request');
+      }
+
       setSubmitted(true);
       if (onSuccess) onSuccess();
+      
       setTimeout(() => {
         setSubmitted(false);
         onClose();
         setFormData({ name: '', email: '', countryCode: '+91', phone: '', program: courseName || '' });
       }, 1500);
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to send request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -92,12 +113,12 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header - Compact */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-5 py-3 rounded-t-xl">
+        <div className="bg-gradient-to-r from-slate-900 to-indigo-950 px-5 py-4 rounded-t-xl border-b border-indigo-900/20">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold text-white">Request a Call Back</h3>
             <button onClick={onClose} className="text-white/70 hover:text-white text-xl leading-none">&times;</button>
           </div>
-          <p className="text-red-100 text-xs mt-0.5">Leave your details, our counselor will call you</p>
+          <p className="text-indigo-200/80 text-xs mt-0.5">Leave your details, our counselor will call you</p>
         </div>
         
         {submitted ? (
@@ -119,7 +140,7 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
                 value={formData.name} 
                 onChange={handleChange} 
                 required 
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-red-500" 
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
                 placeholder="Full name" 
               />
             </div>
@@ -133,7 +154,7 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
                 value={formData.email} 
                 onChange={handleChange} 
                 required 
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-red-500" 
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
                 placeholder="Email address" 
               />
             </div>
@@ -175,7 +196,7 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
                   value={formData.phone} 
                   onChange={handleChange} 
                   required 
-                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-red-500" 
+                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
                   placeholder="Phone number" 
                 />
               </div>
@@ -189,7 +210,7 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
                 value={formData.program} 
                 onChange={handleChange} 
                 required 
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-red-500"
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20"
               >
                 {programs.map((program, idx) => <option key={idx} value={program}>{program}</option>)}
               </select>
@@ -197,9 +218,9 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
             
             {/* Privacy Policy */}
             <div className="flex items-start gap-1.5">
-              <input type="checkbox" id="privacyPolicy" required className="mt-0.5 w-3.5 h-3.5 text-red-500 rounded bg-gray-700 border-gray-600" />
+              <input type="checkbox" id="privacyPolicy" required className="mt-0.5 w-3.5 h-3.5 text-indigo-500 rounded bg-gray-700 border-gray-600 focus:ring-indigo-500/20" />
               <label htmlFor="privacyPolicy" className="text-gray-400 text-[10px] leading-tight">
-                By submitting, you agree to our <a href="#" className="text-red-400 hover:underline">Privacy Policy</a>
+                By submitting, you agree to our <a href="#" className="text-indigo-400 hover:underline">Privacy Policy</a>
               </label>
             </div>
             
@@ -207,7 +228,7 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
             <button 
               type="submit" 
               disabled={isSubmitting} 
-              className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition text-sm"
+              className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-2.5 rounded-xl font-semibold hover:shadow-[0_4px_20px_rgba(79,70,229,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm"
             >
               {isSubmitting ? <span className="flex items-center justify-center gap-2"><i className="fas fa-spinner fa-spin text-sm"></i> Sending...</span> : 'Submit'}
             </button>

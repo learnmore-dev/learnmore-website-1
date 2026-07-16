@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const fs = require('fs');
     const path = require('path');
     
-    const imagePath = path.join(process.cwd(), 'public', 'images', 'courses', 'certificate-sample.png');
+    const imagePath = path.join(process.cwd(), 'public', 'images', 'courses', 'certificate-sample.webp');
     const imageBuffer = fs.readFileSync(imagePath);
     
     // Return the image as download
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       status: 200,
       headers: {
         'Content-Type': 'image/png',
-        'Content-Disposition': `attachment; filename="certificate-${certificateId}.png"`,
+        'Content-Disposition': `attachment; filename="certificate-${certificateId}.webp"`,
         'Cache-Control': 'no-cache, no-store, must-revalidate',
       },
     });
