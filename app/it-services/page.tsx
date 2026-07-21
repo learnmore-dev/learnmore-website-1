@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'IT Consultancy & Technical Solutions in Bangalore | Learnmore',
   description: 'Professional IT development, custom training workshops, and corporate cloud consultancy services provided by Learnmore Technologies team.',
   alternates: {
-    canonical: 'https://learnmore.com/it-services',
+    canonical: 'https://learnmoretech.in/it-services',
   },
 };
 

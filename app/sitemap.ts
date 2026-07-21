@@ -5,7 +5,7 @@ import offersData from '@/data/offers.json';
 import { blogsList } from '@/data/blogs';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://learnmore.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://learnmoretech.in';
 
   // 1. Static Pages
   const staticPaths = [

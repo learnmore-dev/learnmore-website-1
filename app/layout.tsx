@@ -9,6 +9,7 @@ const GlobalEnrollModal = dynamic(() => import('@/components/common/GlobalEnroll
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://learnmoretech.in'),
   title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
   description: 'Learnmore Technologies offers industry-focused IT courses with hands-on practical learning, real-time projects, and dedicated placement support.',
   icons: {
@@ -20,11 +21,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
     description: 'Learnmore Technologies offers industry-focused IT courses with hands-on practical learning, real-time projects, and dedicated placement support.',
-    url: 'https://learnmore.com',
+    url: 'https://learnmoretech.in',
     siteName: 'Learnmore Technologies',
     images: [
       {
-        url: 'https://learnmore.com/logo-square.webp',
+        url: 'https://learnmoretech.in/logo-square.webp',
         width: 800,
         height: 800,
         alt: 'Learnmore Technologies Logo',
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
     description: 'Learnmore Technologies offers industry-focused IT courses with hands-on practical learning, real-time projects, and dedicated placement support.',
-    images: ['https://learnmore.com/logo-square.webp'],
+    images: ['https://learnmoretech.in/logo-square.webp'],
   },
 };
 
