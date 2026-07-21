@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'IT Training & Software Certification Courses in Bangalore | Learnmore',
   description: 'Explore job-oriented software training courses at Learnmore Technologies. Hand-on training in Python Fullstack, Data Analytics, Cloud DevOps, Software Testing, and AI.',
   alternates: {
-    canonical: 'https://learnmore.com/course',
+    canonical: 'https://learnmoretech.in/course',
   },
 };
 

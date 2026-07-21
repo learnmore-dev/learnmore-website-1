@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
     title,
     description,
     alternates: {
-      canonical: `https://learnmore.com/blog/${post.slug}`,
+      canonical: `https://learnmoretech.in/blog/${post.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://learnmore.com/blog/${post.slug}`,
+      url: `https://learnmoretech.in/blog/${post.slug}`,
       type: 'article',
     }
   };
@@ -53,12 +53,12 @@ export default function Page({ params }: BlogPostProps) {
       "name": "Learnmore Technologies",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://learnmore.com/logo.webp"
+        "url": "https://learnmoretech.in/logo.webp"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://learnmore.com/blog/${post.slug}`
+      "@id": `https://learnmoretech.in/blog/${post.slug}`
     }
   };
 

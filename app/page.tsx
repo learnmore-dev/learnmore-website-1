@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
   description: 'Join Learnmore Technologies for premium IT courses in Bangalore. 100% placement support, industry-expert mentors, and live projects in DevOps, Python, Data Science, and Testing.',
   alternates: {
-    canonical: 'https://learnmore.com',
+    canonical: 'https://learnmoretech.in',
   },
 };
 
@@ -14,8 +14,8 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": "Learnmore Technologies",
-    "url": "https://learnmore.com",
-    "logo": "https://learnmore.com/logo.webp",
+    "url": "https://learnmoretech.in",
+    "logo": "https://learnmoretech.in/logo.webp",
     "sameAs": [
       "https://www.youtube.com/@learnnmore",
       "https://www.instagram.com/learnmore_technologies/",
@@ -35,7 +35,7 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Learnmore Technologies",
-    "url": "https://learnmore.com"
+    "url": "https://learnmoretech.in"
   };
 
   const faqSchema = {

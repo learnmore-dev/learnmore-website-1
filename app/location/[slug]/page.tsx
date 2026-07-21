@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     openGraph: {
       title,
       description,
-      url: `https://learnmore.com/location/${location.slug}`,
+      url: `https://learnmoretech.in/location/${location.slug}`,
       type: 'website',
       images: [
         {
-          url: 'https://learnmore.com/logo-square.webp',
+          url: 'https://learnmoretech.in/logo-square.webp',
           width: 500,
           height: 500,
           alt: 'Learnmore Technologies Logo',
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://learnmore.com/logo-square.webp'],
+      images: ['https://learnmoretech.in/logo-square.webp'],
     }
   };
 }
@@ -62,7 +62,7 @@ export default function LocationPage({ params }: LocationPageProps) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": `Learnmore Technologies - ${location.name}`,
-    "image": "https://learnmore.com/logo-square.webp",
+    "image": "https://learnmoretech.in/logo-square.webp",
     "telephone": location.phone || "+91 90365 24555",
     "email": location.email || "info@learnmore.com",
     "address": {
@@ -73,7 +73,7 @@ export default function LocationPage({ params }: LocationPageProps) {
       "postalCode": "560001",
       "addressCountry": "IN"
     },
-    "url": `https://learnmore.com/location/${location.slug}`,
+    "url": `https://learnmoretech.in/location/${location.slug}`,
     "openingHours": "Mo-Sa 09:00-21:00, Su 10:00-18:00"
   };
   

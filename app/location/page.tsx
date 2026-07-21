@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Our Software Training Center Locations | Learnmore Technologies',
   description: 'Find Learnmore Technologies training centers near you. State-of-the-art classroom labs in Marathahalli, BTM Layout, Kalyan Nagar, Hebbal, and nationwide.',
   alternates: {
-    canonical: 'https://learnmore.com/location',
+    canonical: 'https://learnmoretech.in/location',
   },
 };
 

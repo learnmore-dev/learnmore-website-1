@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: OfferPageProps): Promise<Meta
     title,
     description,
     alternates: {
-      canonical: `https://learnmore.com/offer/${params.slug}`,
+      canonical: `https://learnmoretech.in/offer/${params.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://learnmore.com/offer/${params.slug}`,
+      url: `https://learnmoretech.in/offer/${params.slug}`,
       type: 'website',
     }
   };
