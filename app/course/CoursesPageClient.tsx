@@ -59,10 +59,10 @@ export default function CoursesPage() {
 
   // Upcoming Batches
   const batches = [
-    { date: "27th April 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
-    { date: "23rd April 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
-    { date: "25th April 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Available", statusColor: "green" },
-    { date: "2nd May 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Coming Soon", statusColor: "blue" },
+    { date: "27th July 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
+    { date: "29th July 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
+    { date: "1st August 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Available", statusColor: "green" },
+    { date: "3rd August 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Coming Soon", statusColor: "blue" },
   ];
 
   return (
@@ -83,7 +83,7 @@ export default function CoursesPage() {
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
-          
+
           <div className="relative z-10 container mx-auto px-4 text-center">
             <div className="inline-block mb-4">
               <div className="w-20 h-1 bg-indigo-500 mx-auto rounded-full"></div>
@@ -92,10 +92,10 @@ export default function CoursesPage() {
               Our <span className="text-indigo-400">Courses</span>
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg">
-              Choose from our industry-focused courses designed to make you job-ready. 
+              Choose from our industry-focused courses designed to make you job-ready.
               Each course is crafted by industry experts with hands-on practical training.
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <div className="bg-white/20 backdrop-blur rounded-full px-6 py-2">
                 <span className="font-semibold text-white">{courses.length}+</span>
@@ -118,8 +118,8 @@ export default function CoursesPage() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {courses.map((course: any, idx: number) => (
-                <Link 
-                  key={course.id} 
+                <Link
+                  key={course.id}
                   href={`/course/${course.slug}`}
                   className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block"
                 >
@@ -136,7 +136,7 @@ export default function CoursesPage() {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="p-6">
                     <h2 className="text-xl font-bold mb-2 group-hover:text-red-500 transition line-clamp-1">
                       {course.title}
@@ -144,7 +144,7 @@ export default function CoursesPage() {
                     <p className="text-gray-600 mb-4 line-clamp-2 text-sm leading-relaxed">
                       {course.shortDescription}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-4">
                       {course.tools.slice(0, 3).map((tool: string, tidx: number) => (
                         <span key={tidx} className="bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-full font-medium">
@@ -157,7 +157,7 @@ export default function CoursesPage() {
                         </span>
                       )}
                     </div>
-                    
+
                     <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                       <div>
                         <span className="text-gray-400 text-xs">Course Fee</span>
@@ -170,7 +170,7 @@ export default function CoursesPage() {
                         </span>
                       </div>
                     </div>
-                    
+
                     <div className="mt-4 text-red-500 font-medium flex items-center justify-between group-hover:gap-2 transition-all">
                       <span>Learn More</span>
                       <i className="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
