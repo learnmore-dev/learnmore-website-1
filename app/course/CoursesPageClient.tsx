@@ -65,6 +65,7 @@ export default function CoursesPage() {
     { date: "3rd August 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Coming Soon", statusColor: "blue" },
   ];
 
+
   return (
     <>
       <Header />

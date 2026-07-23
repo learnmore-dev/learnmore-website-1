@@ -186,11 +186,12 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
 
   // Upcoming Batches
   const batches = [
-    { date: "27th April 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
-    { date: "23rd April 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
-    { date: "25th April 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Available", statusColor: "green" },
-    { date: "2nd May 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Coming Soon", statusColor: "blue" },
+    { date: "27th July 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
+    { date: "29th July 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
+    { date: "1st August 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Available", statusColor: "green" },
+    { date: "3rd August 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Coming Soon", statusColor: "blue" },
   ];
+
 
   // Get background image based on course
   const getBackgroundImage = () => {
