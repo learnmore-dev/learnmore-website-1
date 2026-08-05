@@ -8,6 +8,10 @@ const GlobalEnrollModal = dynamic(() => import('@/components/common/GlobalEnroll
   ssr: false,
 });
 
+const LeadTrackerInitializer = dynamic(() => import('@/components/common/LeadTrackerInitializer'), {
+  ssr: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://learnmoretech.in'),
   title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
@@ -55,7 +59,7 @@ export default function RootLayout({
         
         {/* Google tag (gtag.js) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18334740609"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18254186493"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -65,12 +69,16 @@ export default function RootLayout({
             gtag('js', new Date());
 
             gtag('config', 'G-EFTJL2XXQC');
-            gtag('config', 'AW-18334740609');
+
+            gtag('config', 'AW-18254186493/QB5FCM3rrdYcEP2Po4BE', {
+              phone_conversion_number: '+919036524555'
+            });
           `}
         </Script>
       </head>
       <body>
         <EnrollProvider>
+          <LeadTrackerInitializer />
           {children}
           <GlobalEnrollModal />
         </EnrollProvider>

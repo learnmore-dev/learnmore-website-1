@@ -743,28 +743,28 @@ export default function Home() {
         </thead>
         <tbody>
           <tr className="border-b">
-            <td className="p-3 font-semibold">27th April 2026</td>
+            <td className="p-3 font-semibold">1st August 2026</td>
             <td className="p-3">Weekdays (Mon-Fri)</td>
             <td className="p-3">08:00 AM IST</td>
             <td className="p-3"><span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Enrolling</span></td>
           </tr>
           <tr className="border-b">
-            <td className="p-3 font-semibold">23rd April 2026</td>
+            <td className="p-3 font-semibold">3rd August 2026</td>
             <td className="p-3">Weekdays (Mon-Fri)</td>
-            <td className="p-3">08:00 AM IST</td>
-            <td className="p-3"><span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">Limited Seats</span></td>
+            <td className="p-3">10:00 AM IST</td>
+            <td className="p-3"><span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Enrolling</span></td>
           </tr>
           <tr className="border-b">
-            <td className="p-3 font-semibold">25th April 2026</td>
+            <td className="p-3 font-semibold">5th August 2026</td>
             <td className="p-3">Weekend (Sat-Sun)</td>
             <td className="p-3">11:00 AM IST</td>
-            <td className="p-3"><span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Available</span></td>
+            <td className="p-3"><span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">Limited Seats</span></td>
           </tr>
           <tr>
-            <td className="p-3 font-semibold">2nd May 2026</td>
+            <td className="p-3 font-semibold">8th August 2026</td>
             <td className="p-3">Weekdays (Mon-Fri)</td>
             <td className="p-3">06:00 PM IST</td>
-            <td className="p-3"><span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">Coming Soon</span></td>
+            <td className="p-3"><span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">Available</span></td>
           </tr>
         </tbody>
       </table>

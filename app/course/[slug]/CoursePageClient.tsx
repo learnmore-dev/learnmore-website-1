@@ -186,10 +186,10 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
 
   // Upcoming Batches
   const batches = [
-    { date: "27th July 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
-    { date: "29th July 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
-    { date: "1st August 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Available", statusColor: "green" },
-    { date: "3rd August 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Coming Soon", statusColor: "blue" },
+    { date: "1st August 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
+    { date: "3rd August 2026", type: "Weekdays (Mon-Fri)", time: "10:00 AM IST", status: "Enrolling", statusColor: "green" },
+    { date: "5th August 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
+    { date: "8th August 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Available", statusColor: "blue" },
   ];
 
 
