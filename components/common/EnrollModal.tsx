@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLeadTracking } from '@/hooks/useLeadTracking';
+import { trackGtmEvent } from '@/lib/leadTracking';
 
 interface EnrollModalProps {
   isOpen: boolean;
@@ -32,6 +34,7 @@ const programs = [
 ];
 
 export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: EnrollModalProps) {
+  const trackingData = useLeadTracking();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -78,12 +81,18 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
           email: formData.email,
           phone: `${formData.countryCode} ${formData.phone}`,
           program: formData.program,
+          tracking: trackingData,
         }),
       });
 
       if (!response.ok) {
         throw new Error('Failed to submit enrollment request');
       }
+
+      trackGtmEvent('generate_lead', {
+        program: formData.program,
+        form_name: 'Course Enroll Modal',
+      });
 
       setSubmitted(true);
       if (onSuccess) onSuccess();
@@ -131,6 +140,16 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-4 space-y-3">
+            {/* Hidden Lead Tracking Inputs */}
+            <input type="hidden" name="utm_source" value={trackingData.last_utm_source || trackingData.first_utm_source || ''} />
+            <input type="hidden" name="utm_medium" value={trackingData.last_utm_medium || trackingData.first_utm_medium || ''} />
+            <input type="hidden" name="utm_campaign" value={trackingData.last_utm_campaign || trackingData.first_utm_campaign || ''} />
+            <input type="hidden" name="utm_term" value={trackingData.last_utm_term || trackingData.first_utm_term || ''} />
+            <input type="hidden" name="utm_content" value={trackingData.last_utm_content || trackingData.first_utm_content || ''} />
+            <input type="hidden" name="gclid" value={trackingData.last_gclid || trackingData.first_gclid || ''} />
+            <input type="hidden" name="fbclid" value={trackingData.last_fbclid || trackingData.first_fbclid || ''} />
+            <input type="hidden" name="landing_page" value={trackingData.last_landing_page || trackingData.first_landing_page || ''} />
+            <input type="hidden" name="referrer" value={trackingData.last_referrer || trackingData.first_referrer || ''} />
             {/* Name */}
             <div>
               <label className="block text-gray-300 text-xs font-medium mb-1">Name <span className="text-red-400">*</span></label>
