@@ -1,6 +1,49 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+function formatPrettySource(source: string, medium: string): string {
+  if (!source) return 'Direct';
+  const s = source.toLowerCase().trim();
+  const m = (medium || '').toLowerCase().trim();
+  const isAd = m.includes('cpc') || m.includes('ppc') || m.includes('paid') || m.includes('ad');
+
+  if (s === 'ig' || s === 'igram' || s === 'instagram') {
+    return isAd ? 'Instagram Ads' : 'Instagram Organic';
+  }
+  if (s === 'fb' || s === 'facebook') {
+    return isAd ? 'Facebook Ads' : 'Facebook Organic';
+  }
+  if (s === 'google' || s === 'g') {
+    return isAd ? 'Google Ads' : 'Google Organic';
+  }
+  if (s === 'bing' || s === 'msn') {
+    return isAd ? 'Bing Ads' : 'Bing Organic';
+  }
+  if (s === 'li' || s === 'linkedin') {
+    return isAd ? 'LinkedIn Ads' : 'LinkedIn Organic';
+  }
+  if (s === 'yt' || s === 'youtube') {
+    return isAd ? 'YouTube Ads' : 'YouTube Organic';
+  }
+  if (s === 'tw' || s === 'twitter' || s === 'x') {
+    return 'Twitter / X';
+  }
+  if (s === 'direct') return 'Direct';
+
+  return source.charAt(0).toUpperCase() + source.slice(1);
+}
+
+function formatPrettyMedium(medium: string): string {
+  if (!medium) return 'None';
+  const m = medium.toLowerCase().trim();
+  if (m === 'cpc' || m === 'ppc' || m === 'paid') return 'CPC (Paid Ads)';
+  if (m === 'organic') return 'Organic Search';
+  if (m === 'social' || m === 'paid_social') return 'Social Media';
+  if (m === 'referral') return 'Referral';
+  if (m === 'none' || m === 'direct') return 'None (Direct)';
+  return medium.toUpperCase();
+}
+
 export async function POST(request: Request) {
   try {
     const { name, email, phone, program, tracking } = await request.json();
@@ -13,15 +56,22 @@ export async function POST(request: Request) {
     }
 
     const attr = tracking || {};
-    const firstTouchSource = attr.first_utm_source || 'Direct';
-    const firstTouchMedium = attr.first_utm_medium || 'None';
+    const rawFirstSource = attr.first_utm_source || 'Direct';
+    const rawFirstMedium = attr.first_utm_medium || 'None';
     const firstTouchCampaign = attr.first_utm_campaign || 'N/A';
 
-    const lastTouchSource = attr.last_utm_source || firstTouchSource;
-    const lastTouchMedium = attr.last_utm_medium || firstTouchMedium;
+    const rawLastSource = attr.last_utm_source || rawFirstSource;
+    const rawLastMedium = attr.last_utm_medium || rawFirstMedium;
     const lastTouchCampaign = attr.last_utm_campaign || firstTouchCampaign;
     const lastTouchKeyword = attr.last_utm_term || 'N/A';
     const lastGclid = attr.last_gclid || 'N/A';
+
+    // Formatted pretty values for email
+    const sourceDisplay = formatPrettySource(rawLastSource, rawLastMedium);
+    const mediumDisplay = formatPrettyMedium(rawLastMedium);
+
+    const firstSourceDisplay = formatPrettySource(rawFirstSource, rawFirstMedium);
+    const firstMediumDisplay = formatPrettyMedium(rawFirstMedium);
 
     const deviceType = attr.device_type || 'Unknown';
     const landingPage = attr.last_landing_page || attr.first_landing_page || 'N/A';
@@ -58,16 +108,15 @@ Name            ${name}
 Phone           ${phone}
 Email           ${email}
 Program         ${program}
-Source          ${lastTouchSource}
-Medium          ${lastTouchMedium}
+Source          ${sourceDisplay} (${rawLastSource})
+Medium          ${mediumDisplay}
 Campaign        ${lastTouchCampaign}
 Keyword         ${lastTouchKeyword}
 Landing Page    ${landingPage}
 Referrer        ${referrer}
 GCLID           ${lastGclid}
 Device          ${deviceType}
-First Source    ${firstTouchSource} / ${firstTouchMedium}
-First Campaign  ${firstTouchCampaign}
+First Touch     ${firstSourceDisplay} / ${firstMediumDisplay} (${firstTouchCampaign})
 Lead Time       ${leadTime}
 =====================================================
 `;
@@ -105,11 +154,11 @@ Lead Time       ${leadTime}
             </tr>
             <tr>
               <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; font-weight: 700; color: #334155; background-color: #f8fafc;">Source</td>
-              <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; color: #0f172a; font-weight: 600;">${lastTouchSource}</td>
+              <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; color: #0f172a; font-weight: 600;">${sourceDisplay} <span style="font-[#64748b]; font-weight: normal; font-size: 12px;">(${rawLastSource})</span></td>
             </tr>
             <tr>
               <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; font-weight: 700; color: #334155; background-color: #f8fafc;">Medium</td>
-              <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; color: #0f172a;">${lastTouchMedium}</td>
+              <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; color: #0f172a;">${mediumDisplay}</td>
             </tr>
             <tr>
               <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; font-weight: 700; color: #334155; background-color: #f8fafc;">Campaign</td>
@@ -133,7 +182,7 @@ Lead Time       ${leadTime}
             </tr>
             <tr>
               <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; font-weight: 700; color: #334155; background-color: #f8fafc;">First Touch</td>
-              <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 13px;">${firstTouchSource} / ${firstTouchMedium} (${firstTouchCampaign})</td>
+              <td style="padding: 10px 16px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 13px;">${firstSourceDisplay} / ${firstMediumDisplay} (${firstTouchCampaign})</td>
             </tr>
             <tr>
               <td style="padding: 10px 16px; font-weight: 700; color: #334155; background-color: #f8fafc;">Lead Time</td>
@@ -153,7 +202,7 @@ Lead Time       ${leadTime}
       from: `"${name}" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO || process.env.EMAIL_USER,
       replyTo: email,
-      subject: `New Lead [${lastTouchSource.toUpperCase()}]: ${program} - ${name}`,
+      subject: `New Lead [${sourceDisplay.toUpperCase()}]: ${program} - ${name}`,
       text: plainTextBody,
       html: htmlBody,
     };
