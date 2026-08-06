@@ -165,13 +165,13 @@ export default function GlobalEnrollModal() {
 
   const hasAutoPopped = useRef(false);
 
-  // Auto Popup after 8 seconds (only once)
+  // Auto Popup after 5 seconds (only once)
   useEffect(() => {
     if (!isEnrollModalOpen && !hasAutoPopped.current) {
       const timer = setTimeout(() => {
         openEnrollModal();
         hasAutoPopped.current = true;
-      }, 8000);
+      }, 5000);
       return () => clearTimeout(timer);
     }
   }, [openEnrollModal, isEnrollModalOpen]);
