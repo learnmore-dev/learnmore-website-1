@@ -20,8 +20,16 @@ export default function Footer() {
   const [currentCourseDisplayName, setCurrentCourseDisplayName] = useState<string | null>(null);
 
   useEffect(() => {
+    // Check for full-stack-training-course URLs first
+    if (pathname.includes('full-stack-training-course')) {
+      setCurrentCourse('full-stack-training-course');
+      setCurrentCourseName('Full Stack Development');
+      setCurrentCourseDisplayName('full-stack-training-course');
+      return;
+    }
+
     // Check if we are on a course page (URL pattern: /course-name-training-in-location)
-    const match = pathname.match(/(\w+(?:-\w+)?)-training-in-/);
+    const match = pathname.match(/([\w-]+)-training-in-/);
     if (match && match[1]) {
       setCurrentCourse(match[1]);
       
@@ -164,7 +172,7 @@ export default function Footer() {
                 {bangaloreLocations.map((loc) => (
                   <Link 
                     key={loc.id} 
-                    href={`/${currentCourseDisplayName}-training-in-${loc.slug}`}
+                    href={currentCourseDisplayName === 'full-stack-training-course' ? `/full-stack-training-course-in-${loc.slug}` : `/${currentCourseDisplayName}-training-in-${loc.slug}`}
                     className="text-gray-400 hover:text-red-500 transition text-sm flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 group"
                   >
                     <i className="fas fa-map-marker-alt text-red-500 text-xs group-hover:scale-110 transition"></i>
@@ -184,7 +192,7 @@ export default function Footer() {
                   {indiaLocations.map((loc) => (
                     <Link 
                       key={loc.id} 
-                      href={`/${currentCourseDisplayName}-training-in-${loc.slug}`}
+                      href={currentCourseDisplayName === 'full-stack-training-course' ? `/full-stack-training-course-in-${loc.slug}` : `/${currentCourseDisplayName}-training-in-${loc.slug}`}
                       className="text-gray-400 hover:text-red-500 transition text-sm flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 group"
                     >
                       <i className="fas fa-map-marker-alt text-red-500 text-xs group-hover:scale-110 transition"></i>
@@ -205,7 +213,7 @@ export default function Footer() {
                   {internationalLocations.map((loc) => (
                     <Link 
                       key={loc.id} 
-                      href={`/${currentCourseDisplayName}-training-in-${loc.slug}`}
+                      href={currentCourseDisplayName === 'full-stack-training-course' ? `/full-stack-training-course-in-${loc.slug}` : `/${currentCourseDisplayName}-training-in-${loc.slug}`}
                       className="text-gray-400 hover:text-red-500 transition text-sm flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 group"
                     >
                       <i className="fas fa-globe text-red-500 text-xs group-hover:scale-110 transition"></i>

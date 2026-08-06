@@ -10,34 +10,40 @@ interface CatchAllPageProps {
   };
 }
 
-export async function generateMetadata({ params }: CatchAllPageProps): Promise<Metadata> {
-  const fullSlug = params.slug.join('-');
-  
-  let foundCourse = null;
-  let courseKey = null;
-  
+function parseCourseLocationSlug(fullSlug: string) {
   for (const key of Object.keys(courseMapping)) {
-    if (fullSlug.startsWith(`${key}-training-in-`)) {
-      courseKey = key;
-      foundCourse = courseMapping[key as keyof typeof courseMapping];
-      break;
+    const prefixes = [
+      `${key}-training-course-in-`,
+      `${key}-training-in-`,
+      `${key}-in-`
+    ];
+
+    for (const prefix of prefixes) {
+      if (fullSlug.startsWith(prefix)) {
+        const locationPart = fullSlug.replace(prefix, '');
+        const foundCourse = courseMapping[key as keyof typeof courseMapping];
+        const location = locationsData.locations.find(l => 
+          l.slug === locationPart || 
+          l.name.toLowerCase().replace(/\s+/g, '-') === locationPart
+        );
+        if (location) {
+          return { foundCourse, location, courseKey: key };
+        }
+      }
     }
   }
+  return null;
+}
+
+export async function generateMetadata({ params }: CatchAllPageProps): Promise<Metadata> {
+  const fullSlug = params.slug.join('-');
+  const parsed = parseCourseLocationSlug(fullSlug);
   
-  if (!foundCourse) {
+  if (!parsed) {
     return {};
   }
-  
-  const locationPart = fullSlug.replace(`${courseKey}-training-in-`, '');
-  const location = locationsData.locations.find(l => 
-    l.slug === locationPart || 
-    l.name.toLowerCase().replace(/\s+/g, '-') === locationPart
-  );
-  
-  if (!location) {
-    return {};
-  }
-  
+
+  const { foundCourse, location } = parsed;
   const title = `Best ${foundCourse.name} in ${location.name}, Bangalore | Learnmore Technologies`;
   const description = `Looking for top ${foundCourse.name} in ${location.name}, Bangalore? Learnmore Technologies offers practical training, live projects, and 100% placement assistance. Enroll today!`;
 
@@ -72,32 +78,13 @@ export async function generateMetadata({ params }: CatchAllPageProps): Promise<M
 
 export default function CatchAllPage({ params }: CatchAllPageProps) {
   const fullSlug = params.slug.join('-');
+  const parsed = parseCourseLocationSlug(fullSlug);
   
-  // Quick pre-check to trigger 404 on server if course/location doesn't exist
-  let foundCourse = null;
-  let courseKey = null;
-  
-  for (const key of Object.keys(courseMapping)) {
-    if (fullSlug.startsWith(`${key}-training-in-`)) {
-      courseKey = key;
-      foundCourse = courseMapping[key as keyof typeof courseMapping];
-      break;
-    }
-  }
-  
-  if (!foundCourse) {
+  if (!parsed) {
     notFound();
   }
-  
-  const locationPart = fullSlug.replace(`${courseKey}-training-in-`, '');
-  const location = locationsData.locations.find(l => 
-    l.slug === locationPart || 
-    l.name.toLowerCase().replace(/\s+/g, '-') === locationPart
-  );
-  
-  if (!location) {
-    notFound();
-  }
+
+  const { foundCourse, location } = parsed;
 
   const courseSchema = {
     "@context": "https://schema.org",

@@ -213,6 +213,44 @@ export const courseMapping = {
     features: ['Python Programming', 'Django Framework', 'React.js', 'REST APIs', 'Database Design', 'Deployment']
   },
   
+  // Full Stack Training Aliases
+  'full-stack-training-course': { 
+    slug: 'full-stack-training-course', 
+    name: 'Full Stack Development Training', 
+    fullName: 'Full Stack Web Development Certification',
+    icon: 'fas fa-code', 
+    color: 'blue',
+    image: '/images/courses/fullstack-hero.webp',
+    bannerImage: '/images/courses/fullstack-hero.webp',
+    logo: '/images/courses/placeholder-logo.webp',
+    shortDesc: 'Master Frontend, Backend API Engineering, Databases, Cloud DevOps & Git with 100% Placement Assistance.',
+    features: ['Python, React & Node', '15+ Yrs Mentors', '3 Live Capstone Projects', '100% Placement Call Guarantee']
+  },
+  'full-stack': { 
+    slug: 'full-stack-training-course', 
+    name: 'Full Stack Development Training', 
+    fullName: 'Full Stack Web Development Certification',
+    icon: 'fas fa-code', 
+    color: 'blue',
+    image: '/images/courses/fullstack-hero.webp',
+    bannerImage: '/images/courses/fullstack-hero.webp',
+    logo: '/images/courses/placeholder-logo.webp',
+    shortDesc: 'Master Frontend, Backend API Engineering, Databases, Cloud DevOps & Git with 100% Placement Assistance.',
+    features: ['Python, React & Node', '15+ Yrs Mentors', '3 Live Capstone Projects', '100% Placement Call Guarantee']
+  },
+  'fullstack': { 
+    slug: 'full-stack-training-course', 
+    name: 'Full Stack Development Training', 
+    fullName: 'Full Stack Web Development Certification',
+    icon: 'fas fa-code', 
+    color: 'blue',
+    image: '/images/courses/fullstack-hero.webp',
+    bannerImage: '/images/courses/fullstack-hero.webp',
+    logo: '/images/courses/placeholder-logo.webp',
+    shortDesc: 'Master Frontend, Backend API Engineering, Databases, Cloud DevOps & Git with 100% Placement Assistance.',
+    features: ['Python, React & Node', '15+ Yrs Mentors', '3 Live Capstone Projects', '100% Placement Call Guarantee']
+  },
+  
   // DevOps Training
   'devops': { 
     slug: 'cloud-devops', 

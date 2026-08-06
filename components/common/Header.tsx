@@ -178,8 +178,8 @@ export default function Header() {
             </ul>
 
             {/* Right Side */}
-            <div className="nav-right">
-              <button onClick={() => openEnrollModal()} className="btn-primary">
+            <div className="nav-right flex-shrink-0">
+              <button onClick={() => openEnrollModal()} className="btn-primary whitespace-nowrap">
                 Enroll Now
               </button>
             </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLeadTracking } from '@/hooks/useLeadTracking';
 import { trackGtmEvent } from '@/lib/leadTracking';
 
@@ -34,6 +35,7 @@ const programs = [
 ];
 
 export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: EnrollModalProps) {
+  const router = useRouter();
   const trackingData = useLeadTracking();
   const [formData, setFormData] = useState({
     name: '',
@@ -89,6 +91,9 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
         throw new Error('Failed to submit enrollment request');
       }
 
+      const apiResult = await response.json();
+      console.log('✅ Lead API Response & Email Sent Data:', apiResult);
+
       trackGtmEvent('generate_lead', {
         program: formData.program,
         form_name: 'Course Enroll Modal',
@@ -101,7 +106,8 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
         setSubmitted(false);
         onClose();
         setFormData({ name: '', email: '', countryCode: '+91', phone: '', program: courseName || '' });
-      }, 1500);
+        router.push('/thank-you');
+      }, 1000);
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to send request. Please try again.');
@@ -113,33 +119,37 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
   if (!isOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/70 flex items-center justify-center z-[1000] p-3" 
-      onClick={onClose}
-    >
-      <div 
-        className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl max-w-sm w-full shadow-xl border border-gray-700"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header - Compact */}
-        <div className="bg-gradient-to-r from-slate-900 to-indigo-950 px-5 py-4 rounded-t-xl border-b border-indigo-900/20">
-          <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold text-white">Request a Call Back</h3>
-            <button onClick={onClose} className="text-white/70 hover:text-white text-xl leading-none">&times;</button>
-          </div>
-          <p className="text-indigo-200/80 text-xs mt-0.5">Leave your details, our counselor will call you</p>
+    <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center z-[10000] p-4" onClick={onClose}>
+      <div className="bg-white rounded-2xl max-w-sm w-full shadow-2xl p-6 relative text-slate-800 border-2 border-blue-100/80 overflow-hidden transform transition-all" onClick={(e) => e.stopPropagation()}>
+        {/* Header - LearnMore Brand Style */}
+        <div className="pb-4 mb-4 border-b border-slate-100 text-center relative">
+          <button 
+            onClick={onClose} 
+            className="absolute right-0 top-0 text-slate-400 hover:text-slate-700 text-xl leading-none transition p-1"
+          >
+            &times;
+          </button>
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-extrabold uppercase tracking-wider mb-1.5 border border-blue-200/60">
+            🔥 Fast-Track Career Callback
+          </span>
+          <h3 className="text-lg md:text-xl font-extrabold text-slate-900 leading-snug">
+            Get Hired in Top IT MNCs
+          </h3>
+          <p className="text-slate-500 text-[11px] mt-0.5 font-medium">
+            100% Placement Assistance • 1-on-1 Senior Mentorship
+          </p>
         </div>
         
         {submitted ? (
-          <div className="text-center py-8 px-5">
-            <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-              <i className="fas fa-check-circle text-green-500 text-2xl"></i>
+          <div className="text-center py-8 px-3">
+            <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600">
+              <i className="fas fa-check-circle text-2xl"></i>
             </div>
-            <h4 className="text-base font-semibold text-white mb-1">Thank You!</h4>
-            <p className="text-gray-400 text-xs">Our counselor will contact you shortly.</p>
+            <h4 className="text-lg font-bold text-slate-900 mb-1">Thank You!</h4>
+            <p className="text-slate-600 text-xs">Our counselor will contact you shortly.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-4 space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-3.5">
             {/* Hidden Lead Tracking Inputs */}
             <input type="hidden" name="utm_source" value={trackingData.last_utm_source || trackingData.first_utm_source || ''} />
             <input type="hidden" name="utm_medium" value={trackingData.last_utm_medium || trackingData.first_utm_medium || ''} />
@@ -150,96 +160,111 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
             <input type="hidden" name="fbclid" value={trackingData.last_fbclid || trackingData.first_fbclid || ''} />
             <input type="hidden" name="landing_page" value={trackingData.last_landing_page || trackingData.first_landing_page || ''} />
             <input type="hidden" name="referrer" value={trackingData.last_referrer || trackingData.first_referrer || ''} />
+            
             {/* Name */}
             <div>
-              <label className="block text-gray-300 text-xs font-medium mb-1">Name <span className="text-red-400">*</span></label>
-              <input 
-                type="text" 
-                name="name" 
-                value={formData.name} 
-                onChange={handleChange} 
-                required 
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
-                placeholder="Full name" 
-              />
+              <label className="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-1">Full Name *</label>
+              <div className="relative flex items-center">
+                <i className="fas fa-user text-slate-400 text-xs absolute left-3 pointer-events-none"></i>
+                <input 
+                  type="text" 
+                  name="name" 
+                  value={formData.name} 
+                  onChange={handleChange} 
+                  required 
+                  className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-xs focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition" 
+                  placeholder="Enter your name"
+                />
+              </div>
             </div>
             
-            {/* Email */}
+            {/* 10 Digit Mobile No with Country Flag */}
             <div>
-              <label className="block text-gray-300 text-xs font-medium mb-1">Email <span className="text-red-400">*</span></label>
-              <input 
-                type="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                required 
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
-                placeholder="Email address" 
-              />
-            </div>
-            
-            {/* Phone with Country Code */}
-            <div>
-              <label className="block text-gray-300 text-xs font-medium mb-1">Phone <span className="text-red-400">*</span></label>
-              <div className="flex gap-2">
-                <div className="relative">
+              <label className="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-1">Mobile Number *</label>
+              <div className="flex gap-2 items-center">
+                <div className="relative flex-shrink-0">
                   <button 
                     type="button" 
                     onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)} 
-                    className="flex items-center gap-1 px-2 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm"
+                    className="flex items-center gap-1 px-2.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs font-semibold hover:bg-slate-100 transition"
                   >
-                    <span className="text-base">{countries.find(c => c.dialCode === formData.countryCode)?.flag || '🇮🇳'}</span>
-                    <span className="font-medium text-xs">{formData.countryCode}</span>
-                    <i className="fas fa-chevron-down text-gray-400 text-[10px]"></i>
+                    <span>{countries.find(c => c.dialCode === formData.countryCode)?.flag || '🇮🇳'}</span>
+                    <span>{formData.countryCode}</span>
+                    <i className="fas fa-chevron-down text-slate-400 text-[9px]"></i>
                   </button>
                   {isCountryDropdownOpen && (
-                    <div className="absolute bottom-full left-0 mb-1 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50 max-h-40 overflow-y-auto">
+                    <div className="absolute bottom-full left-0 mb-1 w-48 bg-white border border-slate-200 rounded-xl shadow-2xl z-50 max-h-40 overflow-y-auto text-left">
                       {countries.map((country) => (
                         <button 
                           key={country.code} 
                           type="button" 
                           onClick={() => handleCountrySelect(country)} 
-                          className="w-full flex items-center gap-2 px-3 py-1.5 hover:bg-gray-700 transition text-left text-sm"
+                          className="w-full flex items-center gap-2 px-2.5 py-1.5 hover:bg-blue-50 transition text-left text-xs"
                         >
-                          <span>{country.flag}</span>
-                          <span className="text-white">{country.name}</span>
-                          <span className="text-gray-400 text-xs ml-auto">{country.dialCode}</span>
+                          <span className="text-sm">{country.flag}</span>
+                          <span className="text-slate-800">{country.name}</span>
+                          <span className="text-slate-400 text-[10px] ml-auto">{country.dialCode}</span>
                         </button>
                       ))}
                     </div>
                   )}
                 </div>
+                <div className="relative flex-1 flex items-center">
+                  <i className="fas fa-phone text-slate-400 text-xs absolute left-3 pointer-events-none"></i>
+                  <input 
+                    type="tel" 
+                    name="phone" 
+                    value={formData.phone} 
+                    onChange={handleChange} 
+                    required 
+                    maxLength={10}
+                    className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-xs focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition" 
+                    placeholder="10 digit phone number"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-1">Email Address *</label>
+              <div className="relative flex items-center">
+                <i className="fas fa-envelope text-slate-400 text-xs absolute left-3 pointer-events-none"></i>
                 <input 
-                  type="tel" 
-                  name="phone" 
-                  value={formData.phone} 
+                  type="email" 
+                  name="email" 
+                  value={formData.email} 
                   onChange={handleChange} 
                   required 
-                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20" 
-                  placeholder="Phone number" 
+                  className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-xs focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition" 
+                  placeholder="Enter your email"
                 />
               </div>
             </div>
             
-            {/* Program */}
+            {/* Program Selection */}
             <div>
-              <label className="block text-gray-300 text-xs font-medium mb-1">Program <span className="text-red-400">*</span></label>
-              <select 
-                name="program" 
-                value={formData.program} 
-                onChange={handleChange} 
-                required 
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20"
-              >
-                {programs.map((program, idx) => <option key={idx} value={program}>{program}</option>)}
-              </select>
+              <label className="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-1">Target Program *</label>
+              <div className="relative flex items-center">
+                <i className="fas fa-graduation-cap text-slate-400 text-xs absolute left-3 pointer-events-none"></i>
+                <select 
+                  name="program" 
+                  value={formData.program} 
+                  onChange={handleChange} 
+                  required
+                  className="w-full pl-8 pr-7 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition cursor-pointer appearance-none"
+                >
+                  {programs.map((program, idx) => <option key={idx} value={program}>{program}</option>)}
+                </select>
+                <i className="fas fa-chevron-down text-slate-400 text-[9px] absolute right-3 pointer-events-none"></i>
+              </div>
             </div>
-            
-            {/* Privacy Policy */}
-            <div className="flex items-start gap-1.5">
-              <input type="checkbox" id="privacyPolicy" required className="mt-0.5 w-3.5 h-3.5 text-indigo-500 rounded bg-gray-700 border-gray-600 focus:ring-indigo-500/20" />
-              <label htmlFor="privacyPolicy" className="text-gray-400 text-[10px] leading-tight">
-                By submitting, you agree to our <a href="#" className="text-indigo-400 hover:underline">Privacy Policy</a>
+
+            {/* Privacy Checkbox */}
+            <div className="flex items-center gap-2 pt-1">
+              <input type="checkbox" id="privacyPolicyModal2" required defaultChecked className="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500" />
+              <label htmlFor="privacyPolicyModal2" className="text-slate-500 text-[11px]">
+                I agree to the <a href="#" className="text-blue-600 font-medium hover:underline">Privacy Policy</a>
               </label>
             </div>
             
@@ -247,12 +272,20 @@ export default function EnrollModal({ isOpen, onClose, courseName, onSuccess }: 
             <button 
               type="submit" 
               disabled={isSubmitting} 
-              className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-2.5 rounded-xl font-semibold hover:shadow-[0_4px_20px_rgba(79,70,229,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm"
+              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/25 transition transform hover:-translate-y-0.5 text-xs text-center tracking-wide flex items-center justify-center gap-1.5 mt-2"
             >
-              {isSubmitting ? <span className="flex items-center justify-center gap-2"><i className="fas fa-spinner fa-spin text-sm"></i> Sending...</span> : 'Submit'}
+              {isSubmitting ? (
+                <span><i className="fas fa-spinner fa-spin mr-1"></i> Submitting...</span>
+              ) : (
+                <>
+                  <span>Book Free Counselling Session</span>
+                  <i className="fas fa-arrow-right text-[10px]"></i>
+                </>
+              )}
             </button>
-            
-            <p className="text-center text-gray-500 text-[10px]">We'll contact you within 24 hours</p>
+            <p className="text-center text-slate-400 text-[10px] flex items-center justify-center gap-1 pt-0.5">
+              <i className="fas fa-shield-alt text-emerald-500"></i> ISO 9001:2015 Institute • 100% Data Privacy
+            </p>
           </form>
         )}
       </div>

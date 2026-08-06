@@ -19,6 +19,26 @@ body {
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Infinite Marquee Animation for Company Logos */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -33,14 +53,14 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .nav-flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 72px;
 }
 
 
@@ -2094,20 +2114,28 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), #2563eb);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
     color: white;
-    padding: 10px 24px;
-    border-radius: var(--border-radius, 12px);
+    padding: 0 22px;
+    height: 42px;
+    border-radius: 9999px;
     border: none;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    white-space: nowrap;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
     transition: var(--transition);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-primary:hover {
     transform: translateY(-1.5px);
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
     filter: brightness(1.05);
 }
 
