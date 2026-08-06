@@ -1,5 +1,30 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import fs from 'fs';
+import path from 'path';
+
+const LEADS_FILE_PATH = path.join(process.cwd(), 'data', 'leads.json');
+
+function saveLeadToFile(newLead: any) {
+  try {
+    let leads = [];
+    if (fs.existsSync(LEADS_FILE_PATH)) {
+      const fileData = fs.readFileSync(LEADS_FILE_PATH, 'utf-8');
+      leads = JSON.parse(fileData);
+    }
+    // Add unique ID and prepend at the top
+    const leadRecord = {
+      id: `lead_${Date.now()}`,
+      ...newLead
+    };
+    leads.unshift(leadRecord);
+    fs.writeFileSync(LEADS_FILE_PATH, JSON.stringify(leads, null, 2), 'utf-8');
+    return leadRecord;
+  } catch (err) {
+    console.error('Error persisting lead to data/leads.json:', err);
+    return newLead;
+  }
+}
 
 function formatPrettySource(source: string, medium: string): string {
   if (!source) return 'Direct';
@@ -44,6 +69,23 @@ function formatPrettyMedium(medium: string): string {
   return medium.toUpperCase();
 }
 
+/**
+ * GET Handler - Provides friendly API info when accessed directly in browser
+ */
+export async function GET() {
+  return NextResponse.json({
+    status: 'active',
+    endpoint: '/api/enroll',
+    method: 'POST',
+    description: 'LearnMore Technologies Lead Enrollment & Attribution API Endpoint.',
+    fetch_all_leads_endpoint: 'GET /api/leads',
+    usage: 'Send a POST request with JSON payload containing name, email, phone, program, and tracking attributes.',
+  });
+}
+
+/**
+ * POST Handler - Processes Enrollment & Lead Attribution
+ */
 export async function POST(request: Request) {
   try {
     const { name, email, phone, program, tracking } = await request.json();
@@ -66,7 +108,7 @@ export async function POST(request: Request) {
     const lastTouchKeyword = attr.last_utm_term || 'N/A';
     const lastGclid = attr.last_gclid || 'N/A';
 
-    // Formatted pretty values for email
+    // Formatted pretty values
     const sourceDisplay = formatPrettySource(rawLastSource, rawLastMedium);
     const mediumDisplay = formatPrettyMedium(rawLastMedium);
 
@@ -89,6 +131,35 @@ export async function POST(request: Request) {
       second: '2-digit',
       hour12: true,
     });
+
+    // Complete Structured Lead Object
+    const rawLeadData = {
+      name,
+      email,
+      phone,
+      program,
+      source: sourceDisplay,
+      raw_source: rawLastSource,
+      medium: mediumDisplay,
+      raw_medium: rawLastMedium,
+      campaign: lastTouchCampaign,
+      keyword: lastTouchKeyword,
+      landing_page: landingPage,
+      referrer: referrer,
+      gclid: lastGclid,
+      device: deviceType,
+      first_touch_source: firstSourceDisplay,
+      first_touch_campaign: firstTouchCampaign,
+      lead_time: leadTime,
+    };
+
+    // Save lead record to data/leads.json
+    const leadData = saveLeadToFile(rawLeadData);
+
+    // Log Lead Data in Terminal for instant debugging
+    console.log('\n🔥 NEW LEAD CAPTURED BY API:');
+    console.log(JSON.stringify(leadData, null, 2));
+    console.log('----------------------------------------\n');
 
     // Create a transporter using Gmail SMTP
     const transporter = nodemailer.createTransport({
@@ -210,7 +281,24 @@ Lead Time       ${leadTime}
     // Send the email
     await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ success: true, message: 'Enrollment email sent successfully' });
+    // Optional CRM Webhook Forwarding
+    if (process.env.CRM_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.CRM_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadData),
+        });
+      } catch (webhookErr) {
+        console.warn('CRM Webhook delivery error:', webhookErr);
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: 'Enrollment request and lead attribution processed successfully',
+      lead: leadData,
+    });
   } catch (error: any) {
     console.error('Enrollment email API error:', error);
     return NextResponse.json(

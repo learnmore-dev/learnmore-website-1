@@ -1,0 +1,42 @@
+[
+  {
+    "id": "lead_1785920911016",
+    "name": "Pratik Kanzariya",
+    "email": "kanzariyapratik124@gmail.com",
+    "phone": "+91 +919737356415",
+    "program": "Python Fullstack Master Program",
+    "source": "Google Ads",
+    "raw_source": "google",
+    "medium": "CPC (Paid Ads)",
+    "raw_medium": "cpc",
+    "campaign": "python_august",
+    "keyword": "python course bangalore",
+    "landing_page": "/",
+    "referrer": "Direct",
+    "gclid": "test_gclid_12345",
+    "device": "Desktop",
+    "first_touch_source": "Direct",
+    "first_touch_campaign": "N/A",
+    "lead_time": "05/08/2026, 02:38:31 pm"
+  },
+  {
+    "id": "lead_1722849420000",
+    "name": "Rahul Sharma",
+    "email": "rahul@gmail.com",
+    "phone": "+91 9876543210",
+    "program": "Python Fullstack Master Program",
+    "source": "Google Ads",
+    "raw_source": "google",
+    "medium": "CPC (Paid Ads)",
+    "raw_medium": "cpc",
+    "campaign": "python_august",
+    "keyword": "python course bangalore",
+    "landing_page": "/python-training-in-bangalore",
+    "referrer": "https://www.google.com/",
+    "gclid": "ABC123XYZ",
+    "device": "Mobile",
+    "first_touch_source": "Google Ads",
+    "first_touch_campaign": "python_august",
+    "lead_time": "2026-08-05 02:35:10 PM"
+  }
+]

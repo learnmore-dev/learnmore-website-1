@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { useEnroll } from '@/context/EnrollContext';
 import { useLeadTracking } from '@/hooks/useLeadTracking';
 import { trackGtmEvent } from '@/lib/leadTracking';
@@ -144,6 +145,7 @@ const programs = [
 ];
 
 export default function GlobalEnrollModal() {
+  const router = useRouter();
   const { isEnrollModalOpen, closeEnrollModal, enrollCourseName, openEnrollModal } = useEnroll();
   const trackingData = useLeadTracking();
   const [formData, setFormData] = useState({
@@ -227,6 +229,9 @@ export default function GlobalEnrollModal() {
         throw new Error('Failed to submit enrollment request');
       }
 
+      const apiResult = await response.json();
+      console.log('✅ Lead API Response & Email Sent Data:', apiResult);
+
       trackGtmEvent('generate_lead', {
         program: formData.program,
         form_name: 'Global Enrollment Modal',
@@ -237,7 +242,8 @@ export default function GlobalEnrollModal() {
         setSubmitted(false);
         closeEnrollModal();
         setFormData({ name: '', email: '', countryCode: '+91', phone: '', program: enrollCourseName || '' });
-      }, 1500);
+        router.push('/thank-you');
+      }, 1000);
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to send request. Please try again.');
