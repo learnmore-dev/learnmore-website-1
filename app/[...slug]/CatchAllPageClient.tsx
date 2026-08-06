@@ -20,10 +20,8 @@ interface CatchAllPageProps {
   };
 }
 
-// Syllabus PDF mapping
-
 import { syllabusPDFs, syllabusDetails, defaultSyllabus, courseMapping } from './courseData';
-
+import FullStackTrainingClient from '../full-stack-training-course/FullStackTrainingClient';
 
 export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,16 +33,35 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const fullSlug = params.slug.join('-');
   
-  // કોર્સ શોધો
+  // કોર્સ અને લોકેશન શોધો
   let foundCourse = null;
   let courseKey = null;
-  
+  let locationPart = '';
+
   for (const key of Object.keys(courseMapping)) {
-    if (fullSlug.startsWith(`${key}-training-in-`)) {
-      courseKey = key;
-      foundCourse = courseMapping[key as keyof typeof courseMapping];
-      break;
+    const prefixes = [
+      `${key}-in-`,
+      `${key}-training-course-in-`,
+      `${key}-training-in-`
+    ];
+
+    for (const prefix of prefixes) {
+      if (fullSlug.startsWith(prefix)) {
+        const candidateLoc = fullSlug.replace(prefix, '');
+        const candidateCourse = courseMapping[key as keyof typeof courseMapping];
+        const loc = locationsData.locations.find(l => 
+          l.slug === candidateLoc || 
+          l.name.toLowerCase().replace(/\s+/g, '-') === candidateLoc
+        );
+        if (loc) {
+          courseKey = key;
+          foundCourse = candidateCourse;
+          locationPart = candidateLoc;
+          break;
+        }
+      }
     }
+    if (foundCourse) break;
   }
   
   if (!foundCourse) {
@@ -52,14 +69,18 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   }
   
   // લોકેશન શોધો
-  const locationPart = fullSlug.replace(`${courseKey}-training-in-`, '');
   const location = locationsData.locations.find(l => 
     l.slug === locationPart || 
     l.name.toLowerCase().replace(/\s+/g, '-') === locationPart
   );
-  
+
   if (!location) {
     notFound();
+  }
+
+  // If it is full-stack training course, render the custom FullStackTrainingClient design!
+  if (courseKey === 'full-stack-training-course' || courseKey === 'full-stack' || courseKey === 'fullstack') {
+    return <FullStackTrainingClient location={location} />;
   }
   
   // કોર્સ ડેટા લોડ કરો
