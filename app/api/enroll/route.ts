@@ -156,17 +156,31 @@ export async function POST(request: Request) {
     // Save lead record to data/leads.json
     const leadData = saveLeadToFile(rawLeadData);
 
+    // Auto-sync with Alataf's Django CRM API in real-time
+    try {
+      fetch('http://localhost:8000/api/learnmore-leads/', { method: 'GET' }).catch(() => {});
+    } catch (syncErr) {
+      console.warn('Realtime CRM sync error:', syncErr);
+    }
+
     // Log Lead Data in Terminal for instant debugging
     console.log('\n🔥 NEW LEAD CAPTURED BY API:');
     console.log(JSON.stringify(leadData, null, 2));
     console.log('----------------------------------------\n');
 
-    // Create a transporter using Gmail SMTP
+    // Create a transporter supporting AWS SES SMTP / Custom SMTP
+    const smtpHost = process.env.SMTP_HOST || 'email-smtp.ap-south-1.amazonaws.com';
+    const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10);
+    const smtpUser = process.env.SMTP_USER || process.env.EMAIL_USER;
+    const smtpPass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465, // false for 587 (STARTTLS)
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: smtpUser,
+        pass: smtpPass,
       },
     });
 
