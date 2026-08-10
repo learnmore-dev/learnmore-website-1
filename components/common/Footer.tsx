@@ -20,11 +20,53 @@ export default function Footer() {
   const [currentCourseDisplayName, setCurrentCourseDisplayName] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check for full-stack-training-course URLs first
+    // Check for specific training-course URLs first
     if (pathname.includes('full-stack-training-course')) {
       setCurrentCourse('full-stack-training-course');
       setCurrentCourseName('Full Stack Development');
       setCurrentCourseDisplayName('full-stack-training-course');
+      return;
+    }
+    if (pathname.includes('aws-training-course')) {
+      setCurrentCourse('aws-training-course');
+      setCurrentCourseName('AWS');
+      setCurrentCourseDisplayName('aws-training-course');
+      return;
+    }
+    if (pathname.includes('python-fullstack-training-course')) {
+      setCurrentCourse('python-fullstack-training-course');
+      setCurrentCourseName('Python Full Stack');
+      setCurrentCourseDisplayName('python-fullstack-training-course');
+      return;
+    }
+    if (pathname.includes('python-training-course')) {
+      setCurrentCourse('python-training-course');
+      setCurrentCourseName('Python');
+      setCurrentCourseDisplayName('python-training-course');
+      return;
+    }
+    if (pathname.includes('devops-training-course')) {
+      setCurrentCourse('devops-training-course');
+      setCurrentCourseName('DevOps');
+      setCurrentCourseDisplayName('devops-training-course');
+      return;
+    }
+    if (pathname.includes('software-testing-training-course')) {
+      setCurrentCourse('software-testing-training-course');
+      setCurrentCourseName('Software Testing');
+      setCurrentCourseDisplayName('software-testing-training-course');
+      return;
+    }
+    if (pathname.includes('java-fullstack-training-course')) {
+      setCurrentCourse('java-fullstack-training-course');
+      setCurrentCourseName('Java Full Stack');
+      setCurrentCourseDisplayName('java-fullstack-training-course');
+      return;
+    }
+    if (pathname.includes('java-training-course')) {
+      setCurrentCourse('java-training-course');
+      setCurrentCourseName('Java');
+      setCurrentCourseDisplayName('java-training-course');
       return;
     }
 
@@ -132,6 +174,19 @@ export default function Footer() {
     { key: 'react', name: 'React', displayName: 'React JS Training', icon: 'fab fa-react', color: 'text-blue-500' },
     { key: 'digital-marketing', name: 'Digital Marketing', displayName: 'Digital Marketing Training', icon: 'fas fa-bullhorn', color: 'text-orange-500' },
     { key: 'cybersecurity', name: 'Cybersecurity', displayName: 'Cybersecurity Training', icon: 'fas fa-shield-alt', color: 'text-red-500' },
+  ];
+
+  // Featured 9 Training Courses requested by user
+  const featuredTrainingCourses = [
+    { title: 'Full Stack Training Course', href: '/full-stack-training-course', icon: 'fas fa-laptop-code', color: 'text-indigo-400' },
+    { title: 'AWS Training Course', href: '/aws-training-course', icon: 'fab fa-aws', color: 'text-amber-400' },
+    { title: 'Data Analytics Training Course', href: '/data-analytics-training-course', icon: 'fas fa-chart-line', color: 'text-emerald-400' },
+    { title: 'DevOps Training Course', href: '/devops-training-course', icon: 'fas fa-cogs', color: 'text-cyan-400' },
+    { title: 'Python Training Course', href: '/python-training-course', icon: 'fab fa-python', color: 'text-yellow-400' },
+    { title: 'Python Full Stack Training Course', href: '/python-fullstack-training-course', icon: 'fab fa-python', color: 'text-amber-400' },
+    { title: 'Software Testing Training Course', href: '/software-testing-training-course', icon: 'fas fa-vial', color: 'text-rose-400' },
+    { title: 'Java Training Course', href: '/java-training-course', icon: 'fab fa-java', color: 'text-orange-400' },
+    { title: 'Java Full Stack Training Course', href: '/java-fullstack-training-course', icon: 'fab fa-java', color: 'text-red-400' }
   ];
 
   // Top offers for footer
@@ -318,21 +373,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 - Training in Bangalore (All 70+ locations) */}
-          <div>
-           
-      
-          </div>
-
-          {/* Column 4 - Quick Training Links */}
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">Quick Training</h3>
-            <ul className="space-y-2">
-              {allCoursesList.slice(0, 8).map((course) => (
-                <li key={course.key}>
-                  <Link href={`/${course.key}-training-in-marathahalli`} className="text-gray-400 hover:text-red-500 transition text-sm flex items-center gap-2">
-                    <i className={`${course.icon} ${course.color} text-xs`}></i>
-                    {course.displayName}
+          {/* Column 3 & 4 - Top Training Courses (All 9 Standalone Courses) */}
+          <div className="lg:col-span-2">
+            <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
+              <i className="fas fa-graduation-cap text-indigo-400"></i> Top Training Courses
+            </h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
+              {featuredTrainingCourses.map((course) => (
+                <li key={course.href}>
+                  <Link href={course.href} className="text-gray-400 hover:text-indigo-400 transition text-sm flex items-center gap-2 group">
+                    <i className={`${course.icon} ${course.color} text-xs w-4 text-center group-hover:scale-110 transition`}></i>
+                    <span className="group-hover:underline font-medium">{course.title}</span>
                   </Link>
                 </li>
               ))}
@@ -423,6 +474,25 @@ export default function Footer() {
             </div>
           </div>
         )}
+
+        {/* Featured 9 Training Courses Section */}
+        <div className="border-t border-gray-800 pt-8 mb-8">
+          <h3 className="text-white font-bold text-lg mb-6 text-center flex items-center justify-center gap-2">
+            <i className="fas fa-award text-amber-400"></i> Featured Career Programs
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
+            {featuredTrainingCourses.map((course) => (
+              <Link 
+                key={course.href} 
+                href={course.href}
+                className="text-gray-300 hover:text-white transition text-sm flex items-center gap-3 p-3 rounded-xl bg-gray-800/80 hover:bg-indigo-600/30 border border-gray-700/60 hover:border-indigo-500/60 group shadow-sm"
+              >
+                <i className={`${course.icon} ${course.color} text-base group-hover:scale-110 transition w-5 text-center`}></i>
+                <span className="font-semibold text-xs md:text-sm">{course.title}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
 
         {/* All Courses Links Section */}
         <div className="border-t border-gray-800 pt-8 mb-8">
