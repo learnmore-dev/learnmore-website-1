@@ -20,6 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/it-services',
     '/fullstack-training-in-course',
     '/full-stack-training-course',
+    '/data-analytics-training-course',
+    '/aws-training-course',
+    '/python-training-course',
+    '/python-fullstack-training-course',
+    '/devops-training-course',
+    '/software-testing-training-course',
+    '/java-training-course',
+    '/java-fullstack-training-course',
     '/certificate/verify',
   ];
 
@@ -65,9 +73,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // 6. Localized Landing Pages (e.g. full-stack-training-course-in-marathahalli, aws-training-in-marathahalli)
+  // 6. Localized Landing Pages (e.g. full-stack-training-course-in-marathahalli, data-analytics-training-course-in-marathahalli)
   const courseKeys = [
     'full-stack-training-course',
+    'data-analytics-training-course',
     'python-fullstack',
     'python',
     'aws',
@@ -85,8 +94,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   courseKeys.forEach(courseKey => {
     locationsData.locations.forEach(loc => {
-      const urlPath = courseKey === 'full-stack-training-course'
-        ? `full-stack-training-course-in-${loc.slug}`
+      const urlPath = (courseKey === 'full-stack-training-course' || courseKey === 'data-analytics-training-course')
+        ? `${courseKey}-in-${loc.slug}`
         : `${courseKey}-training-in-${loc.slug}`;
 
       landingEntries.push({

@@ -1,10 +1,16 @@
 'use client';
+// Full Stack Training Course Client Component
 
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import StickyMobileCTA from '@/components/common/StickyMobileCTA';
+import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
+import CourseComparisonTable from '@/components/common/CourseComparisonTable';
+import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
+import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface FullStackTrainingClientProps {
@@ -249,25 +255,32 @@ export default function FullStackTrainingClient({ location }: FullStackTrainingC
                 Advanced Certification in <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300 bg-clip-text text-transparent">Full Stack Development</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
               </h1>
 
-              <p className="text-slate-300 text-base md:text-lg mb-6 leading-relaxed">
+              <p className="text-slate-300 text-base md:text-lg mb-4 leading-relaxed">
                 Master Frontend, Backend API Engineering, Relational & NoSQL Databases, Cloud DevOps, and Git. Become a job-ready Full Stack Web Developer in {locName} with 100% Placement Assistance.
               </p>
 
-              {/* Badges / Rating */}
-              <div className="flex flex-wrap items-center gap-4 mb-8 text-sm">
-                <div className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-amber-400 font-bold">
+              {/* Urgency & Limited Seats Timer */}
+              <BatchUrgencyBanner batchDate="Upcoming Monday" seatsRemaining={5} />
+
+              {/* Badges / Rating & EMI */}
+              <div className="flex flex-wrap items-center gap-3 mb-6 text-sm">
+                <div className="flex items-center gap-1.5 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-amber-400 font-bold shadow-sm">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(2,400+ Reviews)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(2,400+ Reviews on Google)</span>
                 </div>
-                <div className="flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-emerald-400 font-bold">
+                <div className="flex items-center gap-2 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-emerald-400 font-bold shadow-sm">
                   <i className="fas fa-user-check"></i>
                   <span>100% Placement Assistance</span>
+                </div>
+                <div className="flex items-center gap-2 bg-slate-800/90 border border-amber-500/30 px-3.5 py-2 rounded-xl text-amber-300 font-bold shadow-sm">
+                  <i className="fas fa-credit-card text-amber-400"></i>
+                  <span>No-Cost EMI @ ₹3,499/mo</span>
                 </div>
               </div>
 
               {/* Feature Points */}
-              <ul className="space-y-3 mb-8 text-slate-200 text-sm">
+              <ul className="space-y-2.5 mb-8 text-slate-200 text-sm">
                 <li className="flex items-center gap-3">
                   <i className="fas fa-check-circle text-emerald-400 text-base"></i>
                   <span>Learn Python, React.js, Node.js, Django, MySQL, MongoDB & AWS</span>
@@ -286,15 +299,15 @@ export default function FullStackTrainingClient({ location }: FullStackTrainingC
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => openEnrollModal('Full Stack Development Master Program')}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2"
+                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2 text-sm tracking-wide"
                 >
                   <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
                 </button>
                 <button
                   onClick={() => openEnrollModal('Full Stack Development Master Program - Syllabus')}
-                  className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2"
+                  className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2 text-sm"
                 >
-                  <i className="fas fa-file-download"></i> Download Full Syllabus
+                  <i className="fas fa-file-download"></i> Download Detailed Syllabus (PDF)
                 </button>
               </div>
             </div>
@@ -404,6 +417,19 @@ export default function FullStackTrainingClient({ location }: FullStackTrainingC
                       </select>
                       <i className="fas fa-chevron-down text-slate-400 text-[10px] absolute right-3.5 pointer-events-none"></i>
                     </div>
+                  </div>
+
+                  {/* Free Demo Class Checkbox */}
+                  <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-2.5 flex items-start gap-2.5 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      id="demoClassCheck"
+                      defaultChecked={true}
+                      className="mt-1 w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300 accent-blue-600"
+                    />
+                    <label htmlFor="demoClassCheck" className="text-xs text-slate-800 font-semibold cursor-pointer">
+                      🎁 <span className="text-amber-800 font-bold">Book a FREE Live Demo Class</span> (Attend online or offline before enrolling)
+                    </label>
                   </div>
 
                   {/* Submit Button */}
@@ -961,10 +987,110 @@ export default function FullStackTrainingClient({ location }: FullStackTrainingC
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
+
+      {/* LearnMore Technologies vs Other Institutes Comparison Section */}
+      <section className="py-16 bg-white text-slate-900 border-t border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 font-extrabold text-xs uppercase tracking-wider mb-3 border border-blue-200">
+              WHY WE ARE #1
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+              LearnMore Technologies vs Other Training Institutes
+            </h2>
+            <p className="text-slate-600 mt-2 text-base">
+              See why thousands of students and working professionals choose LearnMore Technologies for genuine career transformation.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto shadow-xl rounded-3xl border border-slate-200 bg-white">
+            <table className="w-full text-left border-collapse min-w-[700px]">
+              <thead>
+                <tr className="border-b border-slate-200 text-sm uppercase tracking-wider bg-slate-100">
+                  <th className="py-5 px-6 text-slate-700 font-bold w-1/3">Feature / Comparison</th>
+                  <th className="py-5 px-6 bg-blue-50 text-blue-800 font-extrabold border-t-2 border-l border-r border-blue-300 w-1/3 text-base">
+                    <div className="flex items-center gap-2">
+                      <i className="fas fa-crown text-amber-500 text-lg"></i>
+                      <span>LearnMore Technologies</span>
+                    </div>
+                  </th>
+                  <th className="py-5 px-6 text-slate-500 font-bold w-1/3">Other Local Institutes</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-sm bg-white">
+                <tr className="hover:bg-slate-50 transition">
+                  <td className="py-5 px-6 font-bold text-slate-900">Trainer Expertise & Background</td>
+                  <td className="py-5 px-6 bg-blue-50/50 border-l border-r border-blue-200 text-emerald-700 font-semibold">
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 12+ to 15+ Yrs Senior Industry Leads & Active Architects
+                  </td>
+                  <td className="py-5 px-6 text-slate-500">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Junior trainers or freshers with theoretical knowledge only
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50 transition">
+                  <td className="py-5 px-6 font-bold text-slate-900">Practical & Lab Sessions</td>
+                  <td className="py-5 px-6 bg-blue-50/50 border-l border-r border-blue-200 text-emerald-700 font-semibold">
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Practical Hands-on Coding & Live Lab Guidance
+                  </td>
+                  <td className="py-5 px-6 text-slate-500">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Heavy PowerPoint slides with minimal lab practice time
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50 transition">
+                  <td className="py-5 px-6 font-bold text-slate-900">Placement Assistance & Calls</td>
+                  <td className="py-5 px-6 bg-blue-50/50 border-l border-r border-blue-200 text-emerald-700 font-semibold">
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                  </td>
+                  <td className="py-5 px-6 text-slate-500">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50 transition">
+                  <td className="py-5 px-6 font-bold text-slate-900">Enterprise Live Capstone Projects</td>
+                  <td className="py-5 px-6 bg-blue-50/50 border-l border-r border-blue-200 text-emerald-700 font-semibold">
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 3 to 4 Real-World End-to-End Projects with GitHub Code Review
+                  </td>
+                  <td className="py-5 px-6 text-slate-500">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Basic dummy sample projects or no live deployment
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50 transition">
+                  <td className="py-5 px-6 font-bold text-slate-900">Batch Flexibility & Session Access</td>
+                  <td className="py-5 px-6 bg-blue-50/50 border-l border-r border-blue-200 text-emerald-700 font-semibold">
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> Classroom (Bangalore), Online, Weekend + Lifetime Recording Access
+                  </td>
+                  <td className="py-5 px-6 text-slate-500">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Rigid batch timings with limited/no class recordings
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50 transition">
+                  <td className="py-5 px-6 font-bold text-slate-900">Certification Accreditation</td>
+                  <td className="py-5 px-6 bg-blue-50/50 border-l border-r border-blue-200 text-emerald-700 font-semibold">
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> ISO 9001:2015 Globally Recognized Industry Certification
+                  </td>
+                  <td className="py-5 px-6 text-slate-500">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Unrecognized local certificate with low industry value
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Upcoming Batch Schedule Section */}
+      <UpcomingBatchSchedule courseName="Full Stack Development Master Program" />
+
+      {/* Recent Student Placements Section */}
+      <RecentPlacementsSection courseName="Full Stack Development Master Program" />
+
+      {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
+      <StickyMobileCTA courseName="Full Stack Development Master Program" />
 
       <Footer />
     </div>

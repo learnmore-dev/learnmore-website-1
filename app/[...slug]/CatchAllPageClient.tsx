@@ -22,6 +22,14 @@ interface CatchAllPageProps {
 
 import { syllabusPDFs, syllabusDetails, defaultSyllabus, courseMapping } from './courseData';
 import FullStackTrainingClient from '../full-stack-training-course/FullStackTrainingClient';
+import DataAnalyticsTrainingClient from '../data-analytics-training-course/DataAnalyticsTrainingClient';
+import AwsTrainingClient from '../aws-training-course/AwsTrainingClient';
+import PythonTrainingClient from '../python-training-course/PythonTrainingClient';
+import PythonFullStackTrainingClient from '../python-fullstack-training-course/PythonFullStackTrainingClient';
+import DevOpsTrainingClient from '../devops-training-course/DevOpsTrainingClient';
+import SoftwareTestingTrainingClient from '../software-testing-training-course/SoftwareTestingTrainingClient';
+import JavaTrainingClient from '../java-training-course/JavaTrainingClient';
+import JavaFullStackTrainingClient from '../java-fullstack-training-course/JavaFullStackTrainingClient';
 
 export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,9 +86,33 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
     notFound();
   }
 
-  // If it is full-stack training course, render the custom FullStackTrainingClient design!
+  // Render dedicated custom training clients for matching course keys
   if (courseKey === 'full-stack-training-course' || courseKey === 'full-stack' || courseKey === 'fullstack') {
     return <FullStackTrainingClient location={location} />;
+  }
+  if (courseKey === 'data-analytics-training-course' || courseKey === 'data-analytics') {
+    return <DataAnalyticsTrainingClient location={location} />;
+  }
+  if (courseKey === 'aws-training-course' || courseKey === 'aws') {
+    return <AwsTrainingClient location={location} />;
+  }
+  if (courseKey === 'python-training-course' || courseKey === 'python') {
+    return <PythonTrainingClient location={location} />;
+  }
+  if (courseKey === 'python-fullstack-training-course' || courseKey === 'python-fullstack') {
+    return <PythonFullStackTrainingClient location={location} />;
+  }
+  if (courseKey === 'devops-training-course' || courseKey === 'devops') {
+    return <DevOpsTrainingClient location={location} />;
+  }
+  if (courseKey === 'software-testing-training-course' || courseKey === 'software-testing') {
+    return <SoftwareTestingTrainingClient location={location} />;
+  }
+  if (courseKey === 'java-training-course' || courseKey === 'java') {
+    return <JavaTrainingClient location={location} />;
+  }
+  if (courseKey === 'java-fullstack-training-course' || courseKey === 'java-fullstack') {
+    return <JavaFullStackTrainingClient location={location} />;
   }
   
   // કોર્સ ડેટા લોડ કરો

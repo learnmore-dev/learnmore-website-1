@@ -172,8 +172,20 @@ export const defaultSyllabus = {
 // કોર્સ મેપિંગ - બધા કોર્સ
 export const courseMapping = {
   // AWS & Cloud DevOps
+  'aws-training-course': { 
+    slug: 'aws-training-course', 
+    name: 'AWS Training', 
+    fullName: 'AWS & Cloud DevOps Training',
+    icon: 'fab fa-aws', 
+    color: 'blue',
+    image: '/images/courses/aws-hero.webp',
+    bannerImage: '/images/courses/aws-banner.webp',
+    logo: '/images/courses/aws-logo.webp',
+    shortDesc: 'Master AWS cloud computing, Linux, Docker, Kubernetes, Jenkins, and DevOps practices.',
+    features: ['AWS Cloud Services', 'Linux Administration', 'Docker Containers', 'Kubernetes', 'Jenkins CI/CD', 'Terraform IaC']
+  },
   'aws': { 
-    slug: 'cloud-devops', 
+    slug: 'aws-training-course', 
     name: 'AWS Training', 
     fullName: 'AWS & Cloud DevOps Training',
     icon: 'fab fa-aws', 
@@ -186,8 +198,20 @@ export const courseMapping = {
   },
   
   // Python Training
+  'python-training-course': { 
+    slug: 'python-training-course', 
+    name: 'Python Training', 
+    fullName: 'Python Training Program',
+    icon: 'fab fa-python', 
+    color: 'yellow',
+    image: '/images/courses/python-hero.webp',
+    bannerImage: '/images/courses/python-hero.webp',
+    logo: '/images/courses/placeholder-logo.webp',
+    shortDesc: 'Master Python programming from basics to advanced with real-world projects and applications.',
+    features: ['Python Basics', 'Object Oriented Programming', 'Data Structures', 'File Handling', 'Modules & Packages', 'Web Development']
+  },
   'python': { 
-    slug: 'python-fullstack', 
+    slug: 'python-training-course', 
     name: 'Python Training', 
     fullName: 'Python Training Program',
     icon: 'fab fa-python', 
@@ -200,8 +224,20 @@ export const courseMapping = {
   },
   
   // Python Full Stack Training
+  'python-fullstack-training-course': { 
+    slug: 'python-fullstack-training-course', 
+    name: 'Python Full Stack Training', 
+    fullName: 'Python Full Stack Development',
+    icon: 'fab fa-python', 
+    color: 'yellow',
+    image: '/images/courses/fullstack-hero.webp',
+    bannerImage: '/images/courses/fullstack-hero.webp',
+    logo: '/images/courses/placeholder-logo.webp',
+    shortDesc: 'Master Python, Django, React, and full-stack web development.',
+    features: ['Python Programming', 'Django Framework', 'React.js', 'REST APIs', 'Database Design', 'Deployment']
+  },
   'python-fullstack': { 
-    slug: 'python-fullstack', 
+    slug: 'python-fullstack-training-course', 
     name: 'Python Full Stack Training', 
     fullName: 'Python Full Stack Development',
     icon: 'fab fa-python', 
@@ -308,8 +344,20 @@ export const courseMapping = {
   },
   
   // Data Analytics Training
+  'data-analytics-training-course': { 
+    slug: 'data-analytics-training-course', 
+    name: 'Data Analytics Training', 
+    fullName: 'Data Analytics Certification Program',
+    icon: 'fas fa-chart-line', 
+    color: 'green',
+    image: '/images/courses/analytics-hero.webp',
+    bannerImage: '/images/courses/analytics-hero.webp',
+    logo: '/images/courses/placeholder-logo.webp',
+    shortDesc: 'Master Excel, SQL, Power BI, Tableau, and Python for data analysis with 100% Placement Assistance.',
+    features: ['Excel & Advanced Excel', 'SQL Queries & Joins', 'Power BI Dashboards', 'Tableau Visualizations', 'Python for Analytics', '100% Placement Support']
+  },
   'data-analytics': { 
-    slug: 'data-analytics', 
+    slug: 'data-analytics-training-course', 
     name: 'Data Analytics Training', 
     fullName: 'Data Analytics Program',
     icon: 'fas fa-chart-line', 
