@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import { useEnroll } from '@/context/EnrollContext';
 import coursesData from '@/data/courses.json';
 import placementsData from '@/data/placements.json';
@@ -728,46 +729,7 @@ export default function Home() {
 <section className="py-16 bg-gray-50">
   <div className="container mx-auto px-4">
     <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold mb-2">Upcoming Batch Schedule</h2>
-      <p className="text-gray-600">Choose a batch that fits your schedule</p>
-    </div>
-    <div className="overflow-x-auto">
-      <table className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-md">
-        <thead className="bg-blue-600 text-white">
-          <tr>
-            <th className="p-3 text-left rounded-tl-xl">Start Date</th>
-            <th className="p-3 text-left">Batch Type</th>
-            <th className="p-3 text-left">Time</th>
-            <th className="p-3 text-left rounded-tr-xl">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b">
-            <td className="p-3 font-semibold">1st August 2026</td>
-            <td className="p-3">Weekdays (Mon-Fri)</td>
-            <td className="p-3">08:00 AM IST</td>
-            <td className="p-3"><span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Enrolling</span></td>
-          </tr>
-          <tr className="border-b">
-            <td className="p-3 font-semibold">3rd August 2026</td>
-            <td className="p-3">Weekdays (Mon-Fri)</td>
-            <td className="p-3">10:00 AM IST</td>
-            <td className="p-3"><span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Enrolling</span></td>
-          </tr>
-          <tr className="border-b">
-            <td className="p-3 font-semibold">5th August 2026</td>
-            <td className="p-3">Weekend (Sat-Sun)</td>
-            <td className="p-3">11:00 AM IST</td>
-            <td className="p-3"><span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">Limited Seats</span></td>
-          </tr>
-          <tr>
-            <td className="p-3 font-semibold">8th August 2026</td>
-            <td className="p-3">Weekdays (Mon-Fri)</td>
-            <td className="p-3">06:00 PM IST</td>
-            <td className="p-3"><span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">Available</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <UpcomingBatchSchedule courseName="Training Program" />
     </div>
     <div className="text-center mt-6">
       <p className="text-gray-500 text-sm">Can't find a batch that works for you?</p>

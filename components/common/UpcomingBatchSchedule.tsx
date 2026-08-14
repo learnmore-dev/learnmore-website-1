@@ -1,46 +1,101 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface UpcomingBatchScheduleProps {
   courseName?: string;
 }
 
-export default function UpcomingBatchSchedule({
-  courseName = 'Training Program'
-}: UpcomingBatchScheduleProps) {
-  const { openEnrollModal } = useEnroll();
+interface Batch {
+  startDate: string;
+  batchType: string;
+  time: string;
+  status: string;
+  statusColor: string;
+}
 
-  const batches = [
+function getOrdinal(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+function formatDate(d: Date): string {
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  return `${getOrdinal(d.getDate())} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function getDynamicBatches(): Batch[] {
+  const today = new Date();
+  
+  const addDays = (base: Date, days: number): Date => {
+    const d = new Date(base);
+    d.setDate(d.getDate() + days);
+    return d;
+  };
+
+  const dayOfWeek = today.getDay(); // 0: Sun, 1: Mon, ...
+  
+  // Calculate next upcoming weekday batch (at least 2 days in future)
+  let daysToMon = (1 + 7 - dayOfWeek) % 7;
+  if (daysToMon <= 1) daysToMon += 7;
+  
+  const d1 = addDays(today, daysToMon);
+  const d2 = addDays(d1, 2); // Wed
+  
+  // Calculate upcoming weekend batch
+  let daysToSat = (6 + 7 - d2.getDay()) % 7;
+  if (daysToSat === 0) daysToSat = 7;
+  const d3 = addDays(d2, daysToSat); // Sat
+  
+  // Next weekday batch after weekend
+  const d4 = addDays(d3, 2); // Mon
+
+  return [
     {
-      startDate: '10th August 2026',
+      startDate: formatDate(d1),
       batchType: 'Weekdays (Mon-Fri)',
       time: '08:00 AM IST',
       status: 'Enrolling',
       statusColor: 'bg-emerald-50 text-emerald-700 border-emerald-200'
     },
     {
-      startDate: '12th August 2026',
+      startDate: formatDate(d2),
       batchType: 'Weekdays (Mon-Fri)',
       time: '10:00 AM IST',
       status: 'Enrolling',
       statusColor: 'bg-emerald-50 text-emerald-700 border-emerald-200'
     },
     {
-      startDate: '15th August 2026',
+      startDate: formatDate(d3),
       batchType: 'Weekend (Sat-Sun)',
       time: '11:00 AM IST',
       status: 'Limited Seats',
       statusColor: 'bg-amber-50 text-amber-700 border-amber-200 font-extrabold animate-pulse'
     },
     {
-      startDate: '17th August 2026',
+      startDate: formatDate(d4),
       batchType: 'Weekdays (Mon-Fri)',
       time: '06:00 PM IST',
       status: 'Available',
       statusColor: 'bg-blue-50 text-blue-700 border-blue-200'
     }
   ];
+}
+
+export default function UpcomingBatchSchedule({
+  courseName = 'Training Program'
+}: UpcomingBatchScheduleProps) {
+  const { openEnrollModal } = useEnroll();
+  const [batches, setBatches] = useState<Batch[]>(getDynamicBatches);
+
+  useEffect(() => {
+    setBatches(getDynamicBatches());
+  }, []);
 
   return (
     <section className="py-16 bg-white text-slate-900 border-y border-slate-200">

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import EnrollModal from '@/components/common/EnrollModal';
 import coursesData from '@/data/courses.json';
 
@@ -57,13 +58,7 @@ export default function CoursesPage() {
     { q: "Are there EMI options available?", a: "Yes, we offer flexible EMI options with 0% interest for eligible students." },
   ];
 
-  // Upcoming Batches
-  const batches = [
-    { date: "1st August 2026", type: "Weekdays (Mon-Fri)", time: "08:00 AM IST", status: "Enrolling", statusColor: "green" },
-    { date: "3rd August 2026", type: "Weekdays (Mon-Fri)", time: "10:00 AM IST", status: "Enrolling", statusColor: "green" },
-    { date: "5th August 2026", type: "Weekend (Sat-Sun)", time: "11:00 AM IST", status: "Limited Seats", statusColor: "yellow" },
-    { date: "8th August 2026", type: "Weekdays (Mon-Fri)", time: "06:00 PM IST", status: "Available", statusColor: "blue" },
-  ];
+
 
 
   return (
@@ -258,46 +253,7 @@ export default function CoursesPage() {
         </section>
 
         {/* Upcoming Batch Schedule Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-2">Upcoming <span className="text-red-500">Batch Schedule</span></h2>
-              <p className="text-gray-600">Choose a batch that fits your schedule</p>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-md">
-                <thead className="bg-red-600 text-white">
-                  <tr>
-                    <th className="p-3 text-left rounded-tl-xl">Start Date</th>
-                    <th className="p-3 text-left">Batch Type</th>
-                    <th className="p-3 text-left">Time</th>
-                    <th className="p-3 text-left rounded-tr-xl">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {batches.map((batch, idx) => (
-                    <tr key={idx} className="border-b">
-                      <td className="p-3 font-semibold">{batch.date}</td>
-                      <td className="p-3">{batch.type}</td>
-                      <td className="p-3">{batch.time}</td>
-                      <td className="p-3">
-                        <span className={`bg-${batch.statusColor === 'green' ? 'green' : batch.statusColor === 'yellow' ? 'yellow' : 'blue'}-100 text-${batch.statusColor === 'green' ? 'green' : batch.statusColor === 'yellow' ? 'yellow' : 'blue'}-700 px-3 py-1 rounded-full text-xs`}>
-                          {batch.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="text-center mt-6">
-              <p className="text-gray-500 text-sm">Can't find a batch that works for you?</p>
-              <button onClick={() => setIsModalOpen(true)} className="mt-2 text-red-600 font-semibold hover:underline">
-                Request a Custom Batch →
-              </button>
-            </div>
-          </div>
-        </section>
+        <UpcomingBatchSchedule courseName="All Courses" />
 
         {/* Trainer Profile Section */}
         <section className="py-16 bg-gray-50">
