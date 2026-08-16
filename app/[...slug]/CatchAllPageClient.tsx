@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import dynamic from 'next/dynamic';
 
 const EnrollModal = dynamic(() => import('@/components/common/EnrollModal'), {
@@ -1031,56 +1032,7 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
           </div>
           
           {/* Batch Schedule Section */}
-          <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <i className="fas fa-calendar-alt text-blue-500"></i>
-              Upcoming Batch Schedule at {location.name}
-            </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="p-3 text-left">Start Date</th>
-                    <th className="p-3 text-left">Batch Type</th>
-                    <th className="p-3 text-left">Time</th>
-                    <th className="p-3 text-left">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b">
-                    <td className="p-3 font-semibold">1st August 2026</td>
-                    <td className="p-3">Weekdays (Mon-Fri)</td>
-                    <td className="p-3">08:00 AM IST</td>
-                    <td className="p-3"><span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Enrolling</span></td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-3 font-semibold">3rd August 2026</td>
-                    <td className="p-3">Weekdays (Mon-Fri)</td>
-                    <td className="p-3">10:00 AM IST</td>
-                    <td className="p-3"><span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Enrolling</span></td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-3 font-semibold">5th August 2026</td>
-                    <td className="p-3">Weekend (Sat-Sun)</td>
-                    <td className="p-3">11:00 AM IST</td>
-                    <td className="p-3"><span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Limited Seats</span></td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-3 font-semibold">8th August 2026</td>
-                    <td className="p-3">Weekdays (Mon-Fri)</td>
-                    <td className="p-3">06:00 PM IST</td>
-                    <td className="p-3"><span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">Available</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="mt-4 text-center">
-              <p className="text-gray-500 text-sm">Can't find a batch that works for you?</p>
-              <button onClick={() => setIsModalOpen(true)} className="mt-2 text-blue-600 font-semibold hover:underline">
-                Request a Custom Batch →
-              </button>
-            </div>
-          </div>
+          <UpcomingBatchSchedule courseName={location?.name ? `Course at ${location.name}` : 'Training Program'} />
 
           {/* Trainer Profile Section */}
           <div className="bg-white rounded-xl shadow-md p-6 mb-6">
