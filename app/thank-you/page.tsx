@@ -10,7 +10,7 @@ export default function ThankYouPage() {
     // Fire Google Ads Conversion Event when user lands on Thank You page
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-18254186493/QB5FCM3rrdYcEP2Po4BE',
+        send_to: 'AW-18254186493/uXjmCP2z8tocEP2Po4BE',
         value: 1.0,
         currency: 'INR',
       });
