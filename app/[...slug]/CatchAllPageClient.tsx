@@ -190,9 +190,24 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
     { q: `Can I attend a free demo class before registering?`, a: `Absolutely. You can request a free demo session by clicking the 'Book Free Demo' button. Our subject matter expert will guide you through the syllabus and tools covered.` }
   ];
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!leadForm.name || !leadForm.phone) return;
+    try {
+      await fetch('/api/enroll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: leadForm.name,
+          email: leadForm.email || 'N/A',
+          phone: leadForm.phone,
+          program: foundCourse?.name || 'General Inquiry',
+          message: leadForm.message
+        })
+      });
+    } catch (err) {
+      console.error('Error submitting lead:', err);
+    }
     setFormSubmitted(true);
     setTimeout(() => {
       setLeadForm({ name: '', email: '', phone: '', message: '' });

@@ -170,18 +170,21 @@ export async function POST(request: Request) {
 
     // Create a transporter supporting AWS SES SMTP / Custom SMTP
     const smtpHost = process.env.SMTP_HOST || 'email-smtp.ap-south-1.amazonaws.com';
-    const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10);
-    const smtpUser = process.env.SMTP_USER || process.env.EMAIL_USER;
-    const smtpPass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+    const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10);
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
 
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
-      secure: smtpPort === 465, // false for 587 (STARTTLS)
+      secure: smtpPort === 465, // true for 465 (Direct SSL)
       auth: {
         user: smtpUser,
         pass: smtpPass,
       },
+      tls: {
+        rejectUnauthorized: false
+      }
     });
 
     const plainTextBody = `
@@ -282,18 +285,30 @@ Lead Time       ${leadTime}
       </div>
     `;
 
-    // Email options
+    // Email options using verified AWS SES sender
+    const verifiedSender = process.env.EMAIL_FROM || 'office.learnmore@gmail.com';
     const mailOptions = {
-      from: `"${name}" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+      from: `"LearnMore Leads (${name})" <${verifiedSender}>`,
+      to: process.env.EMAIL_TO || 'office.learnmore@gmail.com',
       replyTo: email,
       subject: `New Lead [${sourceDisplay.toUpperCase()}]: ${program} - ${name}`,
       text: plainTextBody,
       html: htmlBody,
     };
 
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    // Attempt to send email notification safely
+    let emailSent = false;
+    try {
+      if (smtpUser && smtpPass) {
+        await transporter.sendMail(mailOptions);
+        emailSent = true;
+        console.log('✅ Enrollment email notification sent successfully!');
+      } else {
+        console.warn('⚠️ SMTP user or password missing. Skipping email notification.');
+      }
+    } catch (emailErr) {
+      console.error('❌ Error sending enrollment email via SMTP:', emailErr);
+    }
 
     // Optional CRM Webhook Forwarding
     if (process.env.CRM_WEBHOOK_URL) {
@@ -311,13 +326,15 @@ Lead Time       ${leadTime}
     return NextResponse.json({
       success: true,
       message: 'Enrollment request and lead attribution processed successfully',
+      emailSent,
       lead: leadData,
     });
   } catch (error: any) {
     console.error('Enrollment email API error:', error);
     return NextResponse.json(
-      { error: 'Failed to send enrollment email.' },
+      { error: 'Failed to process enrollment request.' },
       { status: 500 }
     );
   }
 }
+

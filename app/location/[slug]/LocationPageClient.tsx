@@ -40,9 +40,24 @@ export default function LocationPageClient({ location }: LocationPageClientProps
     { q: `Do you provide placement assistance from this center?`, a: `Yes, Learnmore Technologies provides 100% placement support, recruitment drives, mock interviews, and resume building sessions to all students enrolled at the ${location.name} center.` }
   ];
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!leadForm.name || !leadForm.phone) return;
+    try {
+      await fetch('/api/enroll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: leadForm.name,
+          email: leadForm.email || 'N/A',
+          phone: leadForm.phone,
+          program: leadForm.course || location.name + ' Training',
+          message: leadForm.message
+        })
+      });
+    } catch (err) {
+      console.error('Error submitting lead:', err);
+    }
     setFormSubmitted(true);
     setTimeout(() => {
       setLeadForm({ name: '', email: '', phone: '', course: '', message: '' });
