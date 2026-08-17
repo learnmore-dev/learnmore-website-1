@@ -69,7 +69,7 @@ export default function RootLayout({
             gtag('js', new Date());
 
             gtag('config', 'G-EFTJL2XXQC');
-
+            gtag('config', 'AW-18254186493');
             gtag('config', 'AW-18254186493/QB5FCM3rrdYcEP2Po4BE', {
               phone_conversion_number: '+919036524555'
             });
