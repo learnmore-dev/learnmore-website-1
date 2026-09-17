@@ -178,28 +178,28 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
 
   const faqs = [
     {
-      q: 'Why enroll at LearnMore Technologies for AWS Cloud Training?',
-      a: 'LearnMore Technologies is recognized as the top AWS Cloud Training Institute. Our trainers are Certified AWS Solutions Architects with 14+ years of real-world cloud implementation experience. We offer hands-on lab infrastructure, 100% placement support, and AWS certification guidance.'
+      q: `Why enroll at LearnMore Technologies for AWS Training in ${locName}?`,
+      a: `LearnMore Technologies is recognized as the #1 institute for AWS Training in ${locName}. Our trainers are Certified AWS Solutions Architects with 14+ years of real-world cloud implementation experience. We offer hands-on console lab infrastructure, 100% placement support, and official AWS certification guidance.`
     },
     {
-      q: 'What is the average salary of an AWS Cloud Engineer in India?',
-      a: 'The average starting salary for an entry-level AWS Cloud Engineer ranges from ₹5.0 LPA to ₹9.5 LPA. Certified AWS Solutions Architects with 3-5 years experience frequently earn between ₹12 LPA to ₹26+ LPA.'
+      q: `What is the average salary after completing AWS Training in ${locName}?`,
+      a: `Freshers completing AWS Training in ${locName} start at ₹5.0 LPA to ₹9.5 LPA. Certified AWS Solutions Architects with 3-5 years experience frequently earn between ₹12 LPA to ₹26+ LPA in Bangalore MNCs.`
     },
     {
-      q: 'Is AWS Cloud Training suitable for beginners and non-IT professionals?',
-      a: 'Yes, our AWS Cloud curriculum begins with fundamental networking, Linux commands, and cloud concepts before advancing to VPC design, IAM security, and automation. Over 40% of our successful alumni started from non-technical backgrounds.'
+      q: `Is AWS Training in ${locName} suitable for beginners and non-IT professionals?`,
+      a: `Yes! Our AWS Training in ${locName} starts from fundamental networking, Linux commands, and basic cloud concepts before advancing to VPC design, IAM security, and automation.`
     },
     {
-      q: 'Does LearnMore Technologies assist with AWS Certification (SAA-C03 / Cloud Practitioner)?',
-      a: 'Yes! We provide complete exam preparation, official practice mock tests, dumps reviews, and hands-on scenarios tailored for AWS Certified Cloud Practitioner & Solutions Architect Associate certifications.'
+      q: `Does AWS Training in ${locName} include AWS SAA-C03 Certification support?`,
+      a: `Yes! Our AWS Training in ${locName} provides complete exam preparation, official practice mock tests, and hands-on architecture scenarios.`
     },
     {
-      q: 'What are the training modes available for AWS Training in LearnMore Technologies?',
-      a: 'We offer Classroom Training in Bangalore (Marathahalli & BTM Layout), Live Interactive Online Training, and Weekend Batches for working professionals.'
+      q: `What batch options are available for AWS Training in ${locName}?`,
+      a: `We offer weekday classroom sessions for AWS Training in ${locName}, live online interactive training, and dedicated weekend batches for working professionals.`
     },
     {
-      q: 'Does LearnMore Technologies provide 100% Placement Assistance?',
-      a: 'Yes, we provide 100% Placement Assistance with 300+ active hiring partners including top IT MNCs and cloud consulting firms across India.'
+      q: `Does AWS Training in ${locName} provide 100% Placement Assistance?`,
+      a: `Yes, enrolling in AWS Training in ${locName} includes 100% placement assistance with resume building, mock interviews, and direct referrals to 300+ hiring partner companies.`
     }
   ];
 
@@ -252,21 +252,21 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
             <i className="fas fa-chevron-right text-[10px]"></i>
             <Link href="/course" className="hover:text-amber-400 transition">Courses</Link>
             <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-slate-200">AWS Training Course {location ? `in ${location.name}` : ''}</span>
+            <span className="text-slate-200">AWS Training in {locName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-5">
-                <i className="fab fa-aws"></i> Ranked #1 AWS Training Institute in {locName}
+                <i className="fab fa-aws"></i> Ranked #1 Institute for AWS Training in {locName}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-                Advanced Certification in <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-amber-200 bg-clip-text text-transparent">AWS Cloud Computing</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-4 text-white">
+                AWS Training in <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-amber-200 bg-clip-text text-transparent">{locName}</span>
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg mb-4 leading-relaxed">
-                Master AWS EC2, S3 Storage, VPC Networking, IAM Security, Serverless Lambda, and RDS Databases. Become a certified AWS Solutions Architect in {locName} with 100% Placement Assistance.
+                LearnMore Technologies offers the best <strong>AWS Training in {locName}</strong> with 100% placement assistance. Master AWS EC2, S3 Storage, VPC Networking, IAM Security, Serverless Lambda, and RDS Databases with certified mentors in our <strong>AWS Training in {locName}</strong> program.
               </p>
 
               {/* Urgency & Limited Seats Timer */}
@@ -277,7 +277,7 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
                 <div className="flex items-center gap-1.5 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-amber-400 font-bold shadow-sm">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(3,100+ Reviews on Google)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(3,100+ Reviews for AWS Training in {locName})</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-emerald-400 font-bold shadow-sm">
                   <i className="fas fa-user-check"></i>
@@ -292,30 +292,30 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
               <ul className="space-y-2.5 mb-8 text-slate-200 text-sm">
                 <li className="flex items-center gap-3">
                   <i className="fas fa-check-circle text-emerald-400 text-base"></i>
-                  <span>Learn EC2, VPC, S3, RDS, Lambda, IAM & CloudFormation</span>
+                  <span>Comprehensive EC2, VPC, S3, RDS & Lambda in <strong>AWS Training in {locName}</strong></span>
                 </li>
                 <li className="flex items-center gap-3">
                   <i className="fas fa-check-circle text-emerald-400 text-base"></i>
-                  <span>Certified AWS Solutions Architect Mentors with 14+ Yrs Experience</span>
+                  <span>Certified AWS Solutions Architect Mentors for <strong>AWS Training in {locName}</strong></span>
                 </li>
                 <li className="flex items-center gap-3">
                   <i className="fas fa-check-circle text-emerald-400 text-base"></i>
-                  <span>Official SAA-C03 Certification Exam Prep & 4 Live Architecture Labs</span>
+                  <span>Official SAA-C03 Certification Exam Prep included with <strong>AWS Training in {locName}</strong></span>
                 </li>
               </ul>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openEnrollModal('AWS Cloud Master Program')}
+                  onClick={() => openEnrollModal(`AWS Training in ${locName}`)}
                   className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-extrabold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2 text-sm tracking-wide"
                 >
-                  <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
+                  <i className="fas fa-paper-plane"></i> Enroll for AWS Training in {locName}
                 </button>
                 <button
-                  onClick={() => openEnrollModal('AWS Cloud Master Program - Syllabus')}
+                  onClick={() => openEnrollModal(`AWS Training Syllabus - ${locName}`)}
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2 text-sm"
                 >
-                  <i className="fas fa-file-download"></i> Download Detailed Syllabus (PDF)
+                  <i className="fas fa-file-download"></i> Download AWS Training in {locName} Syllabus
                 </button>
               </div>
             </div>
@@ -324,7 +324,7 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
               <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 relative text-slate-800 border-2 border-amber-100/80 overflow-hidden">
                 <div className="text-center pb-5 mb-5 border-b border-slate-100">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-[11px] font-extrabold uppercase tracking-wider mb-2 border border-amber-200/60 shadow-2xs">
-                    🔥 Limited Seats • 100% Placement Call Guarantee
+                    🔥 Limited Seats • 100% Placement Support
                   </span>
                   <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight leading-tight">
                     Book Free AWS Counselling
@@ -418,6 +418,36 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
             <div className="p-4">
               <p className="text-3xl md:text-4xl font-black text-emerald-600 mb-1">15+ Years</p>
               <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Excellence</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content Section for AWS Training */}
+      <section className="py-16 bg-slate-100/70 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 border-b pb-4">
+              Best AWS Training in {locName} – LearnMore Technologies
+            </h2>
+            <div className="space-y-4 text-slate-700 text-base leading-relaxed">
+              <p>
+                Are you searching for the top-rated <strong>AWS Training in {locName}</strong>? LearnMore Technologies offers industry-leading <strong>AWS Training in {locName}</strong> designed for freshers, system administrators, software developers, and cloud aspirants. Our <strong>AWS Training in {locName}</strong> delivers comprehensive hands-on exposure to Amazon Web Services, including EC2 instances, S3 object storage, VPC networking, IAM security policies, Lambda serverless, and RDS databases.
+              </p>
+              <p>
+                Enrolling in our <strong>AWS Training in {locName}</strong> offers 100% practical lab-driven learning guided by certified AWS Solutions Architects. Our <strong>AWS Training in {locName}</strong> program is specifically structured to help candidates pass the official AWS Certified Solutions Architect Associate (SAA-C03) exam and secure high-paying cloud engineering jobs across Bangalore IT MNCs.
+              </p>
+              <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">
+                Why Join Our AWS Training in {locName}?
+              </h3>
+              <ul className="grid md:grid-cols-2 gap-3 font-semibold text-slate-800">
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-amber-500"></i> 100% Practical AWS Cloud Labs in <strong>AWS Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-amber-500"></i> Certified AWS Solutions Architect Mentors for <strong>AWS Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-amber-500"></i> 100% Placement Support with <strong>AWS Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-amber-500"></i> Real-time Capstone Projects in <strong>AWS Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-amber-500"></i> ISO 9001:2015 Certification in <strong>AWS Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-amber-500"></i> Flexible Batches for <strong>AWS Training in {locName}</strong></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -740,10 +770,10 @@ export default function AwsTrainingClient({ location }: AwsTrainingClientProps =
                 <tr className="hover:bg-slate-50 transition">
                   <td className="py-5 px-6 font-bold text-slate-900">Placement Assistance & Calls</td>
                   <td className="py-5 px-6 bg-amber-50/50 border-l border-r border-amber-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Support & 300+ Active Partner Tie-ups
                   </td>
                   <td className="py-5 px-6 text-slate-500">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without placement support
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-50 transition">

@@ -222,21 +222,21 @@ export default function DataAnalyticsTrainingClient({ location }: DataAnalyticsT
             <i className="fas fa-chevron-right text-[10px]"></i>
             <Link href="/course" className="hover:text-emerald-400 transition">Courses</Link>
             <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-slate-200">Data Analytics Course {location ? `in ${location.name}` : ''}</span>
+            <span className="text-slate-200">Data Analytics Training in {locName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-5">
-                <i className="fas fa-award"></i> Ranked #1 Data Analytics Institute in {locName}
+                <i className="fas fa-award"></i> Ranked #1 Institute for Data Analytics Training in {locName}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-                Advanced Certification in <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent">Data Analytics</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-4 text-white">
+                Data Analytics Training in <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent">{locName}</span>
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg mb-4 leading-relaxed">
-                Master Advanced Excel, SQL Databases, Power BI, Tableau, and Python for Data Analysis. Become a job-ready Data Analyst in {locName} with 100% Placement Assistance.
+                LearnMore Technologies offers the best <strong>Data Analytics Training in {locName}</strong> with 100% placement assistance. Master Advanced Excel, SQL Databases, Power BI, Tableau, and Python for Data Analysis in our hands-on <strong>Data Analytics Training in {locName}</strong>.
               </p>
 
               {/* Urgency & Limited Seats Timer */}
@@ -247,7 +247,7 @@ export default function DataAnalyticsTrainingClient({ location }: DataAnalyticsT
                 <div className="flex items-center gap-1.5 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-amber-400 font-bold shadow-sm">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(2,800+ Reviews on Google)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(2,800+ Reviews for Data Analytics Training in {locName})</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-emerald-400 font-bold shadow-sm">
                   <i className="fas fa-user-check"></i>
@@ -259,18 +259,33 @@ export default function DataAnalyticsTrainingClient({ location }: DataAnalyticsT
                 </div>
               </div>
 
+              <ul className="space-y-2.5 mb-8 text-slate-200 text-sm">
+                <li className="flex items-center gap-3">
+                  <i className="fas fa-check-circle text-emerald-400 text-base"></i>
+                  <span>Learn Advanced Excel, SQL, Power BI, Tableau & Python in <strong>Data Analytics Training in {locName}</strong></span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <i className="fas fa-check-circle text-emerald-400 text-base"></i>
+                  <span>Senior Data Analysts & BI Consultants for <strong>Data Analytics Training in {locName}</strong></span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <i className="fas fa-check-circle text-emerald-400 text-base"></i>
+                  <span>Real-time Business Dashboards & Capstone Projects included in <strong>Data Analytics Training in {locName}</strong></span>
+                </li>
+              </ul>
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openEnrollModal('Data Analytics Master Program')}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold px-8 py-4 rounded-xl shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2 text-sm tracking-wide"
+                  onClick={() => openEnrollModal(`Data Analytics Training in ${locName}`)}
+                  className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold px-8 py-4 rounded-xl shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2 text-sm tracking-wide"
                 >
-                  <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
+                  <i className="fas fa-paper-plane"></i> Enroll for Data Analytics Training in {locName}
                 </button>
                 <button
-                  onClick={() => openEnrollModal('Data Analytics Master Program - Syllabus')}
+                  onClick={() => openEnrollModal(`Data Analytics Training Syllabus - ${locName}`)}
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2 text-sm"
                 >
-                  <i className="fas fa-file-download"></i> Download Detailed Syllabus (PDF)
+                  <i className="fas fa-file-download"></i> Download Data Analytics Training in {locName} Syllabus
                 </button>
               </div>
             </div>
@@ -279,7 +294,7 @@ export default function DataAnalyticsTrainingClient({ location }: DataAnalyticsT
               <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 relative text-slate-800 border-2 border-emerald-100/80 overflow-hidden">
                 <div className="text-center pb-5 mb-5 border-b border-slate-100">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-extrabold uppercase tracking-wider mb-2 border border-emerald-200/60 shadow-2xs">
-                    🔥 Limited Seats • 100% Placement Call Guarantee
+                    🔥 Limited Seats • 100% Placement Support
                   </span>
                   <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight leading-tight">
                     Book Free Career Counselling
@@ -535,10 +550,10 @@ export default function DataAnalyticsTrainingClient({ location }: DataAnalyticsT
                 <tr className="hover:bg-slate-50 transition">
                   <td className="py-5 px-6 font-bold text-slate-900">Placement Assistance & Calls</td>
                   <td className="py-5 px-6 bg-emerald-50/50 border-l border-r border-emerald-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Support & 300+ Active Partner Tie-ups
                   </td>
                   <td className="py-5 px-6 text-slate-500">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without placement support
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-50 transition">

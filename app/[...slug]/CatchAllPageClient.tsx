@@ -31,6 +31,21 @@ import DevOpsTrainingClient from '../devops-training-course/DevOpsTrainingClient
 import SoftwareTestingTrainingClient from '../software-testing-training-course/SoftwareTestingTrainingClient';
 import JavaTrainingClient from '../java-training-course/JavaTrainingClient';
 import JavaFullStackTrainingClient from '../java-fullstack-training-course/JavaFullStackTrainingClient';
+import AzureTrainingClient from '../azure-training-course/AzureTrainingClient';
+import DataScienceTrainingClient from '../data-science-training-course/DataScienceTrainingClient';
+import DataEngineeringTrainingClient from '../data-engineering-training-course/DataEngineeringTrainingClient';
+import PowerBiTrainingClient from '../power-bi-training-course/PowerBiTrainingClient';
+import ReactTrainingClient from '../react-training-course/ReactTrainingClient';
+import DigitalMarketingTrainingClient from '../digital-marketing-training-course/DigitalMarketingTrainingClient';
+import CybersecurityTrainingClient from '../cybersecurity-training-course/CybersecurityTrainingClient';
+import AgenticAiTrainingClient from '../agentic-ai-training-course/AgenticAiTrainingClient';
+import GenerativeAITrainingClient from '../generative-ai-training-course/GenerativeAITrainingClient';
+import SnowflakeTrainingClient from '../snowflake-training-course/SnowflakeTrainingClient';
+import DbtTrainingClient from '../dbt-training-course/DbtTrainingClient';
+import AnthropicTrainingClient from '../anthropic-training-course/AnthropicTrainingClient';
+import SapTrainingClient from '../sap-training-course/SapTrainingClient';
+import AimlEngineeringTrainingClient from '../aiml-engineering-training-course/AimlEngineeringTrainingClient';
+import MobileAppDevTrainingClient from '../mobile-app-development-training-course/MobileAppDevTrainingClient';
 
 export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -114,6 +129,51 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
   }
   if (courseKey === 'java-fullstack-training-course' || courseKey === 'java-fullstack') {
     return <JavaFullStackTrainingClient location={location} />;
+  }
+  if (courseKey === 'azure-training-course' || courseKey === 'azure') {
+    return <AzureTrainingClient location={location} />;
+  }
+  if (courseKey === 'data-science-training-course' || courseKey === 'data-science' || courseKey === 'data-science-ai') {
+    return <DataScienceTrainingClient location={location} />;
+  }
+  if (courseKey === 'data-engineering-training-course' || courseKey === 'data-engineering') {
+    return <DataEngineeringTrainingClient location={location} />;
+  }
+  if (courseKey === 'power-bi-training-course' || courseKey === 'power-bi' || courseKey === 'powerbi') {
+    return <PowerBiTrainingClient location={location} />;
+  }
+  if (courseKey === 'react-training-course' || courseKey === 'react' || courseKey === 'reactjs') {
+    return <ReactTrainingClient location={location} />;
+  }
+  if (courseKey === 'digital-marketing-training-course' || courseKey === 'digital-marketing') {
+    return <DigitalMarketingTrainingClient location={location} />;
+  }
+  if (courseKey === 'cybersecurity-training-course' || courseKey === 'cybersecurity') {
+    return <CybersecurityTrainingClient location={location} />;
+  }
+  if (courseKey === 'agentic-ai-training-course' || courseKey === 'agentic-ai') {
+    return <AgenticAiTrainingClient location={location} />;
+  }
+  if (courseKey === 'generative-ai-training-course' || courseKey === 'generative-ai' || courseKey === 'genai') {
+    return <GenerativeAITrainingClient location={location} />;
+  }
+  if (courseKey === 'snowflake-training-course' || courseKey === 'snowflake') {
+    return <SnowflakeTrainingClient location={location} />;
+  }
+  if (courseKey === 'dbt-training-course' || courseKey === 'dbt') {
+    return <DbtTrainingClient location={location} />;
+  }
+  if (courseKey === 'anthropic-training-course' || courseKey === 'anthropic' || courseKey === 'claude') {
+    return <AnthropicTrainingClient location={location} />;
+  }
+  if (courseKey === 'sap-training-course' || courseKey === 'sap') {
+    return <SapTrainingClient location={location} />;
+  }
+  if (courseKey === 'aiml-engineering-training-course' || courseKey === 'aiml-engineering' || courseKey === 'aiml') {
+    return <AimlEngineeringTrainingClient location={location} />;
+  }
+  if (courseKey === 'mobile-app-development-training-course' || courseKey === 'mobile-app-development' || courseKey === 'flutter' || courseKey === 'react-native') {
+    return <MobileAppDevTrainingClient location={location} />;
   }
   
   // કોર્સ ડેટા લોડ કરો
@@ -262,11 +322,13 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                     <i className={`${foundCourse.icon} text-5xl md:text-6xl`}></i>
                   </div>
                   <div>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{foundCourse.name}</h1>
-                    <p className="text-white/80 mt-2 text-lg md:text-xl">Training at {location.name}</p>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">{foundCourse.name} Training in {location.name}</h1>
+                    <p className="text-white/90 mt-2 text-base md:text-lg font-semibold">Best {foundCourse.name} Training Institute in {location.name} with 100% Placements</p>
                   </div>
                 </div>
-                <p className="text-white/80 mb-8 leading-relaxed text-base md:text-lg">{foundCourse.shortDesc}</p>
+                <p className="text-white/80 mb-8 leading-relaxed text-base md:text-lg">
+                  Join top-rated <strong>{foundCourse.name} Training in {location.name}</strong> at Learnmore Technologies. Master real-world projects with industry expert mentors in {location.name}.
+                </p>
                 
                 {/* Stats */}
           <div className="flex gap-4 flex-wrap mb-8">
@@ -290,13 +352,13 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                     onClick={() => setIsModalOpen(true)} 
                     className={`bg-white ${colors.text} px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg text-base md:text-lg`}
                   >
-                    <i className="fas fa-graduation-cap mr-2"></i> Enroll Now at {location.name}
+                    <i className="fas fa-graduation-cap mr-2"></i> Enroll for {foundCourse.name} Training in {location.name}
                   </button>
                   <button 
                     onClick={handleDownloadSyllabus}
                     className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-gray-800 transition text-base md:text-lg shadow-lg"
                   >
-                    <i className="fas fa-download mr-2"></i> Download Syllabus
+                    <i className="fas fa-download mr-2"></i> Download Syllabus PDF
                   </button>
                 </div>
               </div>
@@ -307,7 +369,7 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                   <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
                     <Image
                       src={foundCourse.image || '/images/courses/placeholder-course.webp'}
-                      alt={`${foundCourse.name} Training`}
+                      alt={`${foundCourse.name} Training in ${location.name}`}
                       fill
                       className="object-cover"
                       onError={(e) => {
@@ -317,8 +379,8 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                   </div>
                   <div className="text-center mt-5">
                     <i className={`${foundCourse.icon} text-5xl mb-3`}></i>
-                    <p className="text-xl font-bold">Certified Training Program</p>
-                    <p className="text-white/70 text-base">Industry Recognized Certification</p>
+                    <p className="text-xl font-bold">{foundCourse.name} Training in {location.name}</p>
+                    <p className="text-white/70 text-base">ISO Certified Training Program</p>
                     <div className="flex justify-center gap-8 mt-5">
                       <div className="text-center">
                         <p className="text-2xl font-bold">₹{price.toLocaleString()}</p>
@@ -389,14 +451,38 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
                   <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
                     <h2 className="text-xl font-bold mb-3 flex items-center gap-2 text-gray-800">
                       <i className={`${foundCourse.icon} ${colors.text}`}></i>
-                      About the Course
+                      About {foundCourse.name} Training in {location.name}
                     </h2>
-                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">{fullDescription}</p>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base mb-4">{fullDescription}</p>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                      Learnmore Technologies is recognized as the leading institute offering <strong>{foundCourse.name} Training in {location.name}</strong>. Our top-ranked <strong>{foundCourse.name} Training in {location.name}</strong> course features real-world projects, hands-on lab sessions, and 100% placement support for freshers and experienced professionals in {location.name}.
+                    </p>
+                  </div>
+
+                  {/* SEO On-Page Content Card */}
+                  <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+                    <h2 className="text-xl font-bold mb-3 text-gray-800">
+                      Why Choose LearnMore for {foundCourse.name} Training in {location.name}?
+                    </h2>
+                    <div className="space-y-3 text-gray-700 text-sm md:text-base leading-relaxed">
+                      <p>
+                        Are you looking for the best <strong>{foundCourse.name} Training in {location.name}</strong>? LearnMore Technologies provides comprehensive <strong>{foundCourse.name} Training in {location.name}</strong> designed by industry experts with 10+ years of hands-on experience.
+                      </p>
+                      <p>
+                        Our <strong>{foundCourse.name} Training in {location.name}</strong> covers foundational to advanced concepts, ensuring candidates gain practical expertise on industry standard tools. Completing <strong>{foundCourse.name} Training in {location.name}</strong> unlocks rewarding job opportunities in top IT MNCs across Bangalore.
+                      </p>
+                      <ul className="grid md:grid-cols-2 gap-2 mt-4 text-sm font-medium">
+                        <li className="flex items-center gap-2"><i className="fas fa-check text-green-500"></i> 100% Practical <strong>{foundCourse.name} Training in {location.name}</strong></li>
+                        <li className="flex items-center gap-2"><i className="fas fa-check text-green-500"></i> ISO 9001 Certification in <strong>{foundCourse.name} Training in {location.name}</strong></li>
+                        <li className="flex items-center gap-2"><i className="fas fa-check text-green-500"></i> Flexible Batches for <strong>{foundCourse.name} Training in {location.name}</strong></li>
+                        <li className="flex items-center gap-2"><i className="fas fa-check text-green-500"></i> Dedicated Placement Support for <strong>{foundCourse.name} Training in {location.name}</strong></li>
+                      </ul>
+                    </div>
                   </div>
                   
                   {/* What You'll Learn Card */}
                   <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-gray-100 p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
-                    <h2 className="text-xl font-bold mb-3 text-gray-800">What You'll Learn</h2>
+                    <h2 className="text-xl font-bold mb-3 text-gray-800">What You'll Learn in {foundCourse.name} Training in {location.name}</h2>
                     <div className="grid md:grid-cols-2 gap-3">
                       {features.map((feature: string, idx: number) => (
                         <div key={idx} className="flex items-start gap-2 text-sm">
@@ -799,18 +885,13 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
           <div className="bg-white rounded-xl shadow-md p-6 mb-6">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <i className="fas fa-bullseye text-blue-500"></i>
-              Course Objective
+              Objective of {foundCourse.name} Training in {location.name}
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The primary objective of this {foundCourse.name} is to equip you with comprehensive 
-              scripting techniques through extensive hands-on sessions. Our curriculum is designed 
-              to cater to both beginners and experienced professionals, ensuring a solid foundation 
-              in core concepts before advancing to complex topics.
+              The primary objective of our <strong>{foundCourse.name} Training in {location.name}</strong> is to equip you with comprehensive real-world skills through extensive hands-on sessions. Our <strong>{foundCourse.name} Training in {location.name}</strong> curriculum is designed to cater to both freshers and experienced professionals.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Whether you're from a non-Computer Science background or an experienced developer, 
-              our structured approach ensures you grasp essential OOPS concepts and programming 
-              fundamentals before diving deep into {foundCourse.name.split(' ')[0]} technologies.
+              Whether you are from a CS or non-CS background, our structured <strong>{foundCourse.name} Training in {location.name}</strong> ensures you master key programming concepts and practical tools required by top companies in Bangalore.
             </p>
           </div>
 
@@ -818,22 +899,19 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
           <div className="bg-white rounded-xl shadow-md p-6 mb-6">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <i className="fas fa-star text-yellow-500"></i>
-              Why Our {foundCourse.name} Stands Out
+              Why Our {foundCourse.name} Training in {location.name} Stands Out
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Our syllabus is uniquely crafted by industry experts with decades of experience 
-              in leading IT companies across Bangalore. We've designed this program specifically 
-              for:
+              Our <strong>{foundCourse.name} Training in {location.name}</strong> syllabus is uniquely crafted by industry experts with decades of experience in leading IT MNCs. We have tailored <strong>{foundCourse.name} Training in {location.name}</strong> specifically for:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-4">
-              <li>Fresh graduates looking to start their IT career</li>
-              <li>Working professionals wanting to upskill or switch careers</li>
-              <li>Students with basic programming knowledge seeking advanced expertise</li>
-              <li>Entrepreneurs wanting to understand technology for their business</li>
+              <li>Fresh graduates enrolling for <strong>{foundCourse.name} Training in {location.name}</strong> to kickstart their IT career</li>
+              <li>Working professionals choosing <strong>{foundCourse.name} Training in {location.name}</strong> for domain upgrade or career switch</li>
+              <li>Students seeking high-level expertise through <strong>{foundCourse.name} Training in {location.name}</strong></li>
+              <li>Entrepreneurs building technical skills with <strong>{foundCourse.name} Training in {location.name}</strong></li>
             </ul>
             <p className="text-gray-700 leading-relaxed">
-              All course materials, assignments, and project guides are provided at no additional cost, 
-              ensuring you have everything you need to succeed.
+              All learning materials, project repositories, and exam prep guides are included free with <strong>{foundCourse.name} Training in {location.name}</strong>.
             </p>
           </div>
 
@@ -841,11 +919,10 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
           <div className="bg-white rounded-xl shadow-md p-6 mb-6">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <i className="fas fa-briefcase text-green-500"></i>
-              Job Opportunities After {foundCourse.name}
+              Job Opportunities After {foundCourse.name} Training in {location.name}
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              {foundCourse.name.split(' ')[0]} is one of the most in-demand technologies globally, 
-              with applications across multiple domains:
+              Completing <strong>{foundCourse.name} Training in {location.name}</strong> opens doors to numerous high-paying job roles across major IT companies:
             </p>
             
             {/* Domains Grid */}

@@ -177,12 +177,24 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
 
   const faqs = [
     {
-      q: 'Why enroll at LearnMore Technologies for Python Training?',
-      a: 'LearnMore Technologies is recognized as the top Python Training Institute in Bangalore. Our trainers are senior Python developers with 12+ years of industry experience. We focus 100% on hands-on practical coding, real projects, and 100% placement support.'
+      q: `Why enroll at LearnMore Technologies for Python Training in ${locName}?`,
+      a: `LearnMore Technologies is recognized as the top institute for Python Training in ${locName}. Our trainers are senior Python developers with 12+ years of industry experience, offering 100% practical coding, live projects, and 100% placement support in Python Training in ${locName}.`
     },
     {
-      q: 'What is the average salary of a Python Developer fresher in India?',
-      a: 'The average starting salary for a fresher Python Developer ranges from ₹4.5 LPA to ₹7.5 LPA. Experienced Python engineers with 2-4 years experience earn between ₹9 LPA to ₹18+ LPA.'
+      q: `What is the average salary after Python Training in ${locName}?`,
+      a: `Freshers completing Python Training in ${locName} start at ₹4.5 LPA to ₹7.5 LPA. Experienced Python engineers with 2-4 years experience earn between ₹9 LPA to ₹18+ LPA in Bangalore IT companies.`
+    },
+    {
+      q: `Is Python Training in ${locName} suitable for non-IT professionals?`,
+      a: `Yes! Our Python Training in ${locName} requires zero prior programming knowledge as we teach right from basic syntax, data types, and logical building to advanced OOPs.`
+    },
+    {
+      q: `What are the batch timings for Python Training in ${locName}?`,
+      a: `We offer morning, evening, and weekend batches for Python Training in ${locName} to suit both fresh graduates and working professionals.`
+    },
+    {
+      q: `Does Python Training in ${locName} include real-time project work?`,
+      a: `Yes! Enrolling in Python Training in ${locName} includes building real-world automation scripts, web scrapers, and database applications.`
     }
   ];
 
@@ -208,21 +220,21 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
             <i className="fas fa-chevron-right text-[10px]"></i>
             <Link href="/course" className="hover:text-amber-400 transition">Courses</Link>
             <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-slate-200">Python Training Course {location ? `in ${location.name}` : ''}</span>
+            <span className="text-slate-200">Python Training in {locName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-5">
-                <i className="fab fa-python"></i> Ranked #1 Python Training Institute in {locName}
+                <i className="fab fa-python"></i> Ranked #1 Python Training in {locName} | 100% Placement
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-                Advanced Certification in <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-200 bg-clip-text text-transparent">Python Programming</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
+                Best <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-200 bg-clip-text text-transparent">Python Training in {locName}</span> - 100% Placement Assistance
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg mb-4 leading-relaxed">
-                Master Core & Advanced Python, Object-Oriented Programming (OOPs), Data Structures, File I/O, SQL Integration, and Web Scraping in {locName} with 100% Placement Assistance.
+                Join the premier <strong>Python Training in {locName}</strong> at LearnMore Technologies. Master Core & Advanced Python 3.12, Object-Oriented Programming (OOPs), Data Structures, SQL Database connectivity, File I/O, and Web Scraping with top industry mentors offering dedicated <strong>Python Training in {locName}</strong>.
               </p>
 
               {/* Urgency & Limited Seats Timer */}
@@ -233,11 +245,11 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                 <div className="flex items-center gap-1.5 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-amber-400 font-bold shadow-sm">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(2,900+ Reviews on Google)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(2,900+ Google Reviews)</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/90 border border-slate-700/80 px-3.5 py-2 rounded-xl text-emerald-400 font-bold shadow-sm">
                   <i className="fas fa-user-check"></i>
-                  <span>100% Placement Assistance</span>
+                  <span>100% Placement Call Support</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/90 border border-amber-500/30 px-3.5 py-2 rounded-xl text-amber-300 font-bold shadow-sm">
                   <i className="fas fa-credit-card text-amber-400"></i>
@@ -247,16 +259,16 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openEnrollModal('Python Master Program')}
+                  onClick={() => openEnrollModal(`Python Training in ${locName}`)}
                   className="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-extrabold px-8 py-4 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2 text-sm tracking-wide"
                 >
-                  <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
+                  <i className="fas fa-paper-plane"></i> Apply for Python Training in {locName}
                 </button>
                 <button
-                  onClick={() => openEnrollModal('Python Master Program - Syllabus')}
+                  onClick={() => openEnrollModal(`Python Training in ${locName} - Syllabus`)}
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2 text-sm"
                 >
-                  <i className="fas fa-file-download"></i> Download Detailed Syllabus (PDF)
+                  <i className="fas fa-file-download"></i> Download Python Syllabus (PDF)
                 </button>
               </div>
             </div>
@@ -264,7 +276,7 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
             <div className="lg:col-span-5">
               <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 relative text-slate-800 border-2 border-amber-100 overflow-hidden">
                 <div className="text-center pb-5 mb-5 border-b border-slate-100">
-                  <h3 className="text-xl md:text-2xl font-black text-slate-900">Book Free Python Counselling</h3>
+                  <h3 className="text-xl md:text-2xl font-black text-slate-900">Book Free Demo for Python Training in {locName}</h3>
                 </div>
 
                 <form onSubmit={handleInlineSubmit} className="space-y-4">
@@ -305,9 +317,9 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                   <button
                     type="submit"
                     disabled={isInlineSubmitting}
-                    className="w-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold py-3.5 rounded-xl transition text-sm"
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold py-3.5 rounded-xl transition text-sm shadow-md"
                   >
-                    Book Free Counselling Session
+                    {isInlineSubmitting ? 'Submitting...' : `Book Demo for Python Training in ${locName}`}
                   </button>
                 </form>
               </div>
@@ -322,11 +334,11 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-4 border-r border-slate-100 last:border-0">
               <p className="text-3xl md:text-4xl font-black text-amber-600 mb-1">15,800+</p>
-              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Python Students Trained</p>
+              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Students in Python Training in {locName}</p>
             </div>
             <div className="p-4 border-r border-slate-100 last:border-0">
               <p className="text-3xl md:text-4xl font-black text-yellow-600 mb-1">8,900+</p>
-              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Placed Alumni</p>
+              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Placed Alumni in {locName}</p>
             </div>
             <div className="p-4 border-r border-slate-100 last:border-0">
               <p className="text-3xl md:text-4xl font-black text-blue-600 mb-1">300+</p>
@@ -340,6 +352,64 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
         </div>
       </section>
 
+      {/* On-Page SEO Content Block */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div className="max-w-4xl">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-900 font-extrabold text-xs uppercase tracking-wider mb-4">
+                BEST PYTHON TRAINING IN {locName.toUpperCase()}
+              </span>
+              <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-6 leading-snug">
+                Why LearnMore is the #1 Center for Python Training in {locName}?
+              </h2>
+              <div className="prose prose-slate max-w-none text-slate-600 text-base leading-relaxed space-y-4">
+                <p>
+                  If you are searching for the best <strong>Python Training in {locName}</strong>, LearnMore Technologies provides an industry-leading practical curriculum. Our <strong>Python Training in {locName}</strong> is designed to transform beginners and non-IT graduates into job-ready software developers with hands-on coding experience.
+                </p>
+                <p>
+                  At LearnMore Technologies, our <strong>Python Training in {locName}</strong> covers Core Python programming, Object-Oriented Programming (OOPs), Data Structures, List Comprehensions, File I/O, Web Scraping with BeautifulSoup, and MySQL database connectivity. Every student taking <strong>Python Training in {locName}</strong> works on live industry projects under the guidance of senior software architects.
+                </p>
+                <p>
+                  With flexible morning, evening, and weekend batches, our <strong>Python Training in {locName}</strong> offers both offline classroom learning and live interactive online training. Join <strong>Python Training in {locName}</strong> today to secure 100% placement calls with top tech companies.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-slate-100">
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-amber-50/60 border border-amber-100">
+                  <i className="fas fa-certificate text-amber-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">ISO Certified Certification</h4>
+                    <p className="text-[11px] text-slate-500">Python Training in {locName}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
+                  <i className="fas fa-user-tie text-emerald-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">12+ Yrs Senior Architects</h4>
+                    <p className="text-[11px] text-slate-500">Python Experts in {locName}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-blue-50/60 border border-blue-100">
+                  <i className="fas fa-briefcase text-blue-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">100% Placement Support</h4>
+                    <p className="text-[11px] text-slate-500">300+ Active Hiring Partners</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-purple-50/60 border border-purple-100">
+                  <i className="fas fa-laptop-code text-purple-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">100% Practical Coding</h4>
+                    <p className="text-[11px] text-slate-500">Real Projects in {locName}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Python Tools & Tech */}
       <section className="py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -348,7 +418,7 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
               PYTHON TECH STACK
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900">
-              Python Tools & Libraries You Will Master
+              Python Training in {locName} - Tools & Libraries Covered
             </h2>
           </div>
 
@@ -371,8 +441,11 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
-              Comprehensive Python Curriculum
+              Comprehensive Curriculum for Python Training in {locName}
             </h2>
+            <p className="text-slate-600 text-base">
+              Designed by senior software engineers to take you from Python basics to enterprise mastery in {locName}.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -400,7 +473,7 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
               PRACTICAL PYTHON PROJECTS
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900">
-              Live Capstone Projects You Will Build
+              Live Capstone Projects in Python Training in {locName}
             </h2>
           </div>
 
@@ -436,13 +509,13 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                 GLOBALLY RECOGNIZED CERTIFICATE
               </span>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight mb-4">
-                Earn ISO 9001:2015 Certified Python Professional Certification
+                Earn ISO 9001:2015 Certificate in Python Training in {locName}
               </h2>
               <p className="text-slate-300 text-base leading-relaxed mb-6">
-                Receive an official, lifetime-valid LearnMore Technologies Python Professional Certificate accredited by international quality standards.
+                Receive an official, lifetime-valid LearnMore Technologies Professional Certificate upon completing <strong>Python Training in {locName}</strong>.
               </p>
               <button
-                onClick={() => openEnrollModal('Python Certification Sample Request')}
+                onClick={() => openEnrollModal(`Python Training in ${locName} - Sample Request`)}
                 className="bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-lg transition text-sm inline-flex items-center gap-2"
               >
                 <i className="fas fa-award"></i> View Sample Certificate
@@ -454,9 +527,9 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                   <i className="fas fa-award"></i>
                 </div>
                 <h3 className="text-xl font-black text-white mb-2">LearnMore Technologies</h3>
-                <p className="text-xs text-amber-300 font-extrabold uppercase tracking-widest mb-4">Python Professional Certified</p>
+                <p className="text-xs text-amber-300 font-extrabold uppercase tracking-widest mb-4">Python Training in {locName} Certified</p>
                 <div className="pt-4 border-t border-slate-700 text-[11px] text-slate-400 font-mono">
-                  VERIFIED CERTIFICATE ID: LMT-PY-2026
+                  VERIFIED CERTIFICATE ID: LMT-PY-{locName.toUpperCase().replace(/\s+/g, '-')}-2026
                 </div>
               </div>
             </div>
@@ -472,10 +545,10 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
               WHY WE ARE #1
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-              LearnMore Technologies vs Other Training Institutes
+              Python Training in {locName}: LearnMore vs Other Institutes
             </h2>
             <p className="text-slate-600 mt-2 text-base">
-              See why thousands of students and working professionals choose LearnMore Technologies for genuine career transformation.
+              See why students choose LearnMore Technologies for <strong>Python Training in {locName}</strong> over local institutes.
             </p>
           </div>
 
@@ -487,17 +560,17 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                   <th className="py-5 px-6 bg-amber-50 text-amber-900 font-extrabold border-t-2 border-l border-r border-amber-300 w-1/3 text-base">
                     <div className="flex items-center gap-2">
                       <i className="fas fa-crown text-amber-500 text-lg"></i>
-                      <span>LearnMore Technologies</span>
+                      <span>LearnMore ({locName})</span>
                     </div>
                   </th>
-                  <th className="py-5 px-6 text-slate-500 font-bold w-1/3">Other Local Institutes</th>
+                  <th className="py-5 px-6 text-slate-500 font-bold w-1/3">Other Institutes in {locName}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 text-sm bg-white">
                 <tr className="hover:bg-slate-50 transition">
                   <td className="py-5 px-6 font-bold text-slate-900">Trainer Expertise & Background</td>
                   <td className="py-5 px-6 bg-amber-50/50 border-l border-r border-amber-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> Senior Python Architects with 12+ Yrs Software Engineering Background
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> Senior Python Architects in {locName} with 12+ Yrs Software Engineering Background
                   </td>
                   <td className="py-5 px-6 text-slate-500">
                     <i className="fas fa-times-circle mr-2 text-rose-500"></i> Junior trainers or freshers with theoretical knowledge only
@@ -506,7 +579,7 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                 <tr className="hover:bg-slate-50 transition">
                   <td className="py-5 px-6 font-bold text-slate-900">Practical & Lab Sessions</td>
                   <td className="py-5 px-6 bg-amber-50/50 border-l border-r border-amber-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Practical Python Coding, Scrapers & Scripting Labs
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Practical Python Coding, Scrapers & Scripting Labs in {locName}
                   </td>
                   <td className="py-5 px-6 text-slate-500">
                     <i className="fas fa-times-circle mr-2 text-rose-500"></i> Heavy PowerPoint slides with minimal lab practice time
@@ -515,10 +588,10 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                 <tr className="hover:bg-slate-50 transition">
                   <td className="py-5 px-6 font-bold text-slate-900">Placement Assistance & Calls</td>
                   <td className="py-5 px-6 bg-amber-50/50 border-l border-r border-amber-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> 100% Placement Support & 300+ Active Partner Tie-ups
                   </td>
                   <td className="py-5 px-6 text-slate-500">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without placement support
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-50 transition">
@@ -533,19 +606,10 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
                 <tr className="hover:bg-slate-50 transition">
                   <td className="py-5 px-6 font-bold text-slate-900">Batch Flexibility & Session Access</td>
                   <td className="py-5 px-6 bg-amber-50/50 border-l border-r border-amber-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> Classroom (Bangalore), Online, Weekend + Lifetime Recording Access
+                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> Classroom ({locName}), Online, Weekend + Lifetime Recording Access
                   </td>
                   <td className="py-5 px-6 text-slate-500">
                     <i className="fas fa-times-circle mr-2 text-rose-500"></i> Rigid batch timings with limited/no class recordings
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition">
-                  <td className="py-5 px-6 font-bold text-slate-900">Certification Accreditation</td>
-                  <td className="py-5 px-6 bg-amber-50/50 border-l border-r border-amber-200 text-emerald-700 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-600"></i> ISO 9001:2015 Globally Recognized Industry Certification
-                  </td>
-                  <td className="py-5 px-6 text-slate-500">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Unrecognized local certificate with low industry value
                   </td>
                 </tr>
               </tbody>
@@ -554,16 +618,89 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
         </div>
       </section>
 
+      {/* Frequently Asked Questions (FAQ) Section for On-Page SEO */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-900 font-extrabold text-xs uppercase tracking-wider mb-3">
+              FAQ & ANSWERS
+            </span>
+            <h2 className="text-3xl font-black text-slate-900">
+              Frequently Asked Questions - Python Training in {locName}
+            </h2>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(0)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>What is the course fee for Python Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 0 ? 'up' : 'down'} text-amber-500`}></i>
+              </button>
+              {openFaq === 0 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  The course fee for <strong>Python Training in {locName}</strong> at LearnMore Technologies is highly affordable. We offer easy No-Cost EMI payment options starting at ₹3,499/month, along with a 30% discount for early enrollments in <strong>Python Training in {locName}</strong>.
+                </div>
+              )}
+            </div>
 
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(1)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>Why is LearnMore rated the best center for Python Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 1 ? 'up' : 'down'} text-amber-500`}></i>
+              </button>
+              {openFaq === 1 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  LearnMore Technologies is rated #1 for <strong>Python Training in {locName}</strong> because of our 12+ years experienced trainers, 100% practical hands-on coding labs, live capstone web scraping & OOPs projects, and 100% placement support.
+                </div>
+              )}
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(2)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>Is placement support included with Python Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 2 ? 'up' : 'down'} text-amber-500`}></i>
+              </button>
+              {openFaq === 2 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  Yes, 100% placement assistance is included with our <strong>Python Training in {locName}</strong>. Our placement team conducts resume preparation, GitHub portfolio optimization, mock technical interviews, and schedules direct hiring calls with 300+ partner IT companies.
+                </div>
+              )}
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(3)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>Can beginners and non-IT graduates join Python Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 3 ? 'up' : 'down'} text-amber-500`}></i>
+              </button>
+              {openFaq === 3 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  Yes! Our <strong>Python Training in {locName}</strong> starts from fundamental programming basics, making it ideal for freshers, working professionals, and non-IT career changers who want to become software developers.
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Upcoming Batch Schedule Section */}
-      <UpcomingBatchSchedule courseName="Python Training Program" />
+      <UpcomingBatchSchedule courseName={`Python Training in ${locName}`} />
 
       {/* Recent Student Placements Section */}
-      <RecentPlacementsSection courseName="Python Training Program" />
+      <RecentPlacementsSection courseName={`Python Training in ${locName}`} />
 
       {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
-      <StickyMobileCTA courseName="Python Training Program" />
+      <StickyMobileCTA courseName={`Python Training in ${locName}`} />
 
       <Footer />
     </div>

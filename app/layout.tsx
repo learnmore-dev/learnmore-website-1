@@ -12,6 +12,10 @@ const LeadTrackerInitializer = dynamic(() => import('@/components/common/LeadTra
   ssr: false,
 });
 
+const FloatingContactButtons = dynamic(() => import('@/components/common/FloatingContactButtons'), {
+  ssr: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://learnmoretech.in'),
   title: 'Learnmore Technologies - Best Software Training Institute in Bangalore',
@@ -80,6 +84,7 @@ export default function RootLayout({
         <EnrollProvider>
           <LeadTrackerInitializer />
           {children}
+          <FloatingContactButtons />
           <GlobalEnrollModal />
         </EnrollProvider>
       </body>

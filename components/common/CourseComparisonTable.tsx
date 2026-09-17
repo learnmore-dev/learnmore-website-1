@@ -15,7 +15,7 @@ export default function CourseComparisonTable() {
       videos: '❌ Zero Mentor Interaction'
     },
     {
-      feature: '100% Guaranteed Placement Support',
+      feature: '100% Dedicated Placement Support',
       lmt: '✅ Dedicated Placement Cell & Calls',
       others: '⚠️ Generic Job Portal Access',
       videos: '❌ No Job Placement Support'

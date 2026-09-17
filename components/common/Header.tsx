@@ -9,7 +9,8 @@ interface NavItem {
   name: string;
   link?: string;
   type: 'link' | 'dropdown';
-  items?: { name: string; link: string; external?: boolean; icon?: string }[];
+  badge?: string;
+  items?: { name: string; link: string; external?: boolean; icon?: string; badge?: string }[];
 }
 
 const navLinks: NavItem[] = [
@@ -18,33 +19,42 @@ const navLinks: NavItem[] = [
     name: 'Course',
     type: 'dropdown',
     items: [
-      { name: 'Python Fullstack Master Program', link: '/course/python-fullstack' },
-      { name: 'Data Analytics Master Program', link: '/course/data-analytics' },
-      { name: 'Cloud Master Program', link: '/course/cloud-devops' },
-      { name: 'Software Testing Master Program', link: '/course/software-testing' },
-      { name: 'Data Engineering Master Program', link: '/course/data-engineering' },
-      { name: 'Data Science with AI Master Program', link: '/course/data-science-ai' },
+      { name: 'Agentic AI Training', link: '/agentic-ai-training-course', icon: 'fas fa-robot', badge: 'Hot' },
+      { name: 'Generative AI Training', link: '/generative-ai-training-course', icon: 'fas fa-brain', badge: 'Trending' },
+      { name: 'AI/ML Engineering', link: '/aiml-engineering-training-course', icon: 'fas fa-microchip' },
+      { name: 'Anthropic AI Training', link: '/anthropic-training-course', icon: 'fas fa-sparkles', badge: 'New' },
+      { name: 'Cloud DevOps Master Program', link: '/course/cloud-devops', icon: 'fas fa-cloud' },
+      { name: 'Python Fullstack Master', link: '/course/python-fullstack', icon: 'fab fa-python' },
+      { name: 'Data Analytics Master', link: '/course/data-analytics', icon: 'fas fa-chart-pie' },
+      { name: 'Data Science with AI', link: '/course/data-science-ai', icon: 'fas fa-project-diagram' },
+      { name: 'Data Engineering Master', link: '/course/data-engineering', icon: 'fas fa-database' },
+      { name: 'Snowflake Training', link: '/snowflake-training-course', icon: 'fas fa-snowflake' },
+      { name: 'DBT Training', link: '/dbt-training-course', icon: 'fas fa-layer-group' },
+      { name: 'Cybersecurity Master', link: '/cybersecurity-training-course', icon: 'fas fa-shield-alt' },
+      { name: 'SAP Master Program', link: '/sap-training-course', icon: 'fas fa-cubes' },
+      { name: 'Mobile App Development', link: '/mobile-app-development-training-course', icon: 'fas fa-mobile-alt' },
+      { name: 'Software Testing Master', link: '/course/software-testing', icon: 'fas fa-vial' },
     ],
   },
   {
     name: 'IT Services',
     type: 'dropdown',
     items: [
-      { name: 'AWS Training', link: '/aws-training-in-marathahalli', external: false, icon: 'fab fa-aws' },
-      { name: 'Python Training', link: '/python-training-in-marathahalli', external: false, icon: 'fab fa-python' },
-      { name: 'DevOps Training', link: '/devops-training-in-marathahalli', external: false, icon: 'fas fa-cogs' },
-      { name: 'Software Testing Training', link: '/software-testing-training-in-marathahalli', external: false, icon: 'fas fa-bug' },
-      { name: 'Java Full Stack Training', link: '/java-fullstack-training-in-marathahalli', external: false, icon: 'fab fa-java' },
-      { name: 'Python Full Stack Training', link: '/python-fullstack-training-in-marathahalli', external: false, icon: 'fab fa-python' },
-      { name: 'Data Analytics Training', link: '/data-analytics-training-in-marathahalli', external: false, icon: 'fas fa-chart-line' },
-      { name: 'Microsoft Azure Training', link: '/azure-training-in-marathahalli', external: false, icon: 'fab fa-microsoft' },
+      { name: 'AWS Cloud Training', link: '/aws-training-in-marathahalli', icon: 'fab fa-aws' },
+      { name: 'Python Programming', link: '/python-training-in-marathahalli', icon: 'fab fa-python' },
+      { name: 'DevOps & CI/CD Training', link: '/devops-training-in-marathahalli', icon: 'fas fa-cogs' },
+      { name: 'Software Testing (QA)', link: '/software-testing-training-in-marathahalli', icon: 'fas fa-bug' },
+      { name: 'Java Full Stack Training', link: '/java-fullstack-training-in-marathahalli', icon: 'fab fa-java' },
+      { name: 'Python Full Stack Training', link: '/python-fullstack-training-in-marathahalli', icon: 'fab fa-python' },
+      { name: 'Data Analytics & Power BI', link: '/data-analytics-training-in-marathahalli', icon: 'fas fa-chart-line' },
+      { name: 'Microsoft Azure Training', link: '/azure-training-in-marathahalli', icon: 'fab fa-microsoft' },
     ],
   },
   { name: 'Placement', link: '/placement', type: 'link' },
   { name: 'Services', link: '/services', type: 'link' },
   { name: 'Internships', link: '/internships', type: 'link' },
   { name: 'Blog', link: '/blog', type: 'link' },
-  { name: 'Offers', link: '/offer', type: 'link' },
+  { name: 'Offers', link: '/offer', type: 'link', badge: 'Sale' },
 ];
 
 export default function Header() {
@@ -55,16 +65,14 @@ export default function Header() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle click outside to close menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -80,13 +88,11 @@ export default function Header() {
     if (isMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMenuOpen]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -111,551 +117,264 @@ export default function Header() {
   };
 
   const toggleDropdown = (name: string) => {
-    setActiveDropdown(activeDropdown === name ? null : name); 
+    setActiveDropdown(activeDropdown === name ? null : name);
   };
 
   const phoneNumber = "+919036524555";
-  const whatsappNumber = "+919036354552";
+  const whatsappNumber = "+919036524555";
 
   return (
     <>
       {/* Top Offer Banner */}
       <TopOfferBanner />
 
-      <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
-        {/* Contact Bar - Hidden on mobile, shows only on desktop */}
-        <div className="contact-bar hidden md:block">
-          <div className="contact-bar-inner">
-            <div className="flex items-center gap-4">
-              <a href={`tel:${phoneNumber}`} className="contact-link">
-                <i className="fas fa-phone-alt"></i>
-                <span>Call: {phoneNumber}</span>
-              </a>
-              <span className="text-gray-600">|</span>
-              <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="contact-link">
-                <i className="fab fa-whatsapp text-green-500"></i>
-                <span>WhatsApp</span>
-              </a>
-            </div>
+      {/* Top Contact Bar */}
+      <div className="hidden md:block bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              2026 Batch Admissions Open • 100% Placement Support
+            </span>
+            <span className="text-slate-600">|</span>
+            <span className="text-slate-300">
+              <i className="fas fa-map-marker-alt text-rose-400 mr-1.5"></i>
+              Marathahalli & BTM Layout, Bangalore
+            </span>
+          </div>
+
+          <div className="flex items-center gap-5 font-medium">
+            <a href={`tel:${phoneNumber}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <i className="fas fa-phone-alt text-blue-400 text-[11px]"></i>
+              <span>Call: {phoneNumber}</span>
+            </a>
+            <span className="text-slate-700">|</span>
+            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
+              <i className="fab fa-whatsapp text-emerald-400 text-sm"></i>
+              <span>WhatsApp</span>
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Main Navbar */}
-        <div className="container-custom">
-          <div className="nav-flex">
-            {/* Logo */}
-            <Link href="/" className="logo" onClick={closeMenu}>
-              <img src="/logo.webp" alt="LearnMore Logo" />
-              <div>
-                <span className="logo-red">LearnMore</span>
-                <span className="logo-black">Technologies</span>
+      {/* Main Navbar */}
+      <header
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/95 backdrop-blur-md shadow-md py-2.5 border-b border-slate-200'
+            : 'bg-white py-3.5 border-b border-slate-100 shadow-sm'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Brand Logo with logo.webp */}
+            <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
+              <img
+                src="/logo.webp"
+                alt="LearnMore Technologies"
+                className="h-11 sm:h-12 w-auto object-contain"
+              />
+              <div className="flex flex-col">
+                <span className="text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-none">
+                  <span className="text-red-600 font-bold">LearnMore</span> Technologies
+                </span>
+                <span className="text-[10px] text-slate-500 font-medium tracking-wide">
+                  Top IT Skill Academy
+                </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <ul className="nav-links">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
               {navLinks.map((item, idx) => (
-                <li key={idx} className={item.type === 'dropdown' ? 'dropdown' : ''}>
+                <div key={idx} className="relative group">
                   {item.type === 'link' ? (
-                    <Link href={item.link!}>{item.name}</Link>
+                    <Link
+                      href={item.link!}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all"
+                    >
+                      <span>{item.name}</span>
+                      {item.badge && (
+                        <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-rose-100 text-rose-600">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
                   ) : (
-                    <>
-                      <a href="#">{item.name} <i className="fas fa-chevron-down text-xs ml-1"></i></a>
-                      <ul className={`dropdown-menu ${item.name === 'IT Services' ? 'it-services-menu' : ''}`}>
-                        {item.items?.map((subItem, subIdx) => (
-                          <li key={subIdx}>
-                            <Link href={subItem.link}>
-                              {subItem.icon && <i className={`${subItem.icon} mr-2 w-4`}></i>}
-                              {subItem.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </li>
-              ))}
-            </ul>
+                    <div className="group relative">
+                      <button
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 group-hover:text-blue-600 group-hover:bg-slate-50 transition-all"
+                        aria-expanded="false"
+                      >
+                        <span>{item.name}</span>
+                        <i className="fas fa-chevron-down text-[10px] text-slate-400 group-hover:text-blue-600 group-hover:rotate-180 transition-transform duration-200 ml-0.5"></i>
+                      </button>
 
-            {/* Right Side */}
-            <div className="nav-right flex-shrink-0">
-              <button onClick={() => openEnrollModal()} className="btn-primary whitespace-nowrap">
-                Enroll Now
+                      {/* Dropdown Menu */}
+                      <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 absolute top-full left-0 mt-2 w-80 sm:w-96 rounded-2xl bg-white border border-slate-200 p-3 shadow-2xl z-50">
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1.5 border-b border-slate-100 mb-2 flex items-center justify-between">
+                          <span>{item.name === 'Course' ? 'Master Certification Programs' : 'IT Training Specializations'}</span>
+                          <span className="text-blue-600 font-bold">100% Placement</span>
+                        </div>
+                        <div className="max-h-[380px] overflow-y-auto pr-1 space-y-1">
+                          {item.items?.map((sub, sIdx) => (
+                            <Link
+                              key={sIdx}
+                              href={sub.link}
+                              className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50/80 transition-all group/item"
+                            >
+                              <div className="flex items-center gap-2.5 truncate">
+                                <span className="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                                  <i className={`${sub.icon || 'fas fa-graduation-cap'} text-xs`}></i>
+                                </span>
+                                <span className="truncate">{sub.name}</span>
+                              </div>
+                              {sub.badge && (
+                                <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-rose-100 text-rose-600 shrink-0">
+                                  {sub.badge}
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+
+
+            {/* Mobile Header Buttons */}
+            <div className="flex lg:hidden items-center gap-2">
+              <a
+                href={`tel:${phoneNumber}`}
+                className="w-9 h-9 rounded-full bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center text-sm shadow-sm"
+                aria-label="Call Us"
+              >
+                <i className="fas fa-phone-alt text-xs"></i>
+              </a>
+              <a
+                href={`https://wa.me/919036524555`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center text-base shadow-sm"
+                aria-label="WhatsApp Us"
+              >
+                <i className="fab fa-whatsapp"></i>
+              </a>
+              <button
+                ref={menuButtonRef}
+                onClick={toggleMenu}
+                className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-blue-600 transition-all ml-1"
+                aria-label="Toggle menu"
+              >
+                <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-lg`}></i>
               </button>
             </div>
-
-            {/* Animated Hamburger Menu Button */}
-            <button
-              ref={menuButtonRef}
-              className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-            >
-              <span className="line line-1"></span>
-              <span className="line line-2"></span>
-              <span className="line line-3"></span>
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Animated Sidebar Mobile Menu */}
-      <div className={`mobile-menu-overlay ${isMenuOpen ? 'active' : ''}`} onClick={closeMenu}>
-        <div ref={mobileMenuRef} className="mobile-menu-container" onClick={(e) => e.stopPropagation()}>
-          {/* Close Button */}
-          <button onClick={closeMenu} className="mobile-close-btn">
-            <i className="fas fa-times"></i>
-          </button>
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        }`}
+        onClick={closeMenu}
+      >
+        <div
+          ref={mobileMenuRef}
+          className={`fixed top-0 right-0 h-full w-full max-w-xs bg-white p-6 flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out shadow-2xl ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div>
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+              <div className="flex items-center gap-2">
+                <img src="/logo.webp" alt="Logo" className="h-9 w-auto" />
+                <span className="font-extrabold text-slate-900 text-base">LearnMore</span>
+              </div>
+              <button
+                onClick={closeMenu}
+                className="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center"
+              >
+                <i className="fas fa-times text-sm"></i>
+              </button>
+            </div>
 
-          {/* Logo in Sidebar */}
-          <div className="mobile-logo">
-            <img src="/logo.webp" alt="LearnMore Logo" />
-            <div>
-              <span className="logo-red">LearnMore</span>
-              <span className="logo-black">Technologies</span>
+            <div className="space-y-1">
+              {navLinks.map((item, idx) => (
+                <div key={idx}>
+                  {item.type === 'link' ? (
+                    <Link
+                      href={item.link!}
+                      onClick={closeMenu}
+                      className="flex items-center justify-between p-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                    >
+                      <span>{item.name}</span>
+                      {item.badge && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-600">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className="w-full flex items-center justify-between p-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                      >
+                        <span>{item.name}</span>
+                        <i className={`fas fa-chevron-${activeDropdown === item.name ? 'up' : 'down'} text-xs text-slate-400`}></i>
+                      </button>
+
+                      {activeDropdown === item.name && (
+                        <div className="pl-3 pr-1 py-2 space-y-1 bg-slate-50 rounded-xl mt-1">
+                          {item.items?.map((sub, sIdx) => (
+                            <Link
+                              key={sIdx}
+                              href={sub.link}
+                              onClick={closeMenu}
+                              className="flex items-center justify-between py-2 px-2 text-xs font-medium text-slate-600 hover:text-blue-600"
+                            >
+                              <span className="truncate">{sub.name}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Mobile Navigation Links with Animation */}
-          <ul className="mobile-nav-links">
-            {navLinks.map((item, idx) => (
-              <li key={idx} style={{ animationDelay: `${idx * 0.05}s` }}>
-                {item.type === 'link' ? (
-                  <Link href={item.link!} onClick={closeMenu}>
-                    <span className="link-icon">
-                      {item.name === 'Home' && <i className="fas fa-home"></i>}
-                      {item.name === 'Placement' && <i className="fas fa-briefcase"></i>}
-                      {item.name === 'Services' && <i className="fas fa-cogs"></i>}
-                      {item.name === 'Internships' && <i className="fas fa-graduation-cap"></i>}
-                      {item.name === 'Blog' && <i className="fas fa-blog"></i>}
-                      {item.name === 'Offers' && <i className="fas fa-tags"></i>}
-                    </span>
-                    <span className="link-text">{item.name}</span>
-                    <i className="fas fa-arrow-right link-arrow"></i>
-                  </Link>
-                ) : (
-                  <>
-                    <button onClick={() => toggleDropdown(item.name)} className="mobile-dropdown-btn">
-                      <span className="link-icon">
-                        {item.name === 'Course' && <i className="fas fa-book-open"></i>}
-                        {item.name === 'IT Services' && <i className="fas fa-cloud"></i>}
-                      </span>
-                      <span className="link-text">{item.name}</span>
-                      <i className={`fas fa-chevron-${activeDropdown === item.name ? 'up' : 'down'} dropdown-arrow`}></i>
-                    </button>
-                    <div className={`mobile-dropdown-menu ${activeDropdown === item.name ? 'active' : ''}`}>
-                      {item.items?.map((subItem, subIdx) => (
-                        <Link key={subIdx} href={subItem.link} onClick={closeMenu}>
-                          {subItem.icon && <i className={`${subItem.icon} mr-2`}></i>}
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile Contact Info */}
-          <div className="mobile-contact-info">
-            <div className="flex flex-col gap-3">
-              <a href={`tel:${phoneNumber}`} className="contact-item">
-                <i className="fas fa-phone-alt"></i>
+          <div className="pt-6 border-t border-slate-100 space-y-4">
+            <button
+              onClick={() => {
+                closeMenu();
+                openEnrollModal('Mobile Menu CTA');
+              }}
+              className="w-full py-3 rounded-full bg-blue-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/25"
+            >
+              Book Free Demo Class
+            </button>
+            <div className="flex flex-col gap-2 text-xs text-slate-600">
+              <a href={`tel:${phoneNumber}`} className="flex items-center gap-2 hover:text-blue-600">
+                <i className="fas fa-phone-alt text-blue-600"></i>
                 <span>{phoneNumber}</span>
               </a>
-              <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="contact-item">
-                <i className="fab fa-whatsapp text-green-500"></i>
-                <span>WhatsApp</span>
+              <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-emerald-600">
+                <i className="fab fa-whatsapp text-emerald-600 text-sm"></i>
+                <span>WhatsApp Us</span>
               </a>
             </div>
           </div>
-
-          {/* Social Icons */}
-          <div className="mobile-social-icons">
-            <h4>Connect With Us</h4>
-            <div className="social-icons-wrapper">
-              <a href="https://www.youtube.com/@learnnmore" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-youtube"></i>
-              </a>
-              <a href="https://www.instagram.com/learnmore_technologies/" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="https://www.linkedin.com/company/learnmoretechnologiesbangalore/" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-              <a href="https://wa.me/919514203013" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-whatsapp"></i>
-              </a>
-              <a href="https://www.facebook.com/share/1CyNbbCSho/" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-            </div>
-          </div>
-
-          {/* Enroll Button */}
-          <button 
-            onClick={() => {
-              closeMenu();
-              openEnrollModal();
-            }} 
-            className="btn-primary mobile-enroll-btn"
-          >
-            Enroll Now
-          </button>
         </div>
       </div>
-
-      {/* Floating Icons */}
-      <div className="floating-icons">
-        <a href={`tel:${phoneNumber}`} className="floating-call">
-          <i className="fas fa-phone-alt"></i>
-          <span className="tooltip">Call Us</span>
-        </a>
-        <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="floating-whatsapp">
-          <i className="fab fa-whatsapp"></i>
-          <span className="tooltip">WhatsApp</span>
-        </a>
-      </div>
-
-      <style jsx>{`
-        /* Animated Hamburger Menu */
-        .menu-toggle {
-          display: none;
-          background: none;
-          border: none;
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          position: relative;
-          z-index: 1001;
-        }
-
-        .menu-toggle .line {
-          display: block;
-          width: 25px;
-          height: 2px;
-          background: #333;
-          position: absolute;
-          left: 7.5px;
-          transition: all 0.3s ease;
-        }
-
-        .menu-toggle .line-1 { top: 14px; }
-        .menu-toggle .line-2 { top: 20px; }
-        .menu-toggle .line-3 { top: 26px; }
-
-        .menu-toggle.active .line-1 {
-          transform: rotate(45deg);
-          top: 20px;
-          background: #e63946;
-        }
-
-        .menu-toggle.active .line-2 {
-          opacity: 0;
-          transform: translateX(-20px);
-        }
-
-        .menu-toggle.active .line-3 {
-          transform: rotate(-45deg);
-          top: 20px;
-          background: #e63946;
-        }
-
-        @media (max-width: 992px) {
-          .menu-toggle {
-            display: block;
-          }
-        }
-
-        /* Sidebar Overlay */
-        .mobile-menu-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.6);
-          z-index: 9999;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 0.3s ease;
-        }
-
-        .mobile-menu-overlay.active {
-          opacity: 1;
-          visibility: visible;
-        }
-
-        /* Sidebar Container */
-        .mobile-menu-container {
-          position: absolute;
-          right: -100%;
-          top: 0;
-          width: 85%;
-          max-width: 380px;
-          height: 100%;
-          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-          padding: 30px 25px;
-          overflow-y: auto;
-          transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-          box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .mobile-menu-overlay.active .mobile-menu-container {
-          right: 0;
-        }
-
-        /* All Text White */
-        .mobile-menu-container,
-        .mobile-menu-container * {
-          color: #ffffff !important;
-        }
-
-        .mobile-logo .logo-red {
-          color: #e63946 !important;
-        }
-
-        .mobile-logo .logo-black {
-          color: #ffffff !important;
-        }
-
-        /* Close Button */
-        .mobile-close-btn {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          background: rgba(255, 255, 255, 0.1);
-          border: none;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          font-size: 18px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-        }
-
-        .mobile-close-btn:hover {
-          background: rgba(230, 57, 70, 0.8);
-          transform: rotate(90deg);
-        }
-
-        /* Mobile Logo */
-        .mobile-logo {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 30px;
-          padding-bottom: 20px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-logo img {
-          height: 40px;
-         
-        }
-
-        /* Navigation Links */
-        .mobile-nav-links {
-          list-style: none;
-          padding: 0;
-          margin: 0 0 30px 0;
-        }
-
-        .mobile-nav-links li {
-          margin-bottom: 5px;
-          opacity: 0;
-          transform: translateX(30px);
-          animation: slideIn 0.4s ease forwards;
-        }
-
-        @keyframes slideIn {
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .mobile-nav-links li a,
-        .mobile-dropdown-btn {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 12px 0;
-          text-decoration: none;
-          width: 100%;
-          background: none;
-          border: none;
-          font-size: 16px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .mobile-nav-links li a .link-icon,
-        .mobile-dropdown-btn .link-icon {
-          width: 28px;
-          color: #e63946 !important;
-        }
-
-        .mobile-nav-links li a .link-text,
-        .mobile-dropdown-btn .link-text {
-          flex: 1;
-          text-align: left;
-        }
-
-        .mobile-nav-links li a .link-arrow,
-        .mobile-dropdown-btn .dropdown-arrow {
-          opacity: 0;
-          transition: all 0.3s ease;
-        }
-
-        .mobile-nav-links li a:hover .link-arrow,
-        .mobile-dropdown-btn:hover .dropdown-arrow {
-          opacity: 1;
-          transform: translateX(5px);
-        }
-
-        .mobile-nav-links li a:hover,
-        .mobile-dropdown-btn:hover {
-          color: #e63946 !important;
-          padding-left: 5px;
-        }
-
-        /* Dropdown Menu */
-        .mobile-dropdown-menu {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.4s ease;
-          padding-left: 40px;
-        }
-
-        .mobile-dropdown-menu.active {
-          max-height: 500px;
-        }
-
-        .mobile-dropdown-menu a {
-          display: block;
-          padding: 10px 0;
-          text-decoration: none;
-          font-size: 14px;
-          transition: all 0.3s ease;
-          opacity: 0;
-          transform: translateX(-20px);
-        }
-
-        .mobile-dropdown-menu.active a {
-          animation: fadeInLeft 0.3s ease forwards;
-        }
-
-        @keyframes fadeInLeft {
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .mobile-dropdown-menu a:hover {
-          color: #e63946 !important;
-          padding-left: 10px;
-        }
-
-        /* Contact Info */
-        .mobile-contact-info {
-          margin-bottom: 25px;
-          padding: 15px 0;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .contact-item {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 8px 0;
-          text-decoration: none;
-        }
-
-        .contact-item i {
-          width: 35px;
-          height: 35px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* Social Icons */
-        .mobile-social-icons {
-          margin-bottom: 25px;
-        }
-
-        .mobile-social-icons h4 {
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.7);
-          margin-bottom: 15px;
-        }
-
-        .social-icons-wrapper {
-          display: flex;
-          gap: 15px;
-          flex-wrap: wrap;
-        }
-
-        .social-icons-wrapper a {
-          width: 40px;
-          height: 40px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-        }
-
-        .social-icons-wrapper a:hover {
-          background: #e63946;
-          transform: translateY(-5px);
-        }
-
-        /* Enroll Button */
-        .mobile-enroll-btn {
-          width: 100%;
-          background: linear-gradient(135deg, #e63946, #d00000);
-          color: white;
-          border: none;
-          padding: 14px;
-          border-radius: 40px;
-          font-weight: 600;
-          font-size: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .mobile-enroll-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
-        }
-
-        /* Scrollbar */
-        .mobile-menu-container::-webkit-scrollbar {
-          width: 4px;
-        }
-
-        .mobile-menu-container::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-        }
-
-        .mobile-menu-container::-webkit-scrollbar-thumb {
-          background: #e63946;
-          border-radius: 10px;
-        }
-      `}</style>
     </>
   );
 }

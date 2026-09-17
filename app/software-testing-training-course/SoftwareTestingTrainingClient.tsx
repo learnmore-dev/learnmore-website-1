@@ -195,28 +195,28 @@ export default function SoftwareTestingTrainingClient({ location }: SoftwareTest
             <i className="fas fa-chevron-right text-[10px]"></i>
             <Link href="/course" className="hover:text-red-400 transition">Courses</Link>
             <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-slate-200">Software Testing Course {location ? `in ${location.name}` : ''}</span>
+            <span className="text-slate-200">Software Testing Training in {locName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-semibold mb-5">
-                <i className="fas fa-bug"></i> Ranked #1 Software Testing Institute in {locName}
+                <i className="fas fa-bug"></i> Ranked #1 Institute for Software Testing Training in {locName}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-                Advanced Certification in <span className="bg-gradient-to-r from-red-400 via-rose-300 to-amber-200 bg-clip-text text-transparent">Software Testing & Automation (SDET)</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-4 text-white">
+                Software Testing Training in <span className="bg-gradient-to-r from-red-400 via-rose-300 to-amber-200 bg-clip-text text-transparent">{locName}</span>
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg mb-6 leading-relaxed">
-                Master Manual Testing, Selenium WebDriver, Java, TestNG, Page Object Model, API Testing (Postman/RestAssured), and JIRA in {locName} with 100% Placement Assistance.
+                LearnMore Technologies offers top-rated <strong>Software Testing Training in {locName}</strong> with 100% placement assistance. Master Manual Testing, Selenium WebDriver, Java, TestNG, Page Object Model, API Testing (Postman/RestAssured), and JIRA in our hands-on <strong>Software Testing Training in {locName}</strong>.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8 text-sm">
                 <div className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-amber-400 font-bold">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(2,950+ Reviews)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(2,950+ Reviews for Software Testing Training in {locName})</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-emerald-400 font-bold">
                   <i className="fas fa-user-check"></i>
@@ -226,16 +226,16 @@ export default function SoftwareTestingTrainingClient({ location }: SoftwareTest
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openEnrollModal('Software Testing Master Program')}
+                  onClick={() => openEnrollModal(`Software Testing Training in ${locName}`)}
                   className="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition text-center flex items-center justify-center gap-2"
                 >
-                  <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
+                  <i className="fas fa-paper-plane"></i> Enroll for Software Testing Training in {locName}
                 </button>
                 <button
-                  onClick={() => openEnrollModal('Software Testing Master Program - Syllabus')}
+                  onClick={() => openEnrollModal(`Software Testing Training Syllabus - ${locName}`)}
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2"
                 >
-                  <i className="fas fa-file-download"></i> Download Full Syllabus
+                  <i className="fas fa-file-download"></i> Download Software Testing Training in {locName} Syllabus
                 </button>
               </div>
             </div>
@@ -314,6 +314,36 @@ export default function SoftwareTestingTrainingClient({ location }: SoftwareTest
             <div className="p-4">
               <p className="text-3xl md:text-4xl font-black text-emerald-600 mb-1">15+ Years</p>
               <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Excellence</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content Section for Software Testing Training */}
+      <section className="py-16 bg-slate-100/70 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 border-b pb-4">
+              Best Software Testing Training in {locName} – LearnMore Technologies
+            </h2>
+            <div className="space-y-4 text-slate-700 text-base leading-relaxed">
+              <p>
+                Are you looking for top-rated <strong>Software Testing Training in {locName}</strong>? LearnMore Technologies offers the best <strong>Software Testing Training in {locName}</strong> designed for freshers, QA professionals, non-IT graduates, and software engineers. Our <strong>Software Testing Training in {locName}</strong> covers Manual Testing, Selenium WebDriver, Java, TestNG framework, RestAssured API testing, Postman, and JIRA defect management.
+              </p>
+              <p>
+                Enrolling in our <strong>Software Testing Training in {locName}</strong> ensures 100% practical hands-on test execution with dedicated mentor support. Our <strong>Software Testing Training in {locName}</strong> curriculum prepares candidates for high-demand SDET and QA Automation job roles across Bangalore IT companies.
+              </p>
+              <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">
+                Why Choose Software Testing Training in {locName}?
+              </h3>
+              <ul className="grid md:grid-cols-2 gap-3 font-semibold text-slate-800">
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-red-500"></i> 100% Practical QA Labs in <strong>Software Testing Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-red-500"></i> Lead SDET Mentors for <strong>Software Testing Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-red-500"></i> 100% Placement Support with <strong>Software Testing Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-red-500"></i> Real Capstone Projects in <strong>Software Testing Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-red-500"></i> ISO 9001:2015 Certificate for <strong>Software Testing Training in {locName}</strong></li>
+                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-red-500"></i> Flexible Batches for <strong>Software Testing Training in {locName}</strong></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -494,10 +524,10 @@ export default function SoftwareTestingTrainingClient({ location }: SoftwareTest
                 <tr className="hover:bg-slate-900/50 transition">
                   <td className="py-5 px-6 font-bold text-slate-200">Placement Assistance & Calls</td>
                   <td className="py-5 px-6 bg-red-950/20 border-l border-r border-red-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Placement Support & 300+ Active Partner Tie-ups
                   </td>
                   <td className="py-5 px-6 text-slate-400">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without placement support
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-900/50 transition">
