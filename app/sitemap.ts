@@ -28,6 +28,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/software-testing-training-course',
     '/java-training-course',
     '/java-fullstack-training-course',
+    '/agentic-ai-training-course',
+    '/data-engineering-training-course',
+    '/generative-ai-training-course',
+    '/snowflake-training-course',
+    '/dbt-training-course',
+    '/anthropic-training-course',
+    '/cybersecurity-training-course',
+    '/sap-training-course',
+    '/aiml-engineering-training-course',
+    '/mobile-app-development-training-course',
     '/certificate/verify',
   ];
 

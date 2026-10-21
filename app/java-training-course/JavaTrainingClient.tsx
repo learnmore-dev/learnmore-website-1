@@ -125,7 +125,7 @@ export default function JavaTrainingClient({ location }: JavaTrainingClientProps
         'Writing Production-Ready Clean Code & Design Patterns (Singleton, Factory)',
         'Git Version Control & Maven Project Building',
         'Java Technical Mock Interviews, Data Structures Practice & Coding Rounds',
-        '100% Placement Call Guarantee with 300+ Partner IT Companies'
+        '100% Placement Assistance with 300+ Partner IT Companies'
       ]
     }
   ];
@@ -170,28 +170,28 @@ export default function JavaTrainingClient({ location }: JavaTrainingClientProps
             <i className="fas fa-chevron-right text-[10px]"></i>
             <Link href="/course" className="hover:text-orange-400 transition">Courses</Link>
             <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-slate-200">Java Training Course {location ? `in ${location.name}` : ''}</span>
+            <span className="text-slate-200">Java Training in {locName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-semibold mb-5">
-                <i className="fab fa-java"></i> Ranked #1 Java Training Institute in {locName}
+                <i className="fab fa-java"></i> Ranked #1 Institute for Java Training in {locName}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-                Advanced Certification in <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 bg-clip-text text-transparent">Core Java Programming</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-4 text-white">
+                Java Training in <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 bg-clip-text text-transparent">{locName}</span>
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg mb-6 leading-relaxed">
-                Master Core Java, Object-Oriented Programming (OOPs), Multithreading, Collections Framework, JDBC, and Data Structures in {locName} with 100% Placement Assistance.
+                LearnMore Technologies offers the best <strong>Java Training in {locName}</strong> with 100% placement assistance. Master Core Java 21, Object-Oriented Programming (OOPs), Multithreading, Collections Framework, JDBC, and Data Structures in our hands-on <strong>Java Training in {locName}</strong>.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8 text-sm">
                 <div className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-amber-400 font-bold">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(3,000+ Reviews)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(3,000+ Reviews for Java Training in {locName})</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-emerald-400 font-bold">
                   <i className="fas fa-user-check"></i>
@@ -201,16 +201,16 @@ export default function JavaTrainingClient({ location }: JavaTrainingClientProps
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openEnrollModal('Java Master Program')}
+                  onClick={() => openEnrollModal(`Java Training in ${locName}`)}
                   className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition text-center flex items-center justify-center gap-2"
                 >
-                  <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
+                  <i className="fas fa-paper-plane"></i> Enroll for Java Training in {locName}
                 </button>
                 <button
-                  onClick={() => openEnrollModal('Java Master Program - Syllabus')}
+                  onClick={() => openEnrollModal(`Java Training Syllabus - ${locName}`)}
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2"
                 >
-                  <i className="fas fa-file-download"></i> Download Full Syllabus
+                  <i className="fas fa-file-download"></i> Download Java Training in {locName} Syllabus
                 </button>
               </div>
             </div>
@@ -469,10 +469,10 @@ export default function JavaTrainingClient({ location }: JavaTrainingClientProps
                 <tr className="hover:bg-slate-900/50 transition">
                   <td className="py-5 px-6 font-bold text-slate-200">Placement Assistance & Calls</td>
                   <td className="py-5 px-6 bg-orange-950/20 border-l border-r border-orange-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Placement Support & 300+ Active Partner Tie-ups
                   </td>
                   <td className="py-5 px-6 text-slate-400">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without placement support
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-900/50 transition">

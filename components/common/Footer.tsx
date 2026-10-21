@@ -69,6 +69,66 @@ export default function Footer() {
       setCurrentCourseDisplayName('java-training-course');
       return;
     }
+    if (pathname.includes('agentic-ai-training-course')) {
+      setCurrentCourse('agentic-ai-training-course');
+      setCurrentCourseName('Agentic AI');
+      setCurrentCourseDisplayName('agentic-ai-training-course');
+      return;
+    }
+    if (pathname.includes('data-engineering-training-course')) {
+      setCurrentCourse('data-engineering-training-course');
+      setCurrentCourseName('Data Engineering');
+      setCurrentCourseDisplayName('data-engineering-training-course');
+      return;
+    }
+    if (pathname.includes('generative-ai-training-course')) {
+      setCurrentCourse('generative-ai-training-course');
+      setCurrentCourseName('Generative AI');
+      setCurrentCourseDisplayName('generative-ai-training-course');
+      return;
+    }
+    if (pathname.includes('snowflake-training-course')) {
+      setCurrentCourse('snowflake-training-course');
+      setCurrentCourseName('Snowflake');
+      setCurrentCourseDisplayName('snowflake-training-course');
+      return;
+    }
+    if (pathname.includes('dbt-training-course')) {
+      setCurrentCourse('dbt-training-course');
+      setCurrentCourseName('DBT');
+      setCurrentCourseDisplayName('dbt-training-course');
+      return;
+    }
+    if (pathname.includes('anthropic-training-course')) {
+      setCurrentCourse('anthropic-training-course');
+      setCurrentCourseName('Anthropic');
+      setCurrentCourseDisplayName('anthropic-training-course');
+      return;
+    }
+    if (pathname.includes('cybersecurity-training-course')) {
+      setCurrentCourse('cybersecurity-training-course');
+      setCurrentCourseName('Cybersecurity');
+      setCurrentCourseDisplayName('cybersecurity-training-course');
+      return;
+    }
+    if (pathname.includes('sap-training-course')) {
+      setCurrentCourse('sap-training-course');
+      setCurrentCourseName('SAP');
+      setCurrentCourseDisplayName('sap-training-course');
+      return;
+    }
+    if (pathname.includes('aiml-engineering-training-course')) {
+      setCurrentCourse('aiml-engineering-training-course');
+      setCurrentCourseName('AI/ML Engineering');
+      setCurrentCourseDisplayName('aiml-engineering-training-course');
+      return;
+    }
+    if (pathname.includes('mobile-app-development-training-course')) {
+      setCurrentCourse('mobile-app-development-training-course');
+      setCurrentCourseName('Mobile App Development');
+      setCurrentCourseDisplayName('mobile-app-development-training-course');
+      return;
+    }
 
     // Check if we are on a course page (URL pattern: /course-name-training-in-location)
     const match = pathname.match(/([\w-]+)-training-in-/);
@@ -176,7 +236,7 @@ export default function Footer() {
     { key: 'cybersecurity', name: 'Cybersecurity', displayName: 'Cybersecurity Training', icon: 'fas fa-shield-alt', color: 'text-red-500' },
   ];
 
-  // Featured 9 Training Courses requested by user
+  // Featured Training Courses requested by user
   const featuredTrainingCourses = [
     { title: 'Full Stack Training Course', href: '/full-stack-training-course', icon: 'fas fa-laptop-code', color: 'text-indigo-400' },
     { title: 'AWS Training Course', href: '/aws-training-course', icon: 'fab fa-aws', color: 'text-amber-400' },
@@ -186,7 +246,17 @@ export default function Footer() {
     { title: 'Python Full Stack Training Course', href: '/python-fullstack-training-course', icon: 'fab fa-python', color: 'text-amber-400' },
     { title: 'Software Testing Training Course', href: '/software-testing-training-course', icon: 'fas fa-vial', color: 'text-rose-400' },
     { title: 'Java Training Course', href: '/java-training-course', icon: 'fab fa-java', color: 'text-orange-400' },
-    { title: 'Java Full Stack Training Course', href: '/java-fullstack-training-course', icon: 'fab fa-java', color: 'text-red-400' }
+    { title: 'Java Full Stack Training Course', href: '/java-fullstack-training-course', icon: 'fab fa-java', color: 'text-red-400' },
+    { title: 'Agentic AI Training Course', href: '/agentic-ai-training-course', icon: 'fas fa-robot', color: 'text-purple-400' },
+    { title: 'Data Engineering Training Course', href: '/data-engineering-training-course', icon: 'fas fa-database', color: 'text-teal-400' },
+    { title: 'Generative AI Training Course', href: '/generative-ai-training-course', icon: 'fas fa-brain', color: 'text-pink-400' },
+    { title: 'Snowflake Training Course', href: '/snowflake-training-course', icon: 'fas fa-snowflake', color: 'text-sky-400' },
+    { title: 'DBT Training Course', href: '/dbt-training-course', icon: 'fas fa-cubes', color: 'text-orange-400' },
+    { title: 'Anthropic Training Course', href: '/anthropic-training-course', icon: 'fas fa-microchip', color: 'text-emerald-400' },
+    { title: 'Cybersecurity Training Course', href: '/cybersecurity-training-course', icon: 'fas fa-shield-alt', color: 'text-red-400' },
+    { title: 'SAP Training Course', href: '/sap-training-course', icon: 'fas fa-chart-pie', color: 'text-blue-400' },
+    { title: 'AI/ML Engineering Course', href: '/aiml-engineering-training-course', icon: 'fas fa-network-wired', color: 'text-violet-400' },
+    { title: 'Mobile App Development Training Course', href: '/mobile-app-development-training-course', icon: 'fas fa-mobile-alt', color: 'text-green-400' },
   ];
 
   // Top offers for footer

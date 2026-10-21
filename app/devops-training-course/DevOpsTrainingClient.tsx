@@ -157,12 +157,20 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
 
   const faqs = [
     {
-      q: 'Why enroll at LearnMore Technologies for DevOps Training?',
-      a: 'LearnMore Technologies is recognized as the top DevOps Training Institute. Our trainers are Principal DevOps Engineers with 14+ years of real-world experience in Docker, Kubernetes, Jenkins, AWS, and Terraform.'
+      q: `Why enroll at LearnMore Technologies for DevOps Training in ${locName}?`,
+      a: `LearnMore Technologies is recognized as the top institute for DevOps Training in ${locName}. Our trainers are Principal DevOps Engineers with 14+ years of real-world experience in Docker, Kubernetes, Jenkins, AWS, and Terraform.`
     },
     {
-      q: 'What is the average salary of a DevOps Engineer in India?',
-      a: 'The average starting salary for a fresher DevOps Engineer ranges from ₹5.5 LPA to ₹9.8 LPA. Experienced DevOps Architects frequently command packages between ₹14 LPA to ₹28+ LPA.'
+      q: `What is the average salary after completing DevOps Training in ${locName}?`,
+      a: `Freshers completing DevOps Training in ${locName} start at ₹5.5 LPA to ₹9.8 LPA. Experienced DevOps Architects frequently command packages between ₹14 LPA to ₹28+ LPA in Bangalore MNCs.`
+    },
+    {
+      q: `Is DevOps Training in ${locName} suitable for freshers and system admins?`,
+      a: `Yes! Our DevOps Training in ${locName} begins with Linux fundamentals and Shell Scripting before advancing to Docker, Kubernetes, Jenkins CI/CD, and Terraform.`
+    },
+    {
+      q: `Does DevOps Training in ${locName} include hands-on labs and placement support?`,
+      a: `Yes, enrolling in DevOps Training in ${locName} includes 100% practical live server labs, capstone projects, and 100% placement support.`
     }
   ];
 
@@ -187,47 +195,47 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
             <i className="fas fa-chevron-right text-[10px]"></i>
             <Link href="/course" className="hover:text-blue-400 transition">Courses</Link>
             <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-slate-200">DevOps Training Course {location ? `in ${location.name}` : ''}</span>
+            <span className="text-slate-200">DevOps Training in {locName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-5">
-                <i className="fas fa-cogs"></i> Ranked #1 DevOps Training Institute in {locName}
+                <i className="fas fa-cogs"></i> Ranked #1 DevOps Training in {locName} | 100% Placement
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-                Advanced Certification in <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-200 bg-clip-text text-transparent">DevOps Engineering</span> {location ? <span className="text-white block mt-1 text-2xl md:text-3xl font-extrabold">in {location.name}</span> : null}
+                Best <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-200 bg-clip-text text-transparent">DevOps Training in {locName}</span> - 100% Placement Assistance
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg mb-6 leading-relaxed">
-                Master Linux, AWS, Docker, Kubernetes, Jenkins CI/CD Pipelines, Terraform, and Prometheus in {locName} with 100% Placement Assistance.
+                Join the top-rated <strong>DevOps Training in {locName}</strong> at LearnMore Technologies. Master Linux Administration, AWS Cloud, Docker Containerization, Kubernetes Cluster Orchestration, Jenkins CI/CD Pipelines, Terraform Infrastructure as Code, and Prometheus Monitoring with dedicated <strong>DevOps Training in {locName}</strong>.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8 text-sm">
                 <div className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-amber-400 font-bold">
                   <i className="fas fa-star text-amber-400"></i>
                   <span>4.9 / 5</span>
-                  <span className="text-slate-400 font-normal text-xs ml-1">(3,200+ Reviews)</span>
+                  <span className="text-slate-400 font-normal text-xs ml-1">(3,200+ Google Reviews)</span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-xl text-emerald-400 font-bold">
                   <i className="fas fa-user-check"></i>
-                  <span>100% Placement Assistance</span>
+                  <span>100% Placement Support</span>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openEnrollModal('DevOps Master Program')}
+                  onClick={() => openEnrollModal(`DevOps Training in ${locName}`)}
                   className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition text-center flex items-center justify-center gap-2"
                 >
-                  <i className="fas fa-paper-plane"></i> Enroll Now & Get 30% OFF
+                  <i className="fas fa-paper-plane"></i> Apply for DevOps Training in {locName}
                 </button>
                 <button
-                  onClick={() => openEnrollModal('DevOps Master Program - Syllabus')}
+                  onClick={() => openEnrollModal(`DevOps Training in ${locName} - Syllabus`)}
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2"
                 >
-                  <i className="fas fa-file-download"></i> Download Full Syllabus
+                  <i className="fas fa-file-download"></i> Download DevOps Syllabus
                 </button>
               </div>
             </div>
@@ -235,7 +243,7 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
             <div className="lg:col-span-5">
               <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 relative text-slate-800 border-2 border-blue-100 overflow-hidden">
                 <div className="text-center pb-5 mb-5 border-b border-slate-100">
-                  <h3 className="text-xl md:text-2xl font-black text-slate-900">Book Free DevOps Counselling</h3>
+                  <h3 className="text-xl md:text-2xl font-black text-slate-900">Book Free Demo for DevOps Training in {locName}</h3>
                 </div>
 
                 <form onSubmit={handleInlineSubmit} className="space-y-4">
@@ -278,7 +286,7 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                     disabled={isInlineSubmitting}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 rounded-xl transition text-sm"
                   >
-                    Book Free Counselling Session
+                    {isInlineSubmitting ? 'Submitting...' : `Book Demo for DevOps Training in ${locName}`}
                   </button>
                 </form>
               </div>
@@ -293,11 +301,11 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-4 border-r border-slate-100 last:border-0">
               <p className="text-3xl md:text-4xl font-black text-blue-600 mb-1">16,200+</p>
-              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">DevOps Students Trained</p>
+              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Students in DevOps Training in {locName}</p>
             </div>
             <div className="p-4 border-r border-slate-100 last:border-0">
               <p className="text-3xl md:text-4xl font-black text-indigo-600 mb-1">9,100+</p>
-              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Placed Alumni</p>
+              <p className="text-xs md:text-sm text-slate-600 font-semibold uppercase tracking-wide">Placed Alumni in {locName}</p>
             </div>
             <div className="p-4 border-r border-slate-100 last:border-0">
               <p className="text-3xl md:text-4xl font-black text-emerald-600 mb-1">300+</p>
@@ -311,6 +319,64 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
         </div>
       </section>
 
+      {/* On-Page SEO Content Block */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div className="max-w-4xl">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-900 font-extrabold text-xs uppercase tracking-wider mb-4">
+                BEST DEVOPS TRAINING IN {locName.toUpperCase()}
+              </span>
+              <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-6 leading-snug">
+                Why LearnMore is the #1 Center for DevOps Training in {locName}?
+              </h2>
+              <div className="prose prose-slate max-w-none text-slate-600 text-base leading-relaxed space-y-4">
+                <p>
+                  Looking for the leading institute offering <strong>DevOps Training in {locName}</strong>? LearnMore Technologies provides a top-tier hands-on program. Our <strong>DevOps Training in {locName}</strong> equips students and working IT professionals with production-grade skills across cloud infrastructure, automation, and CI/CD pipelines.
+                </p>
+                <p>
+                  Our <strong>DevOps Training in {locName}</strong> covers Linux Administration, Shell Scripting, Docker Containers, Kubernetes Cluster Management, Jenkins Declarative Pipelines, Terraform Infrastructure as Code, and Prometheus/Grafana Monitoring. Every batch of <strong>DevOps Training in {locName}</strong> is trained by senior DevOps Architects with 14+ years of real-world cloud deployment experience.
+                </p>
+                <p>
+                  We offer flexible weekday and weekend classroom batches for <strong>DevOps Training in {locName}</strong> at our state-of-the-art center, as well as live online training options. Register for <strong>DevOps Training in {locName}</strong> to secure 100% placement call assistance.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-slate-100">
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-blue-50/60 border border-blue-100">
+                  <i className="fas fa-certificate text-blue-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">ISO Certified Program</h4>
+                    <p className="text-[11px] text-slate-500">DevOps Training in {locName}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-indigo-50/60 border border-indigo-100">
+                  <i className="fas fa-user-tie text-indigo-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">14+ Yrs DevOps Architects</h4>
+                    <p className="text-[11px] text-slate-500">Cloud Mentors in {locName}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
+                  <i className="fas fa-briefcase text-emerald-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">100% Placement Support</h4>
+                    <p className="text-[11px] text-slate-500">300+ Hiring Partners</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 rounded-2xl bg-purple-50/60 border border-purple-100">
+                  <i className="fas fa-server text-purple-600 text-lg mt-0.5"></i>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-xs">Live Cloud Labs</h4>
+                    <p className="text-[11px] text-slate-500">Real Deployments in {locName}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* DevOps Tools & Stack Section */}
       <section className="py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -319,7 +385,7 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
               HANDS-ON DEVOPS STACK
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900">
-              DevOps Tools & Infrastructure You Will Master
+              DevOps Training in {locName} - Tools & Infrastructure Covered
             </h2>
           </div>
 
@@ -342,8 +408,11 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
-              Comprehensive DevOps Curriculum
+              Comprehensive Curriculum for DevOps Training in {locName}
             </h2>
+            <p className="text-slate-600 text-base">
+              Designed by principal DevOps architects to master production infrastructure and CI/CD pipelines in {locName}.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -371,7 +440,7 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
               PRACTICAL INDUSTRY PROJECTS
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900">
-              Live Capstone DevOps Projects You Will Build
+              Live Capstone Projects in DevOps Training in {locName}
             </h2>
           </div>
 
@@ -407,13 +476,13 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                 GLOBALLY RECOGNIZED CERTIFICATE
               </span>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight mb-4">
-                Earn ISO 9001:2015 Certified DevOps Engineer Certification
+                Earn ISO 9001:2015 Certificate in DevOps Training in {locName}
               </h2>
               <p className="text-slate-300 text-base leading-relaxed mb-6">
-                Receive an official, lifetime-valid LearnMore Technologies DevOps Professional Certificate accredited by international quality standards.
+                Receive an official, lifetime-valid LearnMore Technologies Professional Certificate upon completing <strong>DevOps Training in {locName}</strong>.
               </p>
               <button
-                onClick={() => openEnrollModal('DevOps Certification Sample Request')}
+                onClick={() => openEnrollModal(`DevOps Training in ${locName} - Sample Request`)}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-lg transition text-sm inline-flex items-center gap-2"
               >
                 <i className="fas fa-award"></i> View Sample Certificate
@@ -425,9 +494,9 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                   <i className="fas fa-award"></i>
                 </div>
                 <h3 className="text-xl font-black text-white mb-2">LearnMore Technologies</h3>
-                <p className="text-xs text-blue-300 font-extrabold uppercase tracking-widest mb-4">DevOps Engineer Certified</p>
+                <p className="text-xs text-blue-300 font-extrabold uppercase tracking-widest mb-4">DevOps Training in {locName} Certified</p>
                 <div className="pt-4 border-t border-slate-700 text-[11px] text-slate-400 font-mono">
-                  VERIFIED CERTIFICATE ID: LMT-DEVOPS-2026
+                  VERIFIED CERTIFICATE ID: LMT-DEVOPS-{locName.toUpperCase().replace(/\s+/g, '-')}-2026
                 </div>
               </div>
             </div>
@@ -443,10 +512,10 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
               WHY WE ARE #1
             </span>
             <h2 className="text-3xl md:text-4xl font-black tracking-tight">
-              LearnMore Technologies vs Other Training Institutes
+              DevOps Training in {locName}: LearnMore vs Other Institutes
             </h2>
             <p className="text-slate-400 mt-2 text-base">
-              See why thousands of students and working professionals choose LearnMore Technologies for genuine career transformation.
+              See why students choose LearnMore Technologies for <strong>DevOps Training in {locName}</strong> over local institutes.
             </p>
           </div>
 
@@ -458,17 +527,17 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                   <th className="py-5 px-6 bg-gradient-to-r from-blue-600/40 to-indigo-600/40 text-blue-400 font-extrabold border-t-2 border-l border-r border-blue-500 w-1/3 text-base">
                     <div className="flex items-center gap-2">
                       <i className="fas fa-crown text-amber-400 text-lg"></i>
-                      <span>LearnMore Technologies</span>
+                      <span>LearnMore ({locName})</span>
                     </div>
                   </th>
-                  <th className="py-5 px-6 text-slate-500 font-bold w-1/3">Other Local Institutes</th>
+                  <th className="py-5 px-6 text-slate-500 font-bold w-1/3">Other Institutes in {locName}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/80 text-sm bg-slate-950/60">
                 <tr className="hover:bg-slate-900/50 transition">
                   <td className="py-5 px-6 font-bold text-slate-200">Trainer Expertise & Background</td>
                   <td className="py-5 px-6 bg-blue-950/20 border-l border-r border-blue-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> Principal DevOps Engineers with 14+ Yrs Enterprise Experience
+                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> Principal DevOps Engineers in {locName} with 14+ Yrs Enterprise Experience
                   </td>
                   <td className="py-5 px-6 text-slate-400">
                     <i className="fas fa-times-circle mr-2 text-rose-500"></i> Junior trainers or freshers with theoretical knowledge only
@@ -477,7 +546,7 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                 <tr className="hover:bg-slate-900/50 transition">
                   <td className="py-5 px-6 font-bold text-slate-200">Practical & Lab Sessions</td>
                   <td className="py-5 px-6 bg-blue-950/20 border-l border-r border-blue-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Practical Docker, Kubernetes, Jenkins & Terraform Labs
+                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Practical Docker, Kubernetes, Jenkins & Terraform Labs in {locName}
                   </td>
                   <td className="py-5 px-6 text-slate-400">
                     <i className="fas fa-times-circle mr-2 text-rose-500"></i> Heavy PowerPoint slides with minimal lab practice time
@@ -486,10 +555,10 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                 <tr className="hover:bg-slate-900/50 transition">
                   <td className="py-5 px-6 font-bold text-slate-200">Placement Assistance & Calls</td>
                   <td className="py-5 px-6 bg-blue-950/20 border-l border-r border-blue-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Placement Call Guarantee & 300+ Active Partner Tie-ups
+                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> 100% Placement Support & 300+ Active Partner Tie-ups
                   </td>
-                  <td className="py-5 px-6 text-slate-400">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without interview guarantee
+                  <td className="py-4 px-6 text-slate-400">
+                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Only basic resume forwarding without placement support
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-900/50 transition">
@@ -504,23 +573,74 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
                 <tr className="hover:bg-slate-900/50 transition">
                   <td className="py-5 px-6 font-bold text-slate-200">Batch Flexibility & Session Access</td>
                   <td className="py-5 px-6 bg-blue-950/20 border-l border-r border-blue-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> Classroom (Bangalore), Online, Weekend + Lifetime Recording Access
+                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> Classroom ({locName}), Online, Weekend + Lifetime Recording Access
                   </td>
                   <td className="py-5 px-6 text-slate-400">
                     <i className="fas fa-times-circle mr-2 text-rose-500"></i> Rigid batch timings with limited/no class recordings
                   </td>
                 </tr>
-                <tr className="hover:bg-slate-900/50 transition">
-                  <td className="py-5 px-6 font-bold text-slate-200">Certification Accreditation</td>
-                  <td className="py-5 px-6 bg-blue-950/20 border-l border-r border-blue-500/30 text-emerald-400 font-semibold">
-                    <i className="fas fa-check-circle mr-2 text-emerald-400"></i> ISO 9001:2015 Globally Recognized Industry Certification
-                  </td>
-                  <td className="py-5 px-6 text-slate-400">
-                    <i className="fas fa-times-circle mr-2 text-rose-500"></i> Unrecognized local certificate with low industry value
-                  </td>
-                </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Frequently Asked Questions (FAQ) Section for On-Page SEO */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-900 font-extrabold text-xs uppercase tracking-wider mb-3">
+              FAQ & ANSWERS
+            </span>
+            <h2 className="text-3xl font-black text-slate-900">
+              Frequently Asked Questions - DevOps Training in {locName}
+            </h2>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(0)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>What is the course fee for DevOps Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 0 ? 'up' : 'down'} text-blue-500`}></i>
+              </button>
+              {openFaq === 0 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  The fee for <strong>DevOps Training in {locName}</strong> at LearnMore Technologies is highly competitive. We offer No-Cost EMI options along with special discounts for early registrants in <strong>DevOps Training in {locName}</strong>.
+                </div>
+              )}
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(1)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>Why is LearnMore rated #1 for DevOps Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 1 ? 'up' : 'down'} text-blue-500`}></i>
+              </button>
+              {openFaq === 1 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  LearnMore Technologies is recognized as the top center for <strong>DevOps Training in {locName}</strong> because of 14+ years experienced mentors, 100% real cloud lab deployments (AWS, Docker, K8s, Jenkins), and 100% placement call support.
+                </div>
+              )}
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              <button
+                onClick={() => toggleFaq(2)}
+                className="w-full p-6 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:bg-slate-50 transition"
+              >
+                <span>Is placement assistance provided with DevOps Training in {locName}?</span>
+                <i className={`fas fa-chevron-${openFaq === 2 ? 'up' : 'down'} text-blue-500`}></i>
+              </button>
+              {openFaq === 2 && (
+                <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  Yes, 100% placement support is included with <strong>DevOps Training in {locName}</strong>. We help prepare your resume, build GitHub DevOps repositories, conduct mock technical interviews, and arrange direct calls with 300+ hiring partners.
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>

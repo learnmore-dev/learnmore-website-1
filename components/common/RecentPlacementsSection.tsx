@@ -152,7 +152,7 @@ export default function RecentPlacementsSection({
           <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <p className="text-sm font-bold text-slate-900">Want to be our next success story?</p>
-              <p className="text-xs text-slate-500">Get guaranteed placement calls & 1-on-1 resume preparation.</p>
+              <p className="text-xs text-slate-500">Get dedicated placement support & 1-on-1 resume preparation.</p>
             </div>
             <button
               onClick={() => openEnrollModal(`${courseName} - Placement Inquiry`)}

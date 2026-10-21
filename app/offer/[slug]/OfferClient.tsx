@@ -148,7 +148,7 @@ export default function OfferPage({ params }: OfferPageProps) {
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-green-500 mt-1"></i>
-                    <span>Placement assistance guaranteed</span>
+                    <span>Dedicated placement support included</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-green-500 mt-1"></i>

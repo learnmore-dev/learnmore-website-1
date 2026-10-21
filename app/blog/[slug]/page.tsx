@@ -1,4 +1,5 @@
-import BlogPostClient, { blogsData } from './BlogPostClient';
+import BlogPostClient from './BlogPostClient';
+import { blogsData } from '@/app/blog/blogData';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
