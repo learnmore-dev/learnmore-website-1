@@ -24,5 +24,12 @@ export const metadata: Metadata = {
 };
 
 export default function DigitalMarketingTrainingPage() {
-  return <DigitalMarketingTrainingClient location="Bangalore" />;
+  return (
+    <DigitalMarketingTrainingClient
+      location={{
+        slug: 'bangalore',
+        name: 'Bangalore',
+      }}
+    />
+  );
 }
