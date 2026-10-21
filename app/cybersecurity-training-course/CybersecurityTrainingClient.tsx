@@ -8,6 +8,7 @@ import StickyMobileCTA from '@/components/common/StickyMobileCTA';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
 import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface CybersecurityTrainingClientProps {
@@ -612,6 +613,9 @@ export default function CybersecurityTrainingClient({ location }: CybersecurityT
           </div>
         </div>
       </section>
+
+      {/* SEO Location Content Block */}
+      <LocationSeoContentBlock courseName="Cybersecurity" locationName={locName} />
 
       <Footer />
       <StickyMobileCTA courseName={`Cybersecurity Master Program in ${locName}`} />

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 
 interface BatchUrgencyBannerProps {
+  courseName?: string;
   batchDate?: string;
   seatsRemaining?: number;
 }

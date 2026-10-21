@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface DevOpsTrainingClientProps {
@@ -644,6 +645,9 @@ export default function DevOpsTrainingClient({ location }: DevOpsTrainingClientP
           </div>
         </div>
       </section>
+
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="DevOps" locationName={locName} />
 
       <Footer />
     </div>

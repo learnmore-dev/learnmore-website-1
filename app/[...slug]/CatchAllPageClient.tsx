@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import dynamic from 'next/dynamic';
 
 const EnrollModal = dynamic(() => import('@/components/common/EnrollModal'), {
@@ -1588,6 +1589,9 @@ export default function CatchAllPageClient({ params }: CatchAllPageProps) {
             </div>
           </div>
         </section>
+
+        {/* Location SEO Content Blocks */}
+        <LocationSeoContentBlock courseName={foundCourse.name} locationName={location?.name || 'Marathahalli'} />
       </main>
       <Footer />
       <EnrollModal 

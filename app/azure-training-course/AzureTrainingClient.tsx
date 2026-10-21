@@ -8,6 +8,7 @@ import StickyMobileCTA from '@/components/common/StickyMobileCTA';
 import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface AzureTrainingClientProps {
@@ -813,8 +814,8 @@ export default function AzureTrainingClient({ location }: AzureTrainingClientPro
       {/* Recent Student Placements Section */}
       <RecentPlacementsSection courseName="Microsoft Azure Cloud Master Program" />
 
-      {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
-      <StickyMobileCTA courseName="Microsoft Azure Cloud Master Program" />
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="Microsoft Azure" locationName={locName} />
 
       <Footer />
     </div>

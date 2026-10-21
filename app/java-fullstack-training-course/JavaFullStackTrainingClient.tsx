@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface JavaFullStackTrainingClientProps {
@@ -507,6 +508,9 @@ export default function JavaFullStackTrainingClient({ location }: JavaFullStackT
           </div>
         </div>
       </section>
+
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="Java Full Stack" locationName={locName} />
 
       <Footer />
     </div>

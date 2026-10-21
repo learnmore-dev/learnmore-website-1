@@ -8,6 +8,7 @@ import StickyMobileCTA from '@/components/common/StickyMobileCTA';
 import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface PowerBiTrainingClientProps {
@@ -816,6 +817,9 @@ export default function PowerBiTrainingClient({ location }: PowerBiTrainingClien
 
       {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
       <StickyMobileCTA courseName="Power BI & Business Intelligence Master Program" />
+
+      {/* SEO Location Content Block */}
+      <LocationSeoContentBlock courseName="Power BI" locationName={locName} />
 
       <Footer />
     </div>

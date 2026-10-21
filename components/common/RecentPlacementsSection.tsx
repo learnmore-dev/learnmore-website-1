@@ -1,14 +1,16 @@
 'use client';
 
 import { useEnroll } from '@/context/EnrollContext';
+import PlacementStudentCard from '@/components/common/PlacementStudentCard';
 
 interface StudentPlacement {
+  id?: number | string;
   name: string;
   role: string;
   company: string;
+  course: string;
   package: string;
-  image: string;
-  badge?: string;
+  image?: string;
 }
 
 interface RecentPlacementsSectionProps {
@@ -22,36 +24,58 @@ export default function RecentPlacementsSection({
 
   const placements: StudentPlacement[] = [
     {
-      name: 'Rohan Verma',
-      role: 'Full Stack Developer',
-      company: 'Accenture',
+      id: 1,
+      name: 'Subham P',
+      role: 'TEAM LEAD',
+      company: 'TECH MAHINDRA',
+      course: 'TEAM LEAD',
       package: '6.5 LPA',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-      badge: 'Placed Recently'
+      image: '/images/students/ram.webp',
     },
     {
-      name: 'Priya Sharma',
-      role: 'Software Engineer',
-      company: 'Capgemini',
-      package: '5.8 LPA',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
-      badge: 'Placed Recently'
-    },
-    {
-      name: 'Karthik Raja',
-      role: 'AWS Cloud Engineer',
-      company: 'Wipro',
-      package: '7.5 LPA',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-      badge: 'Placed Recently'
-    },
-    {
-      name: 'Sneha Kulkarni',
+      id: 2,
+      name: 'Anmol P',
       role: 'Data Analyst',
-      company: 'Deloitte',
-      package: '7.2 LPA',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
-      badge: 'Placed Recently'
+      company: 'Accenture',
+      course: 'Data Analytics',
+      package: '5.2 LPA',
+      image: '/images/students/anmol.webp',
+    },
+    {
+      id: 3,
+      name: 'Rohit Yadav',
+      role: 'Snowflake developer',
+      company: 'Bizmetric',
+      course: 'Snowflake developer',
+      package: '7.5 LPA',
+      image: '/images/students/rohit.webp',
+    },
+    {
+      id: 4,
+      name: 'Priya Sharma',
+      role: 'Data Analyst',
+      company: 'Accenture',
+      course: 'Data Analytics',
+      package: '5.2 LPA',
+      image: '/images/students/priya.webp',
+    },
+    {
+      id: 5,
+      name: 'kanzariya pratik',
+      role: 'React Native Developer',
+      company: 'Nexgen2AI',
+      course: 'React Native',
+      package: '5.2 LPA',
+      image: '/images/students/pratik.webp',
+    },
+    {
+      id: 6,
+      name: 'Aditya Patel',
+      role: 'Associate Applications Developer',
+      company: 'DXC Technologies',
+      course: 'AWS & DevOps',
+      package: '4.5 LPA',
+      image: '/images/students/aditya.webp',
     }
   ];
 
@@ -83,56 +107,15 @@ export default function RecentPlacementsSection({
           </p>
         </div>
 
-        {/* Student Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Student Placement Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {placements.map((student, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-slate-200 rounded-3xl p-5 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 relative overflow-hidden flex flex-col justify-between"
-            >
-              {/* Top Row: Avatar & Salary Package */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="relative">
-                    <img
-                      src={student.image}
-                      alt={student.name}
-                      className="w-14 h-14 rounded-full object-cover border-2 border-emerald-500 shadow-md"
-                    />
-                    <span className="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></span>
-                  </div>
-                  <div className="text-right">
-                    <span className="inline-block bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-sm">
-                      💰 {student.package}
-                    </span>
-                    <p className="text-[10px] text-slate-500 font-semibold mt-1">Salary Package</p>
-                  </div>
-                </div>
-
-                {/* Student Info */}
-                <h3 className="text-lg font-extrabold text-slate-900 leading-snug">
-                  {student.name}
-                </h3>
-                <p className="text-xs text-blue-600 font-bold mb-3">
-                  {student.role}
-                </p>
-
-                {/* Company Tag */}
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-2.5 flex items-center justify-between mb-2">
-                  <span className="text-xs text-slate-500 font-medium">Placed At:</span>
-                  <span className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
-                    <i className="fas fa-building text-amber-600 text-xs"></i>
-                    {student.company}
-                  </span>
-                </div>
-              </div>
-
-              {/* Verified Badge */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-emerald-700 font-semibold">
-                <span><i className="fas fa-check-circle text-emerald-600 mr-1"></i> Verified Placement</span>
-                <span className="text-slate-400">2026 Batch</span>
-              </div>
-            </div>
+            <PlacementStudentCard
+              key={student.id || idx}
+              student={student}
+              onReadMore={() => openEnrollModal(`${student.name} - Placement Inquiry`)}
+              onVisitCenter={() => openEnrollModal(`${student.name} - Placement Inquiry`)}
+            />
           ))}
         </div>
 

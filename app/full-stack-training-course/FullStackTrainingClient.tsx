@@ -11,6 +11,8 @@ import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
 import CourseComparisonTable from '@/components/common/CourseComparisonTable';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
+import PlacementStudentCard from '@/components/common/PlacementStudentCard';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface FullStackTrainingClientProps {
@@ -793,30 +795,19 @@ export default function FullStackTrainingClient({ location }: FullStackTrainingC
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, idx) => (
-              <div key={idx} className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-1 text-amber-400 mb-4 text-sm">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <p className="text-slate-700 text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
-                </div>
-                <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                  <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover border-2 border-blue-500 shadow-sm" />
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-base">{t.name}</h4>
-                    <p className="text-xs text-slate-500 font-medium">{t.role}</p>
-                    <span className="inline-block mt-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md">
-                      Package: {t.package}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <PlacementStudentCard
+                key={idx}
+                student={{
+                  name: t.name,
+                  role: t.role,
+                  company: t.role.includes('at') ? t.role.split('at')[1].trim() : 'Tech Mahindra',
+                  course: 'Full Stack Web Development',
+                  package: t.package,
+                  image: t.image
+                }}
+              />
             ))}
           </div>
         </div>
@@ -1089,8 +1080,8 @@ export default function FullStackTrainingClient({ location }: FullStackTrainingC
       {/* Recent Student Placements Section */}
       <RecentPlacementsSection courseName="Full Stack Development Master Program" />
 
-      {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
-      <StickyMobileCTA courseName="Full Stack Development Master Program" />
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="Full Stack Development" locationName={locName} />
 
       <Footer />
     </div>
