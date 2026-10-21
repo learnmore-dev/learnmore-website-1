@@ -8,6 +8,7 @@ import StickyMobileCTA from '@/components/common/StickyMobileCTA';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
 import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface GenerativeAITrainingClientProps {
@@ -679,6 +680,9 @@ export default function GenerativeAITrainingClient({ location }: GenerativeAITra
           </div>
         </div>
       </section>
+
+      {/* SEO Location Content Block */}
+      <LocationSeoContentBlock courseName="Generative AI" locationName={locName} />
 
       <Footer />
       <StickyMobileCTA

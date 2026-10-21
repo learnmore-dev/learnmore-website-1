@@ -8,6 +8,7 @@ import StickyMobileCTA from '@/components/common/StickyMobileCTA';
 import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface PythonTrainingClientProps {
@@ -699,8 +700,8 @@ export default function PythonTrainingClient({ location }: PythonTrainingClientP
       {/* Recent Student Placements Section */}
       <RecentPlacementsSection courseName={`Python Training in ${locName}`} />
 
-      {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
-      <StickyMobileCTA courseName={`Python Training in ${locName}`} />
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="Python" locationName={locName} />
 
       <Footer />
     </div>

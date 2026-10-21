@@ -8,10 +8,11 @@ import StickyMobileCTA from '@/components/common/StickyMobileCTA';
 import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface DigitalMarketingTrainingClientProps {
-  location?: {
+  location?: string | {
     slug: string;
     name: string;
     address?: string;
@@ -23,14 +24,14 @@ interface DigitalMarketingTrainingClientProps {
 export default function DigitalMarketingTrainingClient({ location }: DigitalMarketingTrainingClientProps = {}) {
   const { openEnrollModal } = useEnroll();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const locName = location?.name || 'Bangalore';
+  const locName = typeof location === 'string' ? location : (location?.name || 'Bangalore');
 
   const [inlineForm, setInlineForm] = useState({
     name: '',
     phone: '',
     email: '',
     trainingMode: 'Yes, am Interested in Online Training',
-    city: location?.name || 'Select Your City',
+    city: locName || 'Select Your City',
     message: ''
   });
   const [isInlineSubmitting, setIsInlineSubmitting] = useState(false);
@@ -813,6 +814,9 @@ export default function DigitalMarketingTrainingClient({ location }: DigitalMark
 
       {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
       <StickyMobileCTA courseName="Digital Marketing & Growth Hacking Master Program" />
+
+      {/* SEO Location Content Block */}
+      <LocationSeoContentBlock courseName="Digital Marketing" locationName={locName} />
 
       <Footer />
     </div>

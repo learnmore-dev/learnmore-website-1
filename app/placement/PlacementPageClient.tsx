@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import EnrollModal from '@/components/common/EnrollModal';
+import PlacementStudentCard from '@/components/common/PlacementStudentCard';
+import CenterDirectorCard, { DirectorCardItem } from '@/components/common/CenterDirectorCard';
 import placementsData from '@/data/placements.json';
 
 export default function PlacementPage() {
@@ -13,6 +15,30 @@ export default function PlacementPage() {
   const { placements } = placementsData;
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCourse, setFilterCourse] = useState('all');
+
+  const directorsData: DirectorCardItem[] = [
+    {
+      id: 1,
+      name: 'Mr. Ajit Kumar Yadav',
+      title: 'Technoglobe - Mainpuri - Uttar Pradesh',
+      message: 'As the Center Director of Mainpuri Technoglobe, I would like to express my sincere appreciation to the entire team for empowering students with high quality IT skill training.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=80',
+    },
+    {
+      id: 2,
+      name: 'Mr. Suresh Sharma',
+      title: 'Learnmore Academy - Whitefield - Bangalore',
+      message: 'Leading our flagship Whitefield center with a vision to equip tech graduates with industry-ready coding, AI, and cloud development skills.',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    },
+    {
+      id: 3,
+      name: 'Mr. Rajesh Patel',
+      title: 'Learnmore Hub - BTM Layout - Bangalore',
+      message: 'Delivering top-tier practical training and personalized placement guidance to help aspiring software engineers land their dream IT roles.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    }
+  ];
 
   // Get unique courses for filter
   const courses = ["all", ...Array.from(new Set(placements.map(p => p.course)))];
@@ -62,6 +88,33 @@ export default function PlacementPage() {
             </div>
           </div>
 
+          {/* Center Directors & Leadership Section (Blue Cards) */}
+          <div className="mb-12">
+            <div className="text-center max-w-2xl mx-auto mb-8">
+              <span className="inline-block bg-blue-100 text-blue-700 font-bold px-3.5 py-1 rounded-full text-xs uppercase tracking-wider mb-2">
+                Center Leadership
+              </span>
+              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+                Words From Center Directors
+              </h2>
+              <p className="text-slate-600 text-sm mt-1.5">
+                Hear from our learning center directors and regional leaders empowering student futures across India.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+              {directorsData.map((director) => (
+                <CenterDirectorCard
+                  key={director.id}
+                  director={{
+                    ...director,
+                    onReadMore: () => setIsModalOpen(true),
+                    onVisitCenter: () => setIsModalOpen(true)
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
           {/* Search and Filter */}
           <div className="bg-white rounded-xl shadow-md p-6 mb-8">
             <div className="grid md:grid-cols-2 gap-4">
@@ -96,50 +149,14 @@ export default function PlacementPage() {
           </div>
 
           {/* Placement Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {filteredPlacements.map((student) => (
-              <div key={student.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group">
-                <div className="flex p-5 gap-4">
-                  {/* Student Image */}
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-r from-red-500 to-red-600 flex-shrink-0">
-                    {student.image ? (
-                      <img
-                        src={student.image}
-                        alt={student.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          const parent = e.currentTarget.parentElement;
-                          if (parent) {
-                            parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white text-2xl font-bold">${student.name[0]}</div>`;
-                          }
-                        }}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
-                        {student.name[0] || student.name.charAt(0)}
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* Student Details */}
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-red-500 transition">
-                      {student.name}
-                    </h3>
-                    <p className="text-red-500 text-sm font-semibold">{student.role}</p>
-                    <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
-                      <i className="fas fa-building text-gray-400 text-xs"></i> {student.company}
-                    </p>
-                    <p className="text-gray-500 text-sm flex items-center gap-1 mt-1">
-                      <i className="fas fa-graduation-cap text-gray-400 text-xs"></i> {student.course}
-                    </p>
-                    <div className="mt-2 inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
-                      {student.package}
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {filteredPlacements.map((student, idx) => (
+              <PlacementStudentCard
+                key={student.id ? `${student.id}-${idx}` : idx}
+                student={student}
+                onReadMore={() => setIsModalOpen(true)}
+                onVisitCenter={() => setIsModalOpen(true)}
+              />
             ))}
           </div>
 
@@ -152,7 +169,7 @@ export default function PlacementPage() {
           )}
 
           {/* Placement Process Section */}
-          <div className="bg-white rounded-xl shadow-md p-8 mb-8">
+          <div className="bg-white rounded-xl shadow-md p-8 mb-12">
             <h2 className="text-2xl font-bold text-center mb-6">How We Help Students Get Placed</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">

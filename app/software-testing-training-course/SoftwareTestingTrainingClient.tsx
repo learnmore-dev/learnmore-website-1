@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface SoftwareTestingTrainingClientProps {
@@ -562,6 +563,9 @@ export default function SoftwareTestingTrainingClient({ location }: SoftwareTest
           </div>
         </div>
       </section>
+
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="Software Testing" locationName={locName} />
 
       <Footer />
     </div>

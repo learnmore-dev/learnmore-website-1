@@ -9,6 +9,7 @@ import BatchUrgencyBanner from '@/components/common/BatchUrgencyBanner';
 import CourseComparisonTable from '@/components/common/CourseComparisonTable';
 import UpcomingBatchSchedule from '@/components/common/UpcomingBatchSchedule';
 import RecentPlacementsSection from '@/components/common/RecentPlacementsSection';
+import LocationSeoContentBlock from '@/components/common/LocationSeoContentBlock';
 import { useEnroll } from '@/context/EnrollContext';
 
 interface DataAnalyticsTrainingClientProps {
@@ -597,8 +598,8 @@ export default function DataAnalyticsTrainingClient({ location }: DataAnalyticsT
       {/* Recent Student Placements Section */}
       <RecentPlacementsSection courseName="Data Analytics Master Program" />
 
-      {/* Sticky Mobile CTA Bar for Google Ads Conversions */}
-      <StickyMobileCTA courseName="Data Analytics Master Program" />
+      {/* Location SEO Content Block */}
+      <LocationSeoContentBlock courseName="Data Analytics" locationName={locName} />
 
       <Footer />
     </div>
